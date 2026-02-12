@@ -1,0 +1,811 @@
+syntax = "proto3";
+package spire.plugin.server.datastore.v1alpha1;
+option go_package = "github.com/spiffe/spire-plugin-sdk/proto/spire/plugin/server/datastore/v1alpha1;datastorev1alpha1";
+
+enum DataConsistency {
+    DATA_CONSISTENCY_REQUIRE_CURRENT = 0;
+    DATA_CONSISTENCY_TOLERATE_STALE = 1;
+}
+
+enum DeleteMode {
+    DELETE_MODE_RESTRICT = 0;
+    DELETE_MODE_DELETE = 1;
+    DELETE_MODE_DISSOCIATE = 2;
+}
+
+enum MatchBehavior {
+    MATCH_BEHAVIOR_MATCH_EXACT = 0;
+    MATCH_BEHAVIOR_MATCH_SUBSET = 1;
+    MATCH_BEHAVIOR_MATCH_SUPERSET = 2;
+    MATCH_BEHAVIOR_MATCH_ANY = 3;
+}
+
+enum BundleEndpointType {
+    BUNDLE_ENDPOINT_TYPE_SPIFFE = 0;
+    BUNDLE_ENDPOINT_TYPE_WEB = 1;
+}
+
+message Empty {}
+
+/** A type which contains attestation data for specific platform. */
+message AttestationData {
+    /** Type of attestation to perform. */
+    string type = 1;
+    /** The attestation data. */
+    bytes data = 2;
+}
+
+/** A type which describes the conditions under which a registration
+entry is matched. */
+message Selector {
+    /** A selector type represents the type of attestation used in attesting
+    the entity (Eg: AWS, K8). */
+    string type = 1;
+    /** The value to be attested. */
+    string value = 2;
+}
+
+/** Represents a type with a list of Selector. */
+message Selectors {
+    /** A list of Selector. */
+    repeated Selector entries = 1;
+}
+
+/* Represents an attested SPIRE agent */
+message AttestedNode {
+    // Node SPIFFE ID
+    string spiffe_id = 1;
+
+    // Attestation data type
+    string attestation_data_type = 2;
+
+    // Node certificate serial number
+    string cert_serial_number = 3;
+
+    // Node certificate not_after (seconds since unix epoch)
+    int64 cert_not_after = 4;
+
+    // Node certificate serial number
+    string new_cert_serial_number = 5;
+
+    // Node certificate not_after (seconds since unix epoch)
+    int64 new_cert_not_after = 6;
+
+    // Node selectors
+    repeated Selector selectors = 7;
+
+    // CanReattest field (can the attestation safely be deleted and recreated automatically)
+    bool can_reattest = 8;
+
+    // AgentVersion is the version of the SPIRE agent
+    string agent_version = 9;
+
+    int64 created_at = 10;
+
+    int64 updated_at = 11;
+}
+
+/** This is a curated record that the Server uses to set up and
+manage the various registered nodes and workloads that are controlled by it. */
+message RegistrationEntry {
+    /** A list of selectors. */
+    repeated Selector selectors = 1;
+    /** The SPIFFE ID of an entity that is authorized to attest the validity
+    of a selector */
+    string parent_id = 2;
+    /** The SPIFFE ID is a structured string used to identify a resource or
+    caller. It is defined as a URI comprising a “trust domain” and an
+    associated path. */
+    string spiffe_id = 3;
+    /** Time to live for X509-SVIDs generated from this entry. Was previously called 'ttl'. */
+    int32 x509_svid_ttl = 4;
+    /** A list of federated trust domain SPIFFE IDs. */
+    repeated string federates_with = 5;
+    /** Entry ID */
+    string entry_id = 6;
+    /** whether the workload is an admin workload. Admin workloads
+    can use their SVID's to authenticate with the Server APIs, for
+    example. */
+    bool admin = 7;
+    /** To enable signing CA CSR in upstream spire server  */
+    bool downstream = 8;
+    /** Expiration of this entry, in seconds from epoch */
+    int64 entryExpiry = 9;
+    /** DNS entries */
+    repeated string dns_names = 10;
+    /** Revision number is bumped every time the entry is updated */
+    int64 revision_number = 11;
+    /** Determines if the issued SVID must be stored through an SVIDStore plugin */
+    bool store_svid = 12;
+    /** Time to live for JWT-SVIDs generated from this entry, if set will override ttl field. */
+    int32 jwt_svid_ttl = 13;
+    /** An operator-specified string used to provide guidance on how this
+    identity should be used by a workload when more than one SVID is returned. */
+    string hint = 14;
+    /** Time of creation, in seconds from epoch */
+    int64 created_at = 15;
+
+    int64 updated_at = 16;
+}
+
+/** The RegistrationEntryMask is used to update only selected fields of the RegistrationEntry */
+message RegistrationEntryMask {
+    bool selectors = 1;
+    bool parent_id = 2;
+    bool spiffe_id = 3;
+    bool x509_svid_ttl = 4;
+    bool federates_with = 5;
+    bool entry_id = 6;
+    bool admin = 7;
+    bool downstream = 8;
+    bool entryExpiry = 9;
+    bool dns_names = 10;
+    bool store_svid = 11;
+    bool jwt_svid_ttl = 12;
+    bool hint = 13;
+}
+
+
+/** A list of registration entries. */
+message RegistrationEntries {
+    /** A list of RegistrationEntry. */
+    repeated RegistrationEntry entries = 1;
+}
+
+/** Certificate represents a ASN.1/DER encoded X509 certificate */
+message Certificate {
+    bytes der_bytes = 1;
+    bool tainted_key = 2;
+}
+
+/** PublicKey represents a PKIX encoded public key */
+message PublicKey {
+    /** PKIX encoded key data */
+    bytes pkix_bytes = 1;
+
+    /** key identifier */
+    string kid = 2;
+
+    /** not after (seconds since unix epoch, 0 means "never expires") */
+    int64 not_after = 3;
+
+    /** whether the key is tainted */
+    bool tainted_key = 4;
+}
+
+message Bundle {
+    /** the SPIFFE ID of the trust domain the bundle belongs to */
+    string trust_domain_id = 1;
+
+    bytes data = 2;
+
+    int64 created_at = 3;
+
+    int64 updated_at = 4;
+}
+
+message BundleMask {
+    bool root_cas = 1;
+    bool jwt_signing_keys = 2;
+    bool refresh_hint = 3;
+    bool sequence_number = 4;
+    bool x509_tainted_keys = 5;
+    bool wit_signing_keys = 6;
+}
+
+message AttestedNodeMask{
+    bool attestation_data_type = 1;
+    bool cert_serial_number = 2;
+    bool cert_not_after = 3;
+    bool new_cert_serial_number = 4;
+    bool new_cert_not_after = 5;
+    bool can_reattest = 6;
+    bool agent_version = 7;
+}
+
+message AppendBundleRequest {
+    Bundle bundle = 1;
+}
+
+message AppendBundleResponse {
+     Bundle bundle = 1;
+}
+
+message CreateBundleRequest {
+    Bundle bundle = 1;
+}
+
+message CreateBundleResponse {
+    Bundle bundle = 1;
+}
+
+message CountBundlesRequest {}
+
+message CountBundlesResponse {
+    int32 count = 1;
+}
+
+message DeleteBundleRequest {
+    // Required. The trust domain of the bundle to delete.
+    string trust_domain = 1;
+
+    DeleteMode mode = 2;
+}
+
+message DeleteBundleResponse {}
+
+message FetchBundleRequest {
+    // Required. The trust domain of the bundle to fetch.
+    string trust_domain = 1;
+}
+
+message FetchBundleResponse {
+    // Required. The bundle to return.
+    Bundle bundle = 1;
+}
+
+message Pagination {
+    // The number of items to return in a single page. If not specified, the
+    // service may choose a default.
+    int32 page_size = 1;
+
+    // A token identifying a page of results the server should return. This is
+    // typically the value of next_page_token returned from the previous call.
+    string page_token = 2;
+}
+
+message ListBundlesRequest {
+    Pagination pagination = 1;
+}
+
+message ListBundlesResponse {
+    // Required. The bundles to return.
+    repeated Bundle bundles = 1;
+
+    Pagination pagination = 2;
+}
+
+message PruneBundleRequest {
+    string trust_domain = 1;
+
+    int64 expires_before = 2;
+}
+
+message PruneBundleResponse {
+    bool changed = 1;
+}
+
+message SetBundleRequest {
+    Bundle bundle = 1;
+}
+
+message SetBundleResponse {
+    Bundle bundle = 1;
+}
+
+message UpdateBundleRequest {
+    Bundle bundle = 1;
+
+    BundleMask mask = 2;
+}
+
+message UpdateBundleResponse {
+    Bundle bundle = 1;
+}
+
+message TaintX509CARequest {
+    string trust_domain = 1;
+
+    string key_id = 2;
+}
+
+message TaintX509CAResponse {}
+
+message RevokeX509CARequest {
+    string trust_domain = 1;
+
+    string key_id = 2;
+}
+
+message RevokeX509CAResponse {}
+
+message TaintJWTKeyRequest {
+    string trust_domain = 1;
+
+    string authority_id = 2;
+}
+
+message TaintJWTKeyResponse {
+    PublicKey key = 1;
+}
+
+message RevokeJWTKeyRequest {
+    string trust_domain = 1;
+
+    string authority_id = 2;
+}
+
+message RevokeJWTKeyResponse {
+    PublicKey key = 1;
+}
+
+message CountRegistrationEntriesRequest {
+    DataConsistency data_consistency = 1;
+    string by_parent_id = 2;
+    string by_spiffe_id = 3;
+    string by_hint = 4;
+    bool filter_by_downstream = 5;
+    bool downstream_value = 6;
+    BySelectors by_selectors = 7;
+    ByFederatesWith by_federates_with = 8;
+}
+
+message CountRegistrationEntriesResponse {
+    int32 count = 1;
+}
+
+message BySelectors {
+    MatchBehavior match_behavior = 1;
+    repeated Selector selectors = 2;
+}
+
+message ByFederatesWith {
+    MatchBehavior match_behavior = 1;
+    repeated string federates_with = 2;
+}
+
+message CreateRegistrationEntryRequest {
+    RegistrationEntry entry = 1;
+}
+
+message CreateRegistrationEntryResponse {
+    RegistrationEntry entry = 1;
+}
+
+message CreateOrReturnRegistrationEntryRequest {
+    RegistrationEntry entry = 1;
+}
+
+message CreateOrReturnRegistrationEntryResponse {
+    RegistrationEntry entry = 1;
+    bool created = 2;
+}
+
+message DeleteRegistrationEntryRequest {
+    string entry_id = 1;
+}
+
+message DeleteRegistrationEntryResponse {
+    RegistrationEntry entry = 1;
+}
+
+message FetchRegistrationEntryRequest {
+    string entry_id = 1;
+}
+
+message FetchRegistrationEntryResponse {
+    RegistrationEntry entry = 1;
+}
+
+message FetchRegistrationEntriesRequest {
+    repeated string entry_ids = 1;
+}
+
+message FetchRegistrationEntriesResponse {
+    repeated RegistrationEntry entries = 1;
+}
+
+message ListRegistrationEntriesRequest {
+    Pagination pagination = 1;
+    DataConsistency data_consistency = 2;
+    string by_parent_id = 3;
+    string by_spiffe_id = 4;
+    string by_hint = 5;
+    bool filter_by_downstream = 6;
+    bool downstream_value = 7;
+    BySelectors by_selectors = 8;
+    ByFederatesWith by_federates_with = 9;
+}
+
+message ListRegistrationEntriesResponse {
+    repeated RegistrationEntry entries = 1;
+    Pagination pagination = 2;
+}
+
+message PruneRegistrationEntriesRequest {
+    int64 expires_before = 1;
+}
+
+message PruneRegistrationEntriesResponse {}
+
+message UpdateRegistrationEntryRequest {
+    RegistrationEntry entry = 1;
+    RegistrationEntryMask mask = 2;
+}
+
+message UpdateRegistrationEntryResponse {
+    RegistrationEntry entry = 1;
+}
+
+message ListRegistrationEntryEventsRequest {
+    uint64 greater_than_event_id = 1;
+    uint64 less_than_event_id = 2;
+    DataConsistency data_consistency = 3;
+}
+
+message RegistrationEntryEvent {
+    uint64 event_id = 1;
+    string entry_id = 2;
+    uint64 created_at = 3;
+    uint64 updated_at = 4;
+}
+
+message ListRegistrationEntryEventsResponse {
+    repeated RegistrationEntryEvent events = 1;
+}
+
+message PruneRegistrationEntryEventsRequest {
+    int64 expires_before = 1;
+}
+
+message PruneRegistrationEntryEventsResponse {}
+
+message FetchRegistrationEntryEventRequest {
+    uint64 event_id = 1;
+}
+
+message FetchRegistrationEntryEventResponse {
+    RegistrationEntryEvent event = 1;
+}
+
+message CreateRegistrationEntryEventRequest {
+    RegistrationEntryEvent event = 1;
+}
+
+message CreateRegistrationEntryEventResponse {}
+
+message DeleteRegistrationEntryEventRequest {
+    uint64 event_id = 1;
+}
+
+message DeleteRegistrationEntryEventResponse {}
+
+message CountAttestedNodesRequest {
+    BySelectors by_selectors = 1;
+    bool fetch_selectors = 2;
+    int64 by_expires_before = 3;
+    string by_attestation_type = 4;
+    bool by_can_reattest = 5;
+    bool can_reattest_value = 6;
+    bool by_banned = 7;
+    bool banned_value = 8;
+}
+
+message CountAttestedNodesResponse {
+    int32 count = 1;
+}
+
+message CreateAttestedNodeRequest {
+    AttestedNode node = 1;
+}
+
+message CreateAttestedNodeResponse {
+    AttestedNode node = 1;
+}
+
+message DeleteAttestedNodeRequest {
+    string spiffe_id = 1;
+}
+
+message DeleteAttestedNodeResponse {
+    AttestedNode node = 1;
+}
+
+message FetchAttestedNodeRequest {
+    string spiffe_id = 1;
+}
+
+message FetchAttestedNodeResponse {
+    AttestedNode node = 1;
+}
+
+message ListAttestedNodesRequest {
+    Pagination pagination = 1;
+    BySelectors by_selectors = 2;
+    bool fetch_selectors = 3;
+    int64 by_expires_before = 4;
+    string by_attestation_type = 5;
+    bool by_can_reattest = 6;
+    bool can_reattest_value = 7;
+    bool by_banned = 8;
+    bool banned_value = 9;
+    int64 by_valid_at = 10;
+}
+
+message ListAttestedNodesResponse {
+    repeated AttestedNode nodes = 1;
+    Pagination pagination = 2;
+}
+
+message UpdateAttestedNodeRequest {
+    AttestedNode node = 1;
+    AttestedNodeMask mask = 2;
+}
+
+message UpdateAttestedNodeResponse {
+    AttestedNode node = 1;
+}
+
+message PruneAttestedExpiredNodesRequest {
+    int64 expires_before = 1;
+    bool include_non_reattestable = 2;
+}
+
+message PruneAttestedExpiredNodesResponse {}
+
+message ListAttestedNodeEventsRequest {
+    int64 greater_than_event_id = 1;
+    int64 less_than_event_id = 2;
+    DataConsistency data_consistency = 3;
+}
+
+message AttestedNodeEvent {
+    uint64 event_id = 1;
+    string spiffe_id = 2;
+    int64 created_at = 3;
+    int64 updated_at = 4;
+}
+
+message ListAttestedNodeEventsResponse {
+    repeated AttestedNodeEvent events = 1;
+}
+
+message PruneAttestedNodeEventsRequest {
+    int64 older_than = 1;
+}
+
+message PruneAttestedNodeEventsResponse {}
+
+message FetchAttestedNodeEventRequest {
+    uint64 event_id = 1;
+}
+
+message FetchAttestedNodeEventResponse {
+    AttestedNodeEvent event = 1;
+}
+
+message CreateAttestedNodeEventRequest {
+    AttestedNodeEvent event = 1;
+}
+
+message CreateAttestedNodeEventResponse {}
+
+message DeleteAttestedNodeEventRequest {
+    uint64 event_id = 1;
+}
+
+message DeleteAttestedNodeEventResponse {}
+
+message GetNodeSelectorsRequest {
+    string spiffe_id = 1;
+    DataConsistency data_consistency = 2;
+}
+
+message GetNodeSelectorsResponse {
+    repeated Selector selectors = 1;
+}
+
+message ListNodeSelectorsRequest {
+    int64 valid_at = 1;
+    DataConsistency data_consistency = 2;
+}
+
+message ListNodeSelectorsResponse {
+    repeated NodeSelectorEntry selectors = 1;
+}
+
+message NodeSelectorEntry {
+    string spiffe_id = 1;
+    repeated Selector selectors = 2;
+}
+
+message SetNodeSelectorsRequest {
+    string spiffe_id = 1;
+    repeated Selector selectors = 2;
+}
+
+message SetNodeSelectorsResponse {
+    repeated Selector selectors = 1;
+}
+
+message CreateJoinTokenRequest {
+    string token = 1;
+    int64 expires_at = 2;
+}
+
+message CreateJoinTokenResponse {
+    string token = 1;
+    int64 expires_at = 2;
+}
+
+message DeleteJoinTokenRequest {
+    string token = 1;
+}
+
+message DeleteJoinTokenResponse {}
+
+message FetchJoinTokenRequest {
+    string token = 1;
+}
+
+message FetchJoinTokenResponse {
+    string token = 1;
+    int64 expires_at = 2;
+}
+
+message PruneJoinTokensRequest {
+    int64 expires_before = 1;
+}
+
+message PruneJoinTokensResponse {}
+
+message FederationRelationship {
+    string trust_domain_id = 1;
+    BundleEndpointType bundle_endpoint_type = 2;
+    string bundle_endpoint_url = 3;
+    string bundle_endpoint_spiffe_id = 4;
+    int64 refresh_interval = 5;
+    bool trust_domain_bundle_endpoint_auth = 6;
+    Bundle trust_domain_bundle = 7;
+    int64 created_at = 8;
+    int64 updated_at = 9;
+}
+
+message CreateFederationRelationshipRequest {
+    FederationRelationship relationship = 1;
+}
+
+message CreateFederationRelationshipResponse {
+    FederationRelationship relationship = 1;
+}
+
+message FetchFederationRelationshipRequest {
+    string trust_domain_id = 1;
+}
+
+message FetchFederationRelationshipResponse {
+    FederationRelationship relationship = 1;
+}
+
+message ListFederationRelationshipsRequest {
+    Pagination pagination = 1;
+}
+
+message ListFederationRelationshipsResponse {
+    repeated FederationRelationship relationships = 1;
+    Pagination pagination = 2;
+}
+
+message DeleteFederationRelationshipRequest {
+    string trust_domain_id = 1;
+}
+
+message DeleteFederationRelationshipResponse {}
+
+message FederationRelationshipMask {
+    bool bundle_endpoint_url = 1;
+    bool bundle_endpoint_profile = 2;
+    bool trust_domain_bundle = 3;
+}
+
+message UpdateFederationRelationshipRequest {
+    FederationRelationship relationship = 1;
+    FederationRelationshipMask mask = 2;
+}
+
+message UpdateFederationRelationshipResponse {
+    FederationRelationship relationship = 1;
+}
+
+message CAJournal {
+    uint64 id = 1;
+    string active_x509_authority_id = 2;
+    bytes data = 3;
+    int64 created_at = 4;
+    int64 updated_at = 5;
+}
+
+message SetCAJournalRequest {
+    CAJournal journal = 1;
+}
+
+message SetCAJournalResponse {
+    CAJournal journal = 1;
+}
+
+message FetchCAJournalRequest {
+    string active_x509_authority_id = 1;
+}
+
+message FetchCAJournalResponse {
+    CAJournal journal = 1;
+}
+
+message PruneCAJournalsRequest {
+    int64 expires_before = 1;
+}
+
+message PruneCAJournalsResponse {}
+
+message ListCAJournalsRequest {}
+
+message ListCAJournalsResponse {
+    repeated CAJournal journals = 1;
+}
+
+service DataStore {
+    rpc AppendBundle(AppendBundleRequest) returns (AppendBundleResponse);
+    rpc CreateBundle(CreateBundleRequest) returns (CreateBundleResponse);
+    rpc CountBundles(CountBundlesRequest) returns (CountBundlesResponse);
+    rpc DeleteBundle(DeleteBundleRequest) returns (DeleteBundleResponse);
+    rpc FetchBundle(FetchBundleRequest) returns (FetchBundleResponse);
+    rpc ListBundles(ListBundlesRequest) returns (ListBundlesResponse);
+    rpc PruneBundle(PruneBundleRequest) returns (PruneBundleResponse);
+    rpc SetBundle(SetBundleRequest) returns (SetBundleResponse);
+    rpc UpdateBundle(UpdateBundleRequest) returns (UpdateBundleResponse);
+
+    rpc TaintX509CA(TaintX509CARequest) returns (TaintX509CAResponse);
+    rpc RevokeX509CA(RevokeX509CARequest) returns (RevokeX509CAResponse);
+    rpc TaintJWTKey(TaintJWTKeyRequest) returns (TaintJWTKeyResponse);
+    rpc RevokeJWTKey(RevokeJWTKeyRequest) returns (RevokeJWTKeyResponse);
+
+    rpc CountRegistrationEntries(CountRegistrationEntriesRequest) returns (CountRegistrationEntriesResponse);
+    rpc CreateRegistrationEntry(CreateRegistrationEntryRequest) returns (CreateRegistrationEntryResponse);
+    rpc CreateOrReturnRegistrationEntry(CreateOrReturnRegistrationEntryRequest) returns (CreateOrReturnRegistrationEntryResponse);
+    rpc DeleteRegistrationEntry(DeleteRegistrationEntryRequest) returns (DeleteRegistrationEntryResponse);
+    rpc FetchRegistrationEntry(FetchRegistrationEntryRequest) returns (FetchRegistrationEntryResponse);
+    rpc FetchRegistrationEntries(FetchRegistrationEntriesRequest) returns (FetchRegistrationEntriesResponse);
+    rpc ListRegistrationEntries(ListRegistrationEntriesRequest) returns (ListRegistrationEntriesResponse);
+    rpc PruneRegistrationEntries(PruneRegistrationEntriesRequest) returns (PruneRegistrationEntriesResponse);
+    rpc UpdateRegistrationEntry(UpdateRegistrationEntryRequest) returns (UpdateRegistrationEntryResponse);
+
+    rpc ListRegistrationEntryEvents(ListRegistrationEntryEventsRequest) returns (ListRegistrationEntryEventsResponse);
+    rpc PruneRegistrationEntryEvents(PruneRegistrationEntryEventsRequest) returns (PruneRegistrationEntryEventsResponse);
+    rpc FetchRegistrationEntryEvent(FetchRegistrationEntryEventRequest) returns (FetchRegistrationEntryEventResponse);
+    rpc CreateRegistrationEntryEvent(CreateRegistrationEntryEventRequest) returns (CreateRegistrationEntryEventResponse);
+    rpc DeleteRegistrationEntryEvent(DeleteRegistrationEntryEventRequest) returns (DeleteRegistrationEntryEventResponse);
+
+    rpc CountAttestedNodes(CountAttestedNodesRequest) returns (CountAttestedNodesResponse);
+    rpc CreateAttestedNode(CreateAttestedNodeRequest) returns (CreateAttestedNodeResponse);
+    rpc DeleteAttestedNode(DeleteAttestedNodeRequest) returns (DeleteAttestedNodeResponse);
+    rpc FetchAttestedNode(FetchAttestedNodeRequest) returns (FetchAttestedNodeResponse);
+    rpc ListAttestedNodes(ListAttestedNodesRequest) returns (ListAttestedNodesResponse);
+    rpc UpdateAttestedNode(UpdateAttestedNodeRequest) returns (UpdateAttestedNodeResponse);
+    rpc PruneAttestedExpiredNodes(PruneAttestedExpiredNodesRequest) returns (PruneAttestedExpiredNodesResponse);
+
+    rpc ListAttestedNodeEvents(ListAttestedNodeEventsRequest) returns (ListAttestedNodeEventsResponse);
+    rpc PruneAttestedNodeEvents(PruneAttestedNodeEventsRequest) returns (PruneAttestedNodeEventsResponse);
+    rpc FetchAttestedNodeEvent(FetchAttestedNodeEventRequest) returns (FetchAttestedNodeEventResponse);
+    rpc CreateAttestedNodeEvent(CreateAttestedNodeEventRequest) returns (CreateAttestedNodeEventResponse);
+    rpc DeleteAttestedNodeEvent(DeleteAttestedNodeEventRequest) returns (DeleteAttestedNodeEventResponse);
+
+    rpc GetNodeSelectors(GetNodeSelectorsRequest) returns (GetNodeSelectorsResponse);
+    rpc ListNodeSelectors(ListNodeSelectorsRequest) returns (ListNodeSelectorsResponse);
+    rpc SetNodeSelectors(SetNodeSelectorsRequest) returns (SetNodeSelectorsResponse);
+
+    rpc CreateJoinToken(CreateJoinTokenRequest) returns (CreateJoinTokenResponse);
+    rpc DeleteJoinToken(DeleteJoinTokenRequest) returns (DeleteJoinTokenResponse);
+    rpc FetchJoinToken(FetchJoinTokenRequest) returns (FetchJoinTokenResponse);
+    rpc PruneJoinTokens(PruneJoinTokensRequest) returns (PruneJoinTokensResponse);
+
+    rpc CreateFederationRelationship(CreateFederationRelationshipRequest) returns (CreateFederationRelationshipResponse);
+    rpc FetchFederationRelationship(FetchFederationRelationshipRequest) returns (FetchFederationRelationshipResponse);
+    rpc ListFederationRelationships(ListFederationRelationshipsRequest) returns (ListFederationRelationshipsResponse);
+    rpc DeleteFederationRelationship(DeleteFederationRelationshipRequest) returns (DeleteFederationRelationshipResponse);
+    rpc UpdateFederationRelationship(UpdateFederationRelationshipRequest) returns (UpdateFederationRelationshipResponse);
+
+    rpc SetCAJournal(SetCAJournalRequest) returns (SetCAJournalResponse);
+    rpc FetchCAJournal(FetchCAJournalRequest) returns (FetchCAJournalResponse);
+    rpc PruneCAJournals(PruneCAJournalsRequest) returns (PruneCAJournalsResponse);
+    rpc ListCAJournals(ListCAJournalsRequest) returns (ListCAJournalsResponse);
+}
