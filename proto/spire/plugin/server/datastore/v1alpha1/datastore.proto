@@ -126,6 +126,12 @@ message RegistrationEntry {
     int64 created_at = 15;
 
     int64 updated_at = 16;
+
+    /** Additional attributes may contain a number of optional fields controlling
+        the various aspects of the agent's behavior with respect to a given 
+        registration entry.
+    */
+    string additional_attributes = 17;
 }
 
 /** The RegistrationEntryMask is used to update only selected fields of the RegistrationEntry */
@@ -520,6 +526,7 @@ message ListAttestedNodesRequest {
     bool by_banned = 8;
     bool banned_value = 9;
     int64 by_valid_at = 10;
+    repeated string by_spiffe_ids = 11;
 }
 
 message ListAttestedNodesResponse {
@@ -539,6 +546,7 @@ message UpdateAttestedNodeResponse {
 message PruneAttestedExpiredNodesRequest {
     int64 expires_before = 1;
     bool include_non_reattestable = 2;
+    int64 batch_size = 3;
 }
 
 message PruneAttestedExpiredNodesResponse {}
