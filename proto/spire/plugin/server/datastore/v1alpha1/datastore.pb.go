@@ -581,10 +581,14 @@ type RegistrationEntry struct {
 	// identity should be used by a workload when more than one SVID is returned.
 	Hint string `protobuf:"bytes,14,opt,name=hint,proto3" json:"hint,omitempty"`
 	// * Time of creation, in seconds from epoch
-	CreatedAt     int64 `protobuf:"varint,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     int64 `protobuf:"varint,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	CreatedAt int64 `protobuf:"varint,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt int64 `protobuf:"varint,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// * Additional attributes may contain a number of optional fields controlling
+	// the various aspects of the agent's behavior with respect to a given
+	// registration entry.
+	AdditionalAttributes string `protobuf:"bytes,17,opt,name=additional_attributes,json=additionalAttributes,proto3" json:"additional_attributes,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *RegistrationEntry) Reset() {
@@ -727,6 +731,13 @@ func (x *RegistrationEntry) GetUpdatedAt() int64 {
 		return x.UpdatedAt
 	}
 	return 0
+}
+
+func (x *RegistrationEntry) GetAdditionalAttributes() string {
+	if x != nil {
+		return x.AdditionalAttributes
+	}
+	return ""
 }
 
 // * The RegistrationEntryMask is used to update only selected fields of the RegistrationEntry
@@ -4475,6 +4486,7 @@ type ListAttestedNodesRequest struct {
 	ByBanned          bool                   `protobuf:"varint,8,opt,name=by_banned,json=byBanned,proto3" json:"by_banned,omitempty"`
 	BannedValue       bool                   `protobuf:"varint,9,opt,name=banned_value,json=bannedValue,proto3" json:"banned_value,omitempty"`
 	ByValidAt         int64                  `protobuf:"varint,10,opt,name=by_valid_at,json=byValidAt,proto3" json:"by_valid_at,omitempty"`
+	BySpiffeIds       []string               `protobuf:"bytes,11,rep,name=by_spiffe_ids,json=bySpiffeIds,proto3" json:"by_spiffe_ids,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -4577,6 +4589,13 @@ func (x *ListAttestedNodesRequest) GetByValidAt() int64 {
 		return x.ByValidAt
 	}
 	return 0
+}
+
+func (x *ListAttestedNodesRequest) GetBySpiffeIds() []string {
+	if x != nil {
+		return x.BySpiffeIds
+	}
+	return nil
 }
 
 type ListAttestedNodesResponse struct {
@@ -4731,6 +4750,7 @@ type PruneAttestedExpiredNodesRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	ExpiresBefore          int64                  `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
 	IncludeNonReattestable bool                   `protobuf:"varint,2,opt,name=include_non_reattestable,json=includeNonReattestable,proto3" json:"include_non_reattestable,omitempty"`
+	BatchSize              int64                  `protobuf:"varint,3,opt,name=batch_size,json=batchSize,proto3" json:"batch_size,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -4777,6 +4797,13 @@ func (x *PruneAttestedExpiredNodesRequest) GetIncludeNonReattestable() bool {
 		return x.IncludeNonReattestable
 	}
 	return false
+}
+
+func (x *PruneAttestedExpiredNodesRequest) GetBatchSize() int64 {
+	if x != nil {
+		return x.BatchSize
+	}
+	return 0
 }
 
 type PruneAttestedExpiredNodesResponse struct {
@@ -7071,7 +7098,7 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"created_at\x18\n" +
 	" \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\v \x01(\x03R\tupdatedAt\"\xb4\x04\n" +
+	"updated_at\x18\v \x01(\x03R\tupdatedAt\"\xe9\x04\n" +
 	"\x11RegistrationEntry\x12N\n" +
 	"\tselectors\x18\x01 \x03(\v20.spire.plugin.server.datastore.v1alpha1.SelectorR\tselectors\x12\x1b\n" +
 	"\tparent_id\x18\x02 \x01(\tR\bparentId\x12\x1b\n" +
@@ -7095,7 +7122,8 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x0f \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x10 \x01(\x03R\tupdatedAt\"\x9f\x03\n" +
+	"updated_at\x18\x10 \x01(\x03R\tupdatedAt\x123\n" +
+	"\x15additional_attributes\x18\x11 \x01(\tR\x14additionalAttributes\"\x9f\x03\n" +
 	"\x15RegistrationEntryMask\x12\x1c\n" +
 	"\tselectors\x18\x01 \x01(\bR\tselectors\x12\x1b\n" +
 	"\tparent_id\x18\x02 \x01(\bR\bparentId\x12\x1b\n" +
@@ -7331,7 +7359,7 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"\x18FetchAttestedNodeRequest\x12\x1b\n" +
 	"\tspiffe_id\x18\x01 \x01(\tR\bspiffeId\"e\n" +
 	"\x19FetchAttestedNodeResponse\x12H\n" +
-	"\x04node\x18\x01 \x01(\v24.spire.plugin.server.datastore.v1alpha1.AttestedNodeR\x04node\"\x81\x04\n" +
+	"\x04node\x18\x01 \x01(\v24.spire.plugin.server.datastore.v1alpha1.AttestedNodeR\x04node\"\xa5\x04\n" +
 	"\x18ListAttestedNodesRequest\x12R\n" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v22.spire.plugin.server.datastore.v1alpha1.PaginationR\n" +
@@ -7345,7 +7373,8 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"\tby_banned\x18\b \x01(\bR\bbyBanned\x12!\n" +
 	"\fbanned_value\x18\t \x01(\bR\vbannedValue\x12\x1e\n" +
 	"\vby_valid_at\x18\n" +
-	" \x01(\x03R\tbyValidAt\"\xbb\x01\n" +
+	" \x01(\x03R\tbyValidAt\x12\"\n" +
+	"\rby_spiffe_ids\x18\v \x03(\tR\vbySpiffeIds\"\xbb\x01\n" +
 	"\x19ListAttestedNodesResponse\x12J\n" +
 	"\x05nodes\x18\x01 \x03(\v24.spire.plugin.server.datastore.v1alpha1.AttestedNodeR\x05nodes\x12R\n" +
 	"\n" +
@@ -7355,10 +7384,12 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"\x04node\x18\x01 \x01(\v24.spire.plugin.server.datastore.v1alpha1.AttestedNodeR\x04node\x12L\n" +
 	"\x04mask\x18\x02 \x01(\v28.spire.plugin.server.datastore.v1alpha1.AttestedNodeMaskR\x04mask\"f\n" +
 	"\x1aUpdateAttestedNodeResponse\x12H\n" +
-	"\x04node\x18\x01 \x01(\v24.spire.plugin.server.datastore.v1alpha1.AttestedNodeR\x04node\"\x83\x01\n" +
+	"\x04node\x18\x01 \x01(\v24.spire.plugin.server.datastore.v1alpha1.AttestedNodeR\x04node\"\xa2\x01\n" +
 	" PruneAttestedExpiredNodesRequest\x12%\n" +
 	"\x0eexpires_before\x18\x01 \x01(\x03R\rexpiresBefore\x128\n" +
-	"\x18include_non_reattestable\x18\x02 \x01(\bR\x16includeNonReattestable\"#\n" +
+	"\x18include_non_reattestable\x18\x02 \x01(\bR\x16includeNonReattestable\x12\x1d\n" +
+	"\n" +
+	"batch_size\x18\x03 \x01(\x03R\tbatchSize\"#\n" +
 	"!PruneAttestedExpiredNodesResponse\"\xe3\x01\n" +
 	"\x1dListAttestedNodeEventsRequest\x121\n" +
 	"\x15greater_than_event_id\x18\x01 \x01(\x03R\x12greaterThanEventId\x12+\n" +
