@@ -131,7 +131,7 @@ message RegistrationEntry {
         the various aspects of the agent's behavior with respect to a given 
         registration entry.
     */
-    string additional_attributes = 17;
+    RegistrationEntry_AdditionalAttributes additional_attributes = 17;
 }
 
 message RegistrationEntry_AdditionalAttributes {

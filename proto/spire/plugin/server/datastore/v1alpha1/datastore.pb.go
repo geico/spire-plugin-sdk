@@ -586,7 +586,7 @@ type RegistrationEntry struct {
 	// * Additional attributes may contain a number of optional fields controlling
 	// the various aspects of the agent's behavior with respect to a given
 	// registration entry.
-	AdditionalAttributes string `protobuf:"bytes,17,opt,name=additional_attributes,json=additionalAttributes,proto3" json:"additional_attributes,omitempty"`
+	AdditionalAttributes *RegistrationEntry_AdditionalAttributes `protobuf:"bytes,17,opt,name=additional_attributes,json=additionalAttributes,proto3" json:"additional_attributes,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -733,11 +733,11 @@ func (x *RegistrationEntry) GetUpdatedAt() int64 {
 	return 0
 }
 
-func (x *RegistrationEntry) GetAdditionalAttributes() string {
+func (x *RegistrationEntry) GetAdditionalAttributes() *RegistrationEntry_AdditionalAttributes {
 	if x != nil {
 		return x.AdditionalAttributes
 	}
-	return ""
+	return nil
 }
 
 type RegistrationEntry_AdditionalAttributes struct {
@@ -7150,7 +7150,7 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"created_at\x18\n" +
 	" \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\v \x01(\x03R\tupdatedAt\"\xe9\x04\n" +
+	"updated_at\x18\v \x01(\x03R\tupdatedAt\"\xba\x05\n" +
 	"\x11RegistrationEntry\x12N\n" +
 	"\tselectors\x18\x01 \x03(\v20.spire.plugin.server.datastore.v1alpha1.SelectorR\tselectors\x12\x1b\n" +
 	"\tparent_id\x18\x02 \x01(\tR\bparentId\x12\x1b\n" +
@@ -7174,8 +7174,8 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x0f \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x10 \x01(\x03R\tupdatedAt\x123\n" +
-	"\x15additional_attributes\x18\x11 \x01(\tR\x14additionalAttributes\"\x96\x01\n" +
+	"updated_at\x18\x10 \x01(\x03R\tupdatedAt\x12\x83\x01\n" +
+	"\x15additional_attributes\x18\x11 \x01(\v2N.spire.plugin.server.datastore.v1alpha1.RegistrationEntry_AdditionalAttributesR\x14additionalAttributes\"\x96\x01\n" +
 	"&RegistrationEntry_AdditionalAttributes\x12;\n" +
 	"\x1adisable_x509_svid_prefetch\x18\x01 \x01(\bR\x17disableX509SvidPrefetch\x12/\n" +
 	"\x14jwt_svid_include_jti\x18\x02 \x01(\bR\x11jwtSvidIncludeJti\"\x9f\x03\n" +
@@ -7804,202 +7804,203 @@ var file_spire_plugin_server_datastore_v1alpha1_datastore_proto_depIdxs = []int3
 	6,   // 0: spire.plugin.server.datastore.v1alpha1.Selectors.entries:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	6,   // 1: spire.plugin.server.datastore.v1alpha1.AttestedNode.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	6,   // 2: spire.plugin.server.datastore.v1alpha1.RegistrationEntry.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
-	9,   // 3: spire.plugin.server.datastore.v1alpha1.RegistrationEntries.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	15,  // 4: spire.plugin.server.datastore.v1alpha1.AppendBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	15,  // 5: spire.plugin.server.datastore.v1alpha1.AppendBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	15,  // 6: spire.plugin.server.datastore.v1alpha1.CreateBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	15,  // 7: spire.plugin.server.datastore.v1alpha1.CreateBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	1,   // 8: spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest.mode:type_name -> spire.plugin.server.datastore.v1alpha1.DeleteMode
-	15,  // 9: spire.plugin.server.datastore.v1alpha1.FetchBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	28,  // 10: spire.plugin.server.datastore.v1alpha1.ListBundlesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	15,  // 11: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse.bundles:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	28,  // 12: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	15,  // 13: spire.plugin.server.datastore.v1alpha1.SetBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	15,  // 14: spire.plugin.server.datastore.v1alpha1.SetBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	15,  // 15: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	16,  // 16: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.BundleMask
-	15,  // 17: spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	14,  // 18: spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse.key:type_name -> spire.plugin.server.datastore.v1alpha1.PublicKey
-	14,  // 19: spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse.key:type_name -> spire.plugin.server.datastore.v1alpha1.PublicKey
-	0,   // 20: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	47,  // 21: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
-	48,  // 22: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.by_federates_with:type_name -> spire.plugin.server.datastore.v1alpha1.ByFederatesWith
-	2,   // 23: spire.plugin.server.datastore.v1alpha1.BySelectors.match_behavior:type_name -> spire.plugin.server.datastore.v1alpha1.MatchBehavior
-	6,   // 24: spire.plugin.server.datastore.v1alpha1.BySelectors.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
-	2,   // 25: spire.plugin.server.datastore.v1alpha1.ByFederatesWith.match_behavior:type_name -> spire.plugin.server.datastore.v1alpha1.MatchBehavior
-	9,   // 26: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryRequest.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	9,   // 27: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	9,   // 28: spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryRequest.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	9,   // 29: spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	9,   // 30: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	9,   // 31: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	9,   // 32: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	28,  // 33: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	0,   // 34: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	47,  // 35: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
-	48,  // 36: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.by_federates_with:type_name -> spire.plugin.server.datastore.v1alpha1.ByFederatesWith
-	9,   // 37: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	28,  // 38: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	9,   // 39: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	11,  // 40: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryMask
-	9,   // 41: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	0,   // 42: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	66,  // 43: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse.events:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
-	66,  // 44: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse.event:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
-	66,  // 45: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest.event:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
-	47,  // 46: spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
-	8,   // 47: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	8,   // 48: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	8,   // 49: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	8,   // 50: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	28,  // 51: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	47,  // 52: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
-	8,   // 53: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse.nodes:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	28,  // 54: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	8,   // 55: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	17,  // 56: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeMask
-	8,   // 57: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	0,   // 58: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	91,  // 59: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse.events:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
-	91,  // 60: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse.event:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
-	91,  // 61: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest.event:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
-	0,   // 62: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	6,   // 63: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
-	0,   // 64: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	105, // 65: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry
-	6,   // 66: spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
-	6,   // 67: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
-	6,   // 68: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
-	3,   // 69: spire.plugin.server.datastore.v1alpha1.FederationRelationship.bundle_endpoint_type:type_name -> spire.plugin.server.datastore.v1alpha1.BundleEndpointType
-	15,  // 70: spire.plugin.server.datastore.v1alpha1.FederationRelationship.trust_domain_bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	116, // 71: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	116, // 72: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	116, // 73: spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	28,  // 74: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	116, // 75: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse.relationships:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	28,  // 76: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	116, // 77: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	125, // 78: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationshipMask
-	116, // 79: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	128, // 80: spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
-	128, // 81: spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
-	128, // 82: spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
-	128, // 83: spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse.journals:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
-	18,  // 84: spire.plugin.server.datastore.v1alpha1.DataStore.AppendBundle:input_type -> spire.plugin.server.datastore.v1alpha1.AppendBundleRequest
-	20,  // 85: spire.plugin.server.datastore.v1alpha1.DataStore.CreateBundle:input_type -> spire.plugin.server.datastore.v1alpha1.CreateBundleRequest
-	22,  // 86: spire.plugin.server.datastore.v1alpha1.DataStore.CountBundles:input_type -> spire.plugin.server.datastore.v1alpha1.CountBundlesRequest
-	24,  // 87: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteBundle:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest
-	26,  // 88: spire.plugin.server.datastore.v1alpha1.DataStore.FetchBundle:input_type -> spire.plugin.server.datastore.v1alpha1.FetchBundleRequest
-	29,  // 89: spire.plugin.server.datastore.v1alpha1.DataStore.ListBundles:input_type -> spire.plugin.server.datastore.v1alpha1.ListBundlesRequest
-	31,  // 90: spire.plugin.server.datastore.v1alpha1.DataStore.PruneBundle:input_type -> spire.plugin.server.datastore.v1alpha1.PruneBundleRequest
-	33,  // 91: spire.plugin.server.datastore.v1alpha1.DataStore.SetBundle:input_type -> spire.plugin.server.datastore.v1alpha1.SetBundleRequest
-	35,  // 92: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateBundle:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest
-	37,  // 93: spire.plugin.server.datastore.v1alpha1.DataStore.TaintX509CA:input_type -> spire.plugin.server.datastore.v1alpha1.TaintX509CARequest
-	39,  // 94: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeX509CA:input_type -> spire.plugin.server.datastore.v1alpha1.RevokeX509CARequest
-	41,  // 95: spire.plugin.server.datastore.v1alpha1.DataStore.TaintJWTKey:input_type -> spire.plugin.server.datastore.v1alpha1.TaintJWTKeyRequest
-	43,  // 96: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeJWTKey:input_type -> spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyRequest
-	45,  // 97: spire.plugin.server.datastore.v1alpha1.DataStore.CountRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest
-	49,  // 98: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryRequest
-	51,  // 99: spire.plugin.server.datastore.v1alpha1.DataStore.CreateOrReturnRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryRequest
-	53,  // 100: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryRequest
-	55,  // 101: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryRequest
-	57,  // 102: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesRequest
-	59,  // 103: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest
-	61,  // 104: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesRequest
-	63,  // 105: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest
-	65,  // 106: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntryEvents:input_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest
-	68,  // 107: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntryEvents:input_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsRequest
-	70,  // 108: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventRequest
-	72,  // 109: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest
-	74,  // 110: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventRequest
-	76,  // 111: spire.plugin.server.datastore.v1alpha1.DataStore.CountAttestedNodes:input_type -> spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest
-	78,  // 112: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest
-	80,  // 113: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeRequest
-	82,  // 114: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeRequest
-	84,  // 115: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodes:input_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest
-	86,  // 116: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest
-	88,  // 117: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedExpiredNodes:input_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesRequest
-	90,  // 118: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodeEvents:input_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest
-	93,  // 119: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedNodeEvents:input_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsRequest
-	95,  // 120: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventRequest
-	97,  // 121: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest
-	99,  // 122: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventRequest
-	101, // 123: spire.plugin.server.datastore.v1alpha1.DataStore.GetNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest
-	103, // 124: spire.plugin.server.datastore.v1alpha1.DataStore.ListNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest
-	106, // 125: spire.plugin.server.datastore.v1alpha1.DataStore.SetNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest
-	108, // 126: spire.plugin.server.datastore.v1alpha1.DataStore.CreateJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.CreateJoinTokenRequest
-	110, // 127: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenRequest
-	112, // 128: spire.plugin.server.datastore.v1alpha1.DataStore.FetchJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.FetchJoinTokenRequest
-	114, // 129: spire.plugin.server.datastore.v1alpha1.DataStore.PruneJoinTokens:input_type -> spire.plugin.server.datastore.v1alpha1.PruneJoinTokensRequest
-	117, // 130: spire.plugin.server.datastore.v1alpha1.DataStore.CreateFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest
-	119, // 131: spire.plugin.server.datastore.v1alpha1.DataStore.FetchFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipRequest
-	121, // 132: spire.plugin.server.datastore.v1alpha1.DataStore.ListFederationRelationships:input_type -> spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest
-	123, // 133: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipRequest
-	126, // 134: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest
-	129, // 135: spire.plugin.server.datastore.v1alpha1.DataStore.SetCAJournal:input_type -> spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest
-	131, // 136: spire.plugin.server.datastore.v1alpha1.DataStore.FetchCAJournal:input_type -> spire.plugin.server.datastore.v1alpha1.FetchCAJournalRequest
-	133, // 137: spire.plugin.server.datastore.v1alpha1.DataStore.PruneCAJournals:input_type -> spire.plugin.server.datastore.v1alpha1.PruneCAJournalsRequest
-	135, // 138: spire.plugin.server.datastore.v1alpha1.DataStore.ListCAJournals:input_type -> spire.plugin.server.datastore.v1alpha1.ListCAJournalsRequest
-	19,  // 139: spire.plugin.server.datastore.v1alpha1.DataStore.AppendBundle:output_type -> spire.plugin.server.datastore.v1alpha1.AppendBundleResponse
-	21,  // 140: spire.plugin.server.datastore.v1alpha1.DataStore.CreateBundle:output_type -> spire.plugin.server.datastore.v1alpha1.CreateBundleResponse
-	23,  // 141: spire.plugin.server.datastore.v1alpha1.DataStore.CountBundles:output_type -> spire.plugin.server.datastore.v1alpha1.CountBundlesResponse
-	25,  // 142: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteBundle:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteBundleResponse
-	27,  // 143: spire.plugin.server.datastore.v1alpha1.DataStore.FetchBundle:output_type -> spire.plugin.server.datastore.v1alpha1.FetchBundleResponse
-	30,  // 144: spire.plugin.server.datastore.v1alpha1.DataStore.ListBundles:output_type -> spire.plugin.server.datastore.v1alpha1.ListBundlesResponse
-	32,  // 145: spire.plugin.server.datastore.v1alpha1.DataStore.PruneBundle:output_type -> spire.plugin.server.datastore.v1alpha1.PruneBundleResponse
-	34,  // 146: spire.plugin.server.datastore.v1alpha1.DataStore.SetBundle:output_type -> spire.plugin.server.datastore.v1alpha1.SetBundleResponse
-	36,  // 147: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateBundle:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse
-	38,  // 148: spire.plugin.server.datastore.v1alpha1.DataStore.TaintX509CA:output_type -> spire.plugin.server.datastore.v1alpha1.TaintX509CAResponse
-	40,  // 149: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeX509CA:output_type -> spire.plugin.server.datastore.v1alpha1.RevokeX509CAResponse
-	42,  // 150: spire.plugin.server.datastore.v1alpha1.DataStore.TaintJWTKey:output_type -> spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse
-	44,  // 151: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeJWTKey:output_type -> spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse
-	46,  // 152: spire.plugin.server.datastore.v1alpha1.DataStore.CountRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesResponse
-	50,  // 153: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryResponse
-	52,  // 154: spire.plugin.server.datastore.v1alpha1.DataStore.CreateOrReturnRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryResponse
-	54,  // 155: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse
-	56,  // 156: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse
-	58,  // 157: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse
-	60,  // 158: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse
-	62,  // 159: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesResponse
-	64,  // 160: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse
-	67,  // 161: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntryEvents:output_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse
-	69,  // 162: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntryEvents:output_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsResponse
-	71,  // 163: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse
-	73,  // 164: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventResponse
-	75,  // 165: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventResponse
-	77,  // 166: spire.plugin.server.datastore.v1alpha1.DataStore.CountAttestedNodes:output_type -> spire.plugin.server.datastore.v1alpha1.CountAttestedNodesResponse
-	79,  // 167: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse
-	81,  // 168: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse
-	83,  // 169: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse
-	85,  // 170: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodes:output_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse
-	87,  // 171: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse
-	89,  // 172: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedExpiredNodes:output_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesResponse
-	92,  // 173: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodeEvents:output_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse
-	94,  // 174: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedNodeEvents:output_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsResponse
-	96,  // 175: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse
-	98,  // 176: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventResponse
-	100, // 177: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventResponse
-	102, // 178: spire.plugin.server.datastore.v1alpha1.DataStore.GetNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse
-	104, // 179: spire.plugin.server.datastore.v1alpha1.DataStore.ListNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse
-	107, // 180: spire.plugin.server.datastore.v1alpha1.DataStore.SetNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse
-	109, // 181: spire.plugin.server.datastore.v1alpha1.DataStore.CreateJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.CreateJoinTokenResponse
-	111, // 182: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenResponse
-	113, // 183: spire.plugin.server.datastore.v1alpha1.DataStore.FetchJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.FetchJoinTokenResponse
-	115, // 184: spire.plugin.server.datastore.v1alpha1.DataStore.PruneJoinTokens:output_type -> spire.plugin.server.datastore.v1alpha1.PruneJoinTokensResponse
-	118, // 185: spire.plugin.server.datastore.v1alpha1.DataStore.CreateFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse
-	120, // 186: spire.plugin.server.datastore.v1alpha1.DataStore.FetchFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse
-	122, // 187: spire.plugin.server.datastore.v1alpha1.DataStore.ListFederationRelationships:output_type -> spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse
-	124, // 188: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipResponse
-	127, // 189: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse
-	130, // 190: spire.plugin.server.datastore.v1alpha1.DataStore.SetCAJournal:output_type -> spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse
-	132, // 191: spire.plugin.server.datastore.v1alpha1.DataStore.FetchCAJournal:output_type -> spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse
-	134, // 192: spire.plugin.server.datastore.v1alpha1.DataStore.PruneCAJournals:output_type -> spire.plugin.server.datastore.v1alpha1.PruneCAJournalsResponse
-	136, // 193: spire.plugin.server.datastore.v1alpha1.DataStore.ListCAJournals:output_type -> spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse
-	139, // [139:194] is the sub-list for method output_type
-	84,  // [84:139] is the sub-list for method input_type
-	84,  // [84:84] is the sub-list for extension type_name
-	84,  // [84:84] is the sub-list for extension extendee
-	0,   // [0:84] is the sub-list for field type_name
+	10,  // 3: spire.plugin.server.datastore.v1alpha1.RegistrationEntry.additional_attributes:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry_AdditionalAttributes
+	9,   // 4: spire.plugin.server.datastore.v1alpha1.RegistrationEntries.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	15,  // 5: spire.plugin.server.datastore.v1alpha1.AppendBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 6: spire.plugin.server.datastore.v1alpha1.AppendBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 7: spire.plugin.server.datastore.v1alpha1.CreateBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 8: spire.plugin.server.datastore.v1alpha1.CreateBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	1,   // 9: spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest.mode:type_name -> spire.plugin.server.datastore.v1alpha1.DeleteMode
+	15,  // 10: spire.plugin.server.datastore.v1alpha1.FetchBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	28,  // 11: spire.plugin.server.datastore.v1alpha1.ListBundlesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	15,  // 12: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse.bundles:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	28,  // 13: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	15,  // 14: spire.plugin.server.datastore.v1alpha1.SetBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 15: spire.plugin.server.datastore.v1alpha1.SetBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 16: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	16,  // 17: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.BundleMask
+	15,  // 18: spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	14,  // 19: spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse.key:type_name -> spire.plugin.server.datastore.v1alpha1.PublicKey
+	14,  // 20: spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse.key:type_name -> spire.plugin.server.datastore.v1alpha1.PublicKey
+	0,   // 21: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
+	47,  // 22: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
+	48,  // 23: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.by_federates_with:type_name -> spire.plugin.server.datastore.v1alpha1.ByFederatesWith
+	2,   // 24: spire.plugin.server.datastore.v1alpha1.BySelectors.match_behavior:type_name -> spire.plugin.server.datastore.v1alpha1.MatchBehavior
+	6,   // 25: spire.plugin.server.datastore.v1alpha1.BySelectors.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
+	2,   // 26: spire.plugin.server.datastore.v1alpha1.ByFederatesWith.match_behavior:type_name -> spire.plugin.server.datastore.v1alpha1.MatchBehavior
+	9,   // 27: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryRequest.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	9,   // 28: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	9,   // 29: spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryRequest.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	9,   // 30: spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	9,   // 31: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	9,   // 32: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	9,   // 33: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	28,  // 34: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	0,   // 35: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
+	47,  // 36: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
+	48,  // 37: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.by_federates_with:type_name -> spire.plugin.server.datastore.v1alpha1.ByFederatesWith
+	9,   // 38: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	28,  // 39: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	9,   // 40: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	11,  // 41: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryMask
+	9,   // 42: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
+	0,   // 43: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
+	66,  // 44: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse.events:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
+	66,  // 45: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse.event:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
+	66,  // 46: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest.event:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
+	47,  // 47: spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
+	8,   // 48: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
+	8,   // 49: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
+	8,   // 50: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
+	8,   // 51: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
+	28,  // 52: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	47,  // 53: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
+	8,   // 54: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse.nodes:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
+	28,  // 55: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	8,   // 56: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
+	17,  // 57: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeMask
+	8,   // 58: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
+	0,   // 59: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
+	91,  // 60: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse.events:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
+	91,  // 61: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse.event:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
+	91,  // 62: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest.event:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
+	0,   // 63: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
+	6,   // 64: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
+	0,   // 65: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
+	105, // 66: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry
+	6,   // 67: spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
+	6,   // 68: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
+	6,   // 69: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
+	3,   // 70: spire.plugin.server.datastore.v1alpha1.FederationRelationship.bundle_endpoint_type:type_name -> spire.plugin.server.datastore.v1alpha1.BundleEndpointType
+	15,  // 71: spire.plugin.server.datastore.v1alpha1.FederationRelationship.trust_domain_bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	116, // 72: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	116, // 73: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	116, // 74: spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	28,  // 75: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	116, // 76: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse.relationships:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	28,  // 77: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	116, // 78: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	125, // 79: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationshipMask
+	116, // 80: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	128, // 81: spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
+	128, // 82: spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
+	128, // 83: spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
+	128, // 84: spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse.journals:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
+	18,  // 85: spire.plugin.server.datastore.v1alpha1.DataStore.AppendBundle:input_type -> spire.plugin.server.datastore.v1alpha1.AppendBundleRequest
+	20,  // 86: spire.plugin.server.datastore.v1alpha1.DataStore.CreateBundle:input_type -> spire.plugin.server.datastore.v1alpha1.CreateBundleRequest
+	22,  // 87: spire.plugin.server.datastore.v1alpha1.DataStore.CountBundles:input_type -> spire.plugin.server.datastore.v1alpha1.CountBundlesRequest
+	24,  // 88: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteBundle:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest
+	26,  // 89: spire.plugin.server.datastore.v1alpha1.DataStore.FetchBundle:input_type -> spire.plugin.server.datastore.v1alpha1.FetchBundleRequest
+	29,  // 90: spire.plugin.server.datastore.v1alpha1.DataStore.ListBundles:input_type -> spire.plugin.server.datastore.v1alpha1.ListBundlesRequest
+	31,  // 91: spire.plugin.server.datastore.v1alpha1.DataStore.PruneBundle:input_type -> spire.plugin.server.datastore.v1alpha1.PruneBundleRequest
+	33,  // 92: spire.plugin.server.datastore.v1alpha1.DataStore.SetBundle:input_type -> spire.plugin.server.datastore.v1alpha1.SetBundleRequest
+	35,  // 93: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateBundle:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest
+	37,  // 94: spire.plugin.server.datastore.v1alpha1.DataStore.TaintX509CA:input_type -> spire.plugin.server.datastore.v1alpha1.TaintX509CARequest
+	39,  // 95: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeX509CA:input_type -> spire.plugin.server.datastore.v1alpha1.RevokeX509CARequest
+	41,  // 96: spire.plugin.server.datastore.v1alpha1.DataStore.TaintJWTKey:input_type -> spire.plugin.server.datastore.v1alpha1.TaintJWTKeyRequest
+	43,  // 97: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeJWTKey:input_type -> spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyRequest
+	45,  // 98: spire.plugin.server.datastore.v1alpha1.DataStore.CountRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest
+	49,  // 99: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryRequest
+	51,  // 100: spire.plugin.server.datastore.v1alpha1.DataStore.CreateOrReturnRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryRequest
+	53,  // 101: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryRequest
+	55,  // 102: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryRequest
+	57,  // 103: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesRequest
+	59,  // 104: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest
+	61,  // 105: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesRequest
+	63,  // 106: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest
+	65,  // 107: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntryEvents:input_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest
+	68,  // 108: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntryEvents:input_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsRequest
+	70,  // 109: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventRequest
+	72,  // 110: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest
+	74,  // 111: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventRequest
+	76,  // 112: spire.plugin.server.datastore.v1alpha1.DataStore.CountAttestedNodes:input_type -> spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest
+	78,  // 113: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest
+	80,  // 114: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeRequest
+	82,  // 115: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeRequest
+	84,  // 116: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodes:input_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest
+	86,  // 117: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest
+	88,  // 118: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedExpiredNodes:input_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesRequest
+	90,  // 119: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodeEvents:input_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest
+	93,  // 120: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedNodeEvents:input_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsRequest
+	95,  // 121: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventRequest
+	97,  // 122: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest
+	99,  // 123: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventRequest
+	101, // 124: spire.plugin.server.datastore.v1alpha1.DataStore.GetNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest
+	103, // 125: spire.plugin.server.datastore.v1alpha1.DataStore.ListNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest
+	106, // 126: spire.plugin.server.datastore.v1alpha1.DataStore.SetNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest
+	108, // 127: spire.plugin.server.datastore.v1alpha1.DataStore.CreateJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.CreateJoinTokenRequest
+	110, // 128: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenRequest
+	112, // 129: spire.plugin.server.datastore.v1alpha1.DataStore.FetchJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.FetchJoinTokenRequest
+	114, // 130: spire.plugin.server.datastore.v1alpha1.DataStore.PruneJoinTokens:input_type -> spire.plugin.server.datastore.v1alpha1.PruneJoinTokensRequest
+	117, // 131: spire.plugin.server.datastore.v1alpha1.DataStore.CreateFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest
+	119, // 132: spire.plugin.server.datastore.v1alpha1.DataStore.FetchFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipRequest
+	121, // 133: spire.plugin.server.datastore.v1alpha1.DataStore.ListFederationRelationships:input_type -> spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest
+	123, // 134: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipRequest
+	126, // 135: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest
+	129, // 136: spire.plugin.server.datastore.v1alpha1.DataStore.SetCAJournal:input_type -> spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest
+	131, // 137: spire.plugin.server.datastore.v1alpha1.DataStore.FetchCAJournal:input_type -> spire.plugin.server.datastore.v1alpha1.FetchCAJournalRequest
+	133, // 138: spire.plugin.server.datastore.v1alpha1.DataStore.PruneCAJournals:input_type -> spire.plugin.server.datastore.v1alpha1.PruneCAJournalsRequest
+	135, // 139: spire.plugin.server.datastore.v1alpha1.DataStore.ListCAJournals:input_type -> spire.plugin.server.datastore.v1alpha1.ListCAJournalsRequest
+	19,  // 140: spire.plugin.server.datastore.v1alpha1.DataStore.AppendBundle:output_type -> spire.plugin.server.datastore.v1alpha1.AppendBundleResponse
+	21,  // 141: spire.plugin.server.datastore.v1alpha1.DataStore.CreateBundle:output_type -> spire.plugin.server.datastore.v1alpha1.CreateBundleResponse
+	23,  // 142: spire.plugin.server.datastore.v1alpha1.DataStore.CountBundles:output_type -> spire.plugin.server.datastore.v1alpha1.CountBundlesResponse
+	25,  // 143: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteBundle:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteBundleResponse
+	27,  // 144: spire.plugin.server.datastore.v1alpha1.DataStore.FetchBundle:output_type -> spire.plugin.server.datastore.v1alpha1.FetchBundleResponse
+	30,  // 145: spire.plugin.server.datastore.v1alpha1.DataStore.ListBundles:output_type -> spire.plugin.server.datastore.v1alpha1.ListBundlesResponse
+	32,  // 146: spire.plugin.server.datastore.v1alpha1.DataStore.PruneBundle:output_type -> spire.plugin.server.datastore.v1alpha1.PruneBundleResponse
+	34,  // 147: spire.plugin.server.datastore.v1alpha1.DataStore.SetBundle:output_type -> spire.plugin.server.datastore.v1alpha1.SetBundleResponse
+	36,  // 148: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateBundle:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse
+	38,  // 149: spire.plugin.server.datastore.v1alpha1.DataStore.TaintX509CA:output_type -> spire.plugin.server.datastore.v1alpha1.TaintX509CAResponse
+	40,  // 150: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeX509CA:output_type -> spire.plugin.server.datastore.v1alpha1.RevokeX509CAResponse
+	42,  // 151: spire.plugin.server.datastore.v1alpha1.DataStore.TaintJWTKey:output_type -> spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse
+	44,  // 152: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeJWTKey:output_type -> spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse
+	46,  // 153: spire.plugin.server.datastore.v1alpha1.DataStore.CountRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesResponse
+	50,  // 154: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryResponse
+	52,  // 155: spire.plugin.server.datastore.v1alpha1.DataStore.CreateOrReturnRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryResponse
+	54,  // 156: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse
+	56,  // 157: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse
+	58,  // 158: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse
+	60,  // 159: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse
+	62,  // 160: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesResponse
+	64,  // 161: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse
+	67,  // 162: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntryEvents:output_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse
+	69,  // 163: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntryEvents:output_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsResponse
+	71,  // 164: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse
+	73,  // 165: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventResponse
+	75,  // 166: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventResponse
+	77,  // 167: spire.plugin.server.datastore.v1alpha1.DataStore.CountAttestedNodes:output_type -> spire.plugin.server.datastore.v1alpha1.CountAttestedNodesResponse
+	79,  // 168: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse
+	81,  // 169: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse
+	83,  // 170: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse
+	85,  // 171: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodes:output_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse
+	87,  // 172: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse
+	89,  // 173: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedExpiredNodes:output_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesResponse
+	92,  // 174: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodeEvents:output_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse
+	94,  // 175: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedNodeEvents:output_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsResponse
+	96,  // 176: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse
+	98,  // 177: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventResponse
+	100, // 178: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventResponse
+	102, // 179: spire.plugin.server.datastore.v1alpha1.DataStore.GetNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse
+	104, // 180: spire.plugin.server.datastore.v1alpha1.DataStore.ListNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse
+	107, // 181: spire.plugin.server.datastore.v1alpha1.DataStore.SetNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse
+	109, // 182: spire.plugin.server.datastore.v1alpha1.DataStore.CreateJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.CreateJoinTokenResponse
+	111, // 183: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenResponse
+	113, // 184: spire.plugin.server.datastore.v1alpha1.DataStore.FetchJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.FetchJoinTokenResponse
+	115, // 185: spire.plugin.server.datastore.v1alpha1.DataStore.PruneJoinTokens:output_type -> spire.plugin.server.datastore.v1alpha1.PruneJoinTokensResponse
+	118, // 186: spire.plugin.server.datastore.v1alpha1.DataStore.CreateFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse
+	120, // 187: spire.plugin.server.datastore.v1alpha1.DataStore.FetchFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse
+	122, // 188: spire.plugin.server.datastore.v1alpha1.DataStore.ListFederationRelationships:output_type -> spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse
+	124, // 189: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipResponse
+	127, // 190: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse
+	130, // 191: spire.plugin.server.datastore.v1alpha1.DataStore.SetCAJournal:output_type -> spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse
+	132, // 192: spire.plugin.server.datastore.v1alpha1.DataStore.FetchCAJournal:output_type -> spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse
+	134, // 193: spire.plugin.server.datastore.v1alpha1.DataStore.PruneCAJournals:output_type -> spire.plugin.server.datastore.v1alpha1.PruneCAJournalsResponse
+	136, // 194: spire.plugin.server.datastore.v1alpha1.DataStore.ListCAJournals:output_type -> spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse
+	140, // [140:195] is the sub-list for method output_type
+	85,  // [85:140] is the sub-list for method input_type
+	85,  // [85:85] is the sub-list for extension type_name
+	85,  // [85:85] is the sub-list for extension extendee
+	0,   // [0:85] is the sub-list for field type_name
 }
 
 func init() { file_spire_plugin_server_datastore_v1alpha1_datastore_proto_init() }
