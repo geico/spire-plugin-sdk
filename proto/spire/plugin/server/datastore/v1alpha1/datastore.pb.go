@@ -740,6 +740,58 @@ func (x *RegistrationEntry) GetAdditionalAttributes() string {
 	return ""
 }
 
+type RegistrationEntry_AdditionalAttributes struct {
+	state                   protoimpl.MessageState `protogen:"open.v1"`
+	DisableX509SvidPrefetch bool                   `protobuf:"varint,1,opt,name=disable_x509_svid_prefetch,json=disableX509SvidPrefetch,proto3" json:"disable_x509_svid_prefetch,omitempty"`
+	JwtSvidIncludeJti       bool                   `protobuf:"varint,2,opt,name=jwt_svid_include_jti,json=jwtSvidIncludeJti,proto3" json:"jwt_svid_include_jti,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *RegistrationEntry_AdditionalAttributes) Reset() {
+	*x = RegistrationEntry_AdditionalAttributes{}
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegistrationEntry_AdditionalAttributes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegistrationEntry_AdditionalAttributes) ProtoMessage() {}
+
+func (x *RegistrationEntry_AdditionalAttributes) ProtoReflect() protoreflect.Message {
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegistrationEntry_AdditionalAttributes.ProtoReflect.Descriptor instead.
+func (*RegistrationEntry_AdditionalAttributes) Descriptor() ([]byte, []int) {
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *RegistrationEntry_AdditionalAttributes) GetDisableX509SvidPrefetch() bool {
+	if x != nil {
+		return x.DisableX509SvidPrefetch
+	}
+	return false
+}
+
+func (x *RegistrationEntry_AdditionalAttributes) GetJwtSvidIncludeJti() bool {
+	if x != nil {
+		return x.JwtSvidIncludeJti
+	}
+	return false
+}
+
 // * The RegistrationEntryMask is used to update only selected fields of the RegistrationEntry
 type RegistrationEntryMask struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -762,7 +814,7 @@ type RegistrationEntryMask struct {
 
 func (x *RegistrationEntryMask) Reset() {
 	*x = RegistrationEntryMask{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[6]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -774,7 +826,7 @@ func (x *RegistrationEntryMask) String() string {
 func (*RegistrationEntryMask) ProtoMessage() {}
 
 func (x *RegistrationEntryMask) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[6]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -787,7 +839,7 @@ func (x *RegistrationEntryMask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegistrationEntryMask.ProtoReflect.Descriptor instead.
 func (*RegistrationEntryMask) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{6}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *RegistrationEntryMask) GetSelectors() bool {
@@ -892,7 +944,7 @@ type RegistrationEntries struct {
 
 func (x *RegistrationEntries) Reset() {
 	*x = RegistrationEntries{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[7]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -904,7 +956,7 @@ func (x *RegistrationEntries) String() string {
 func (*RegistrationEntries) ProtoMessage() {}
 
 func (x *RegistrationEntries) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[7]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -917,7 +969,7 @@ func (x *RegistrationEntries) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegistrationEntries.ProtoReflect.Descriptor instead.
 func (*RegistrationEntries) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{7}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *RegistrationEntries) GetEntries() []*RegistrationEntry {
@@ -938,7 +990,7 @@ type Certificate struct {
 
 func (x *Certificate) Reset() {
 	*x = Certificate{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[8]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -950,7 +1002,7 @@ func (x *Certificate) String() string {
 func (*Certificate) ProtoMessage() {}
 
 func (x *Certificate) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[8]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -963,7 +1015,7 @@ func (x *Certificate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Certificate.ProtoReflect.Descriptor instead.
 func (*Certificate) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{8}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Certificate) GetDerBytes() []byte {
@@ -997,7 +1049,7 @@ type PublicKey struct {
 
 func (x *PublicKey) Reset() {
 	*x = PublicKey{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[9]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1009,7 +1061,7 @@ func (x *PublicKey) String() string {
 func (*PublicKey) ProtoMessage() {}
 
 func (x *PublicKey) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[9]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1022,7 +1074,7 @@ func (x *PublicKey) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicKey.ProtoReflect.Descriptor instead.
 func (*PublicKey) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{9}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *PublicKey) GetPkixBytes() []byte {
@@ -1066,7 +1118,7 @@ type Bundle struct {
 
 func (x *Bundle) Reset() {
 	*x = Bundle{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[10]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1078,7 +1130,7 @@ func (x *Bundle) String() string {
 func (*Bundle) ProtoMessage() {}
 
 func (x *Bundle) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[10]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1091,7 +1143,7 @@ func (x *Bundle) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Bundle.ProtoReflect.Descriptor instead.
 func (*Bundle) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{10}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Bundle) GetTrustDomainId() string {
@@ -1136,7 +1188,7 @@ type BundleMask struct {
 
 func (x *BundleMask) Reset() {
 	*x = BundleMask{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[11]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1148,7 +1200,7 @@ func (x *BundleMask) String() string {
 func (*BundleMask) ProtoMessage() {}
 
 func (x *BundleMask) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[11]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1161,7 +1213,7 @@ func (x *BundleMask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BundleMask.ProtoReflect.Descriptor instead.
 func (*BundleMask) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{11}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *BundleMask) GetRootCas() bool {
@@ -1221,7 +1273,7 @@ type AttestedNodeMask struct {
 
 func (x *AttestedNodeMask) Reset() {
 	*x = AttestedNodeMask{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[12]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1233,7 +1285,7 @@ func (x *AttestedNodeMask) String() string {
 func (*AttestedNodeMask) ProtoMessage() {}
 
 func (x *AttestedNodeMask) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[12]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1246,7 +1298,7 @@ func (x *AttestedNodeMask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AttestedNodeMask.ProtoReflect.Descriptor instead.
 func (*AttestedNodeMask) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{12}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *AttestedNodeMask) GetAttestationDataType() bool {
@@ -1307,7 +1359,7 @@ type AppendBundleRequest struct {
 
 func (x *AppendBundleRequest) Reset() {
 	*x = AppendBundleRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[13]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1319,7 +1371,7 @@ func (x *AppendBundleRequest) String() string {
 func (*AppendBundleRequest) ProtoMessage() {}
 
 func (x *AppendBundleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[13]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1332,7 +1384,7 @@ func (x *AppendBundleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AppendBundleRequest.ProtoReflect.Descriptor instead.
 func (*AppendBundleRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{13}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *AppendBundleRequest) GetBundle() *Bundle {
@@ -1351,7 +1403,7 @@ type AppendBundleResponse struct {
 
 func (x *AppendBundleResponse) Reset() {
 	*x = AppendBundleResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[14]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1363,7 +1415,7 @@ func (x *AppendBundleResponse) String() string {
 func (*AppendBundleResponse) ProtoMessage() {}
 
 func (x *AppendBundleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[14]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1376,7 +1428,7 @@ func (x *AppendBundleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AppendBundleResponse.ProtoReflect.Descriptor instead.
 func (*AppendBundleResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{14}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *AppendBundleResponse) GetBundle() *Bundle {
@@ -1395,7 +1447,7 @@ type CreateBundleRequest struct {
 
 func (x *CreateBundleRequest) Reset() {
 	*x = CreateBundleRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[15]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1407,7 +1459,7 @@ func (x *CreateBundleRequest) String() string {
 func (*CreateBundleRequest) ProtoMessage() {}
 
 func (x *CreateBundleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[15]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1420,7 +1472,7 @@ func (x *CreateBundleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBundleRequest.ProtoReflect.Descriptor instead.
 func (*CreateBundleRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{15}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CreateBundleRequest) GetBundle() *Bundle {
@@ -1439,7 +1491,7 @@ type CreateBundleResponse struct {
 
 func (x *CreateBundleResponse) Reset() {
 	*x = CreateBundleResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[16]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1451,7 +1503,7 @@ func (x *CreateBundleResponse) String() string {
 func (*CreateBundleResponse) ProtoMessage() {}
 
 func (x *CreateBundleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[16]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1464,7 +1516,7 @@ func (x *CreateBundleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBundleResponse.ProtoReflect.Descriptor instead.
 func (*CreateBundleResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{16}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *CreateBundleResponse) GetBundle() *Bundle {
@@ -1482,7 +1534,7 @@ type CountBundlesRequest struct {
 
 func (x *CountBundlesRequest) Reset() {
 	*x = CountBundlesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[17]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1494,7 +1546,7 @@ func (x *CountBundlesRequest) String() string {
 func (*CountBundlesRequest) ProtoMessage() {}
 
 func (x *CountBundlesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[17]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1507,7 +1559,7 @@ func (x *CountBundlesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountBundlesRequest.ProtoReflect.Descriptor instead.
 func (*CountBundlesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{17}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{18}
 }
 
 type CountBundlesResponse struct {
@@ -1519,7 +1571,7 @@ type CountBundlesResponse struct {
 
 func (x *CountBundlesResponse) Reset() {
 	*x = CountBundlesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[18]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1531,7 +1583,7 @@ func (x *CountBundlesResponse) String() string {
 func (*CountBundlesResponse) ProtoMessage() {}
 
 func (x *CountBundlesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[18]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1544,7 +1596,7 @@ func (x *CountBundlesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountBundlesResponse.ProtoReflect.Descriptor instead.
 func (*CountBundlesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{18}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *CountBundlesResponse) GetCount() int32 {
@@ -1565,7 +1617,7 @@ type DeleteBundleRequest struct {
 
 func (x *DeleteBundleRequest) Reset() {
 	*x = DeleteBundleRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[19]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1577,7 +1629,7 @@ func (x *DeleteBundleRequest) String() string {
 func (*DeleteBundleRequest) ProtoMessage() {}
 
 func (x *DeleteBundleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[19]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1590,7 +1642,7 @@ func (x *DeleteBundleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBundleRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBundleRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{19}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *DeleteBundleRequest) GetTrustDomain() string {
@@ -1615,7 +1667,7 @@ type DeleteBundleResponse struct {
 
 func (x *DeleteBundleResponse) Reset() {
 	*x = DeleteBundleResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[20]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1627,7 +1679,7 @@ func (x *DeleteBundleResponse) String() string {
 func (*DeleteBundleResponse) ProtoMessage() {}
 
 func (x *DeleteBundleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[20]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1640,7 +1692,7 @@ func (x *DeleteBundleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBundleResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBundleResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{20}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{21}
 }
 
 type FetchBundleRequest struct {
@@ -1653,7 +1705,7 @@ type FetchBundleRequest struct {
 
 func (x *FetchBundleRequest) Reset() {
 	*x = FetchBundleRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[21]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1665,7 +1717,7 @@ func (x *FetchBundleRequest) String() string {
 func (*FetchBundleRequest) ProtoMessage() {}
 
 func (x *FetchBundleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[21]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1678,7 +1730,7 @@ func (x *FetchBundleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchBundleRequest.ProtoReflect.Descriptor instead.
 func (*FetchBundleRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{21}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *FetchBundleRequest) GetTrustDomain() string {
@@ -1698,7 +1750,7 @@ type FetchBundleResponse struct {
 
 func (x *FetchBundleResponse) Reset() {
 	*x = FetchBundleResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[22]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1710,7 +1762,7 @@ func (x *FetchBundleResponse) String() string {
 func (*FetchBundleResponse) ProtoMessage() {}
 
 func (x *FetchBundleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[22]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1723,7 +1775,7 @@ func (x *FetchBundleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchBundleResponse.ProtoReflect.Descriptor instead.
 func (*FetchBundleResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{22}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *FetchBundleResponse) GetBundle() *Bundle {
@@ -1747,7 +1799,7 @@ type Pagination struct {
 
 func (x *Pagination) Reset() {
 	*x = Pagination{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[23]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1759,7 +1811,7 @@ func (x *Pagination) String() string {
 func (*Pagination) ProtoMessage() {}
 
 func (x *Pagination) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[23]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1772,7 +1824,7 @@ func (x *Pagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Pagination.ProtoReflect.Descriptor instead.
 func (*Pagination) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{23}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *Pagination) GetPageSize() int32 {
@@ -1798,7 +1850,7 @@ type ListBundlesRequest struct {
 
 func (x *ListBundlesRequest) Reset() {
 	*x = ListBundlesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[24]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1810,7 +1862,7 @@ func (x *ListBundlesRequest) String() string {
 func (*ListBundlesRequest) ProtoMessage() {}
 
 func (x *ListBundlesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[24]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1823,7 +1875,7 @@ func (x *ListBundlesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListBundlesRequest.ProtoReflect.Descriptor instead.
 func (*ListBundlesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{24}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ListBundlesRequest) GetPagination() *Pagination {
@@ -1844,7 +1896,7 @@ type ListBundlesResponse struct {
 
 func (x *ListBundlesResponse) Reset() {
 	*x = ListBundlesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[25]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1856,7 +1908,7 @@ func (x *ListBundlesResponse) String() string {
 func (*ListBundlesResponse) ProtoMessage() {}
 
 func (x *ListBundlesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[25]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1869,7 +1921,7 @@ func (x *ListBundlesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListBundlesResponse.ProtoReflect.Descriptor instead.
 func (*ListBundlesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{25}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ListBundlesResponse) GetBundles() []*Bundle {
@@ -1896,7 +1948,7 @@ type PruneBundleRequest struct {
 
 func (x *PruneBundleRequest) Reset() {
 	*x = PruneBundleRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[26]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1908,7 +1960,7 @@ func (x *PruneBundleRequest) String() string {
 func (*PruneBundleRequest) ProtoMessage() {}
 
 func (x *PruneBundleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[26]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1921,7 +1973,7 @@ func (x *PruneBundleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneBundleRequest.ProtoReflect.Descriptor instead.
 func (*PruneBundleRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{26}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *PruneBundleRequest) GetTrustDomain() string {
@@ -1947,7 +1999,7 @@ type PruneBundleResponse struct {
 
 func (x *PruneBundleResponse) Reset() {
 	*x = PruneBundleResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[27]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1959,7 +2011,7 @@ func (x *PruneBundleResponse) String() string {
 func (*PruneBundleResponse) ProtoMessage() {}
 
 func (x *PruneBundleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[27]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1972,7 +2024,7 @@ func (x *PruneBundleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneBundleResponse.ProtoReflect.Descriptor instead.
 func (*PruneBundleResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{27}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *PruneBundleResponse) GetChanged() bool {
@@ -1991,7 +2043,7 @@ type SetBundleRequest struct {
 
 func (x *SetBundleRequest) Reset() {
 	*x = SetBundleRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[28]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2003,7 +2055,7 @@ func (x *SetBundleRequest) String() string {
 func (*SetBundleRequest) ProtoMessage() {}
 
 func (x *SetBundleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[28]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2016,7 +2068,7 @@ func (x *SetBundleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetBundleRequest.ProtoReflect.Descriptor instead.
 func (*SetBundleRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{28}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *SetBundleRequest) GetBundle() *Bundle {
@@ -2035,7 +2087,7 @@ type SetBundleResponse struct {
 
 func (x *SetBundleResponse) Reset() {
 	*x = SetBundleResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[29]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2047,7 +2099,7 @@ func (x *SetBundleResponse) String() string {
 func (*SetBundleResponse) ProtoMessage() {}
 
 func (x *SetBundleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[29]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2060,7 +2112,7 @@ func (x *SetBundleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetBundleResponse.ProtoReflect.Descriptor instead.
 func (*SetBundleResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{29}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *SetBundleResponse) GetBundle() *Bundle {
@@ -2080,7 +2132,7 @@ type UpdateBundleRequest struct {
 
 func (x *UpdateBundleRequest) Reset() {
 	*x = UpdateBundleRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[30]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2092,7 +2144,7 @@ func (x *UpdateBundleRequest) String() string {
 func (*UpdateBundleRequest) ProtoMessage() {}
 
 func (x *UpdateBundleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[30]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2105,7 +2157,7 @@ func (x *UpdateBundleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBundleRequest.ProtoReflect.Descriptor instead.
 func (*UpdateBundleRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{30}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *UpdateBundleRequest) GetBundle() *Bundle {
@@ -2131,7 +2183,7 @@ type UpdateBundleResponse struct {
 
 func (x *UpdateBundleResponse) Reset() {
 	*x = UpdateBundleResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[31]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2143,7 +2195,7 @@ func (x *UpdateBundleResponse) String() string {
 func (*UpdateBundleResponse) ProtoMessage() {}
 
 func (x *UpdateBundleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[31]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2156,7 +2208,7 @@ func (x *UpdateBundleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBundleResponse.ProtoReflect.Descriptor instead.
 func (*UpdateBundleResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{31}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *UpdateBundleResponse) GetBundle() *Bundle {
@@ -2176,7 +2228,7 @@ type TaintX509CARequest struct {
 
 func (x *TaintX509CARequest) Reset() {
 	*x = TaintX509CARequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[32]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2188,7 +2240,7 @@ func (x *TaintX509CARequest) String() string {
 func (*TaintX509CARequest) ProtoMessage() {}
 
 func (x *TaintX509CARequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[32]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2201,7 +2253,7 @@ func (x *TaintX509CARequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TaintX509CARequest.ProtoReflect.Descriptor instead.
 func (*TaintX509CARequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{32}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *TaintX509CARequest) GetTrustDomain() string {
@@ -2226,7 +2278,7 @@ type TaintX509CAResponse struct {
 
 func (x *TaintX509CAResponse) Reset() {
 	*x = TaintX509CAResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[33]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2238,7 +2290,7 @@ func (x *TaintX509CAResponse) String() string {
 func (*TaintX509CAResponse) ProtoMessage() {}
 
 func (x *TaintX509CAResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[33]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2251,7 +2303,7 @@ func (x *TaintX509CAResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TaintX509CAResponse.ProtoReflect.Descriptor instead.
 func (*TaintX509CAResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{33}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{34}
 }
 
 type RevokeX509CARequest struct {
@@ -2264,7 +2316,7 @@ type RevokeX509CARequest struct {
 
 func (x *RevokeX509CARequest) Reset() {
 	*x = RevokeX509CARequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[34]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2276,7 +2328,7 @@ func (x *RevokeX509CARequest) String() string {
 func (*RevokeX509CARequest) ProtoMessage() {}
 
 func (x *RevokeX509CARequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[34]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2289,7 +2341,7 @@ func (x *RevokeX509CARequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeX509CARequest.ProtoReflect.Descriptor instead.
 func (*RevokeX509CARequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{34}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *RevokeX509CARequest) GetTrustDomain() string {
@@ -2314,7 +2366,7 @@ type RevokeX509CAResponse struct {
 
 func (x *RevokeX509CAResponse) Reset() {
 	*x = RevokeX509CAResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[35]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2326,7 +2378,7 @@ func (x *RevokeX509CAResponse) String() string {
 func (*RevokeX509CAResponse) ProtoMessage() {}
 
 func (x *RevokeX509CAResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[35]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2339,7 +2391,7 @@ func (x *RevokeX509CAResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeX509CAResponse.ProtoReflect.Descriptor instead.
 func (*RevokeX509CAResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{35}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{36}
 }
 
 type TaintJWTKeyRequest struct {
@@ -2352,7 +2404,7 @@ type TaintJWTKeyRequest struct {
 
 func (x *TaintJWTKeyRequest) Reset() {
 	*x = TaintJWTKeyRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[36]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2364,7 +2416,7 @@ func (x *TaintJWTKeyRequest) String() string {
 func (*TaintJWTKeyRequest) ProtoMessage() {}
 
 func (x *TaintJWTKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[36]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2377,7 +2429,7 @@ func (x *TaintJWTKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TaintJWTKeyRequest.ProtoReflect.Descriptor instead.
 func (*TaintJWTKeyRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{36}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *TaintJWTKeyRequest) GetTrustDomain() string {
@@ -2403,7 +2455,7 @@ type TaintJWTKeyResponse struct {
 
 func (x *TaintJWTKeyResponse) Reset() {
 	*x = TaintJWTKeyResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[37]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2415,7 +2467,7 @@ func (x *TaintJWTKeyResponse) String() string {
 func (*TaintJWTKeyResponse) ProtoMessage() {}
 
 func (x *TaintJWTKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[37]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2428,7 +2480,7 @@ func (x *TaintJWTKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TaintJWTKeyResponse.ProtoReflect.Descriptor instead.
 func (*TaintJWTKeyResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{37}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *TaintJWTKeyResponse) GetKey() *PublicKey {
@@ -2448,7 +2500,7 @@ type RevokeJWTKeyRequest struct {
 
 func (x *RevokeJWTKeyRequest) Reset() {
 	*x = RevokeJWTKeyRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[38]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2460,7 +2512,7 @@ func (x *RevokeJWTKeyRequest) String() string {
 func (*RevokeJWTKeyRequest) ProtoMessage() {}
 
 func (x *RevokeJWTKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[38]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2473,7 +2525,7 @@ func (x *RevokeJWTKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeJWTKeyRequest.ProtoReflect.Descriptor instead.
 func (*RevokeJWTKeyRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{38}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *RevokeJWTKeyRequest) GetTrustDomain() string {
@@ -2499,7 +2551,7 @@ type RevokeJWTKeyResponse struct {
 
 func (x *RevokeJWTKeyResponse) Reset() {
 	*x = RevokeJWTKeyResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[39]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2511,7 +2563,7 @@ func (x *RevokeJWTKeyResponse) String() string {
 func (*RevokeJWTKeyResponse) ProtoMessage() {}
 
 func (x *RevokeJWTKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[39]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2524,7 +2576,7 @@ func (x *RevokeJWTKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeJWTKeyResponse.ProtoReflect.Descriptor instead.
 func (*RevokeJWTKeyResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{39}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *RevokeJWTKeyResponse) GetKey() *PublicKey {
@@ -2550,7 +2602,7 @@ type CountRegistrationEntriesRequest struct {
 
 func (x *CountRegistrationEntriesRequest) Reset() {
 	*x = CountRegistrationEntriesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[40]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2562,7 +2614,7 @@ func (x *CountRegistrationEntriesRequest) String() string {
 func (*CountRegistrationEntriesRequest) ProtoMessage() {}
 
 func (x *CountRegistrationEntriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[40]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2575,7 +2627,7 @@ func (x *CountRegistrationEntriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountRegistrationEntriesRequest.ProtoReflect.Descriptor instead.
 func (*CountRegistrationEntriesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{40}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *CountRegistrationEntriesRequest) GetDataConsistency() DataConsistency {
@@ -2643,7 +2695,7 @@ type CountRegistrationEntriesResponse struct {
 
 func (x *CountRegistrationEntriesResponse) Reset() {
 	*x = CountRegistrationEntriesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[41]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2655,7 +2707,7 @@ func (x *CountRegistrationEntriesResponse) String() string {
 func (*CountRegistrationEntriesResponse) ProtoMessage() {}
 
 func (x *CountRegistrationEntriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[41]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2668,7 +2720,7 @@ func (x *CountRegistrationEntriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountRegistrationEntriesResponse.ProtoReflect.Descriptor instead.
 func (*CountRegistrationEntriesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{41}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *CountRegistrationEntriesResponse) GetCount() int32 {
@@ -2688,7 +2740,7 @@ type BySelectors struct {
 
 func (x *BySelectors) Reset() {
 	*x = BySelectors{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[42]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2700,7 +2752,7 @@ func (x *BySelectors) String() string {
 func (*BySelectors) ProtoMessage() {}
 
 func (x *BySelectors) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[42]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2713,7 +2765,7 @@ func (x *BySelectors) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BySelectors.ProtoReflect.Descriptor instead.
 func (*BySelectors) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{42}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *BySelectors) GetMatchBehavior() MatchBehavior {
@@ -2740,7 +2792,7 @@ type ByFederatesWith struct {
 
 func (x *ByFederatesWith) Reset() {
 	*x = ByFederatesWith{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[43]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2752,7 +2804,7 @@ func (x *ByFederatesWith) String() string {
 func (*ByFederatesWith) ProtoMessage() {}
 
 func (x *ByFederatesWith) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[43]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2765,7 +2817,7 @@ func (x *ByFederatesWith) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ByFederatesWith.ProtoReflect.Descriptor instead.
 func (*ByFederatesWith) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{43}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *ByFederatesWith) GetMatchBehavior() MatchBehavior {
@@ -2791,7 +2843,7 @@ type CreateRegistrationEntryRequest struct {
 
 func (x *CreateRegistrationEntryRequest) Reset() {
 	*x = CreateRegistrationEntryRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[44]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2803,7 +2855,7 @@ func (x *CreateRegistrationEntryRequest) String() string {
 func (*CreateRegistrationEntryRequest) ProtoMessage() {}
 
 func (x *CreateRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[44]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2816,7 +2868,7 @@ func (x *CreateRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRegistrationEntryRequest.ProtoReflect.Descriptor instead.
 func (*CreateRegistrationEntryRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{44}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *CreateRegistrationEntryRequest) GetEntry() *RegistrationEntry {
@@ -2835,7 +2887,7 @@ type CreateRegistrationEntryResponse struct {
 
 func (x *CreateRegistrationEntryResponse) Reset() {
 	*x = CreateRegistrationEntryResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[45]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2847,7 +2899,7 @@ func (x *CreateRegistrationEntryResponse) String() string {
 func (*CreateRegistrationEntryResponse) ProtoMessage() {}
 
 func (x *CreateRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[45]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2860,7 +2912,7 @@ func (x *CreateRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRegistrationEntryResponse.ProtoReflect.Descriptor instead.
 func (*CreateRegistrationEntryResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{45}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *CreateRegistrationEntryResponse) GetEntry() *RegistrationEntry {
@@ -2879,7 +2931,7 @@ type CreateOrReturnRegistrationEntryRequest struct {
 
 func (x *CreateOrReturnRegistrationEntryRequest) Reset() {
 	*x = CreateOrReturnRegistrationEntryRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[46]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2891,7 +2943,7 @@ func (x *CreateOrReturnRegistrationEntryRequest) String() string {
 func (*CreateOrReturnRegistrationEntryRequest) ProtoMessage() {}
 
 func (x *CreateOrReturnRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[46]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2904,7 +2956,7 @@ func (x *CreateOrReturnRegistrationEntryRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use CreateOrReturnRegistrationEntryRequest.ProtoReflect.Descriptor instead.
 func (*CreateOrReturnRegistrationEntryRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{46}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *CreateOrReturnRegistrationEntryRequest) GetEntry() *RegistrationEntry {
@@ -2924,7 +2976,7 @@ type CreateOrReturnRegistrationEntryResponse struct {
 
 func (x *CreateOrReturnRegistrationEntryResponse) Reset() {
 	*x = CreateOrReturnRegistrationEntryResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[47]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2936,7 +2988,7 @@ func (x *CreateOrReturnRegistrationEntryResponse) String() string {
 func (*CreateOrReturnRegistrationEntryResponse) ProtoMessage() {}
 
 func (x *CreateOrReturnRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[47]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2949,7 +3001,7 @@ func (x *CreateOrReturnRegistrationEntryResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use CreateOrReturnRegistrationEntryResponse.ProtoReflect.Descriptor instead.
 func (*CreateOrReturnRegistrationEntryResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{47}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *CreateOrReturnRegistrationEntryResponse) GetEntry() *RegistrationEntry {
@@ -2975,7 +3027,7 @@ type DeleteRegistrationEntryRequest struct {
 
 func (x *DeleteRegistrationEntryRequest) Reset() {
 	*x = DeleteRegistrationEntryRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[48]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2987,7 +3039,7 @@ func (x *DeleteRegistrationEntryRequest) String() string {
 func (*DeleteRegistrationEntryRequest) ProtoMessage() {}
 
 func (x *DeleteRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[48]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3000,7 +3052,7 @@ func (x *DeleteRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRegistrationEntryRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRegistrationEntryRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{48}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *DeleteRegistrationEntryRequest) GetEntryId() string {
@@ -3019,7 +3071,7 @@ type DeleteRegistrationEntryResponse struct {
 
 func (x *DeleteRegistrationEntryResponse) Reset() {
 	*x = DeleteRegistrationEntryResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[49]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3031,7 +3083,7 @@ func (x *DeleteRegistrationEntryResponse) String() string {
 func (*DeleteRegistrationEntryResponse) ProtoMessage() {}
 
 func (x *DeleteRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[49]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3044,7 +3096,7 @@ func (x *DeleteRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRegistrationEntryResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRegistrationEntryResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{49}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *DeleteRegistrationEntryResponse) GetEntry() *RegistrationEntry {
@@ -3063,7 +3115,7 @@ type FetchRegistrationEntryRequest struct {
 
 func (x *FetchRegistrationEntryRequest) Reset() {
 	*x = FetchRegistrationEntryRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[50]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3075,7 +3127,7 @@ func (x *FetchRegistrationEntryRequest) String() string {
 func (*FetchRegistrationEntryRequest) ProtoMessage() {}
 
 func (x *FetchRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[50]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3088,7 +3140,7 @@ func (x *FetchRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchRegistrationEntryRequest.ProtoReflect.Descriptor instead.
 func (*FetchRegistrationEntryRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{50}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *FetchRegistrationEntryRequest) GetEntryId() string {
@@ -3107,7 +3159,7 @@ type FetchRegistrationEntryResponse struct {
 
 func (x *FetchRegistrationEntryResponse) Reset() {
 	*x = FetchRegistrationEntryResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[51]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3119,7 +3171,7 @@ func (x *FetchRegistrationEntryResponse) String() string {
 func (*FetchRegistrationEntryResponse) ProtoMessage() {}
 
 func (x *FetchRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[51]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3132,7 +3184,7 @@ func (x *FetchRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchRegistrationEntryResponse.ProtoReflect.Descriptor instead.
 func (*FetchRegistrationEntryResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{51}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *FetchRegistrationEntryResponse) GetEntry() *RegistrationEntry {
@@ -3151,7 +3203,7 @@ type FetchRegistrationEntriesRequest struct {
 
 func (x *FetchRegistrationEntriesRequest) Reset() {
 	*x = FetchRegistrationEntriesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[52]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3163,7 +3215,7 @@ func (x *FetchRegistrationEntriesRequest) String() string {
 func (*FetchRegistrationEntriesRequest) ProtoMessage() {}
 
 func (x *FetchRegistrationEntriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[52]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3176,7 +3228,7 @@ func (x *FetchRegistrationEntriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchRegistrationEntriesRequest.ProtoReflect.Descriptor instead.
 func (*FetchRegistrationEntriesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{52}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *FetchRegistrationEntriesRequest) GetEntryIds() []string {
@@ -3195,7 +3247,7 @@ type FetchRegistrationEntriesResponse struct {
 
 func (x *FetchRegistrationEntriesResponse) Reset() {
 	*x = FetchRegistrationEntriesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[53]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3207,7 +3259,7 @@ func (x *FetchRegistrationEntriesResponse) String() string {
 func (*FetchRegistrationEntriesResponse) ProtoMessage() {}
 
 func (x *FetchRegistrationEntriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[53]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3220,7 +3272,7 @@ func (x *FetchRegistrationEntriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchRegistrationEntriesResponse.ProtoReflect.Descriptor instead.
 func (*FetchRegistrationEntriesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{53}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *FetchRegistrationEntriesResponse) GetEntries() []*RegistrationEntry {
@@ -3247,7 +3299,7 @@ type ListRegistrationEntriesRequest struct {
 
 func (x *ListRegistrationEntriesRequest) Reset() {
 	*x = ListRegistrationEntriesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[54]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3259,7 +3311,7 @@ func (x *ListRegistrationEntriesRequest) String() string {
 func (*ListRegistrationEntriesRequest) ProtoMessage() {}
 
 func (x *ListRegistrationEntriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[54]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3272,7 +3324,7 @@ func (x *ListRegistrationEntriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRegistrationEntriesRequest.ProtoReflect.Descriptor instead.
 func (*ListRegistrationEntriesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{54}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *ListRegistrationEntriesRequest) GetPagination() *Pagination {
@@ -3348,7 +3400,7 @@ type ListRegistrationEntriesResponse struct {
 
 func (x *ListRegistrationEntriesResponse) Reset() {
 	*x = ListRegistrationEntriesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[55]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3360,7 +3412,7 @@ func (x *ListRegistrationEntriesResponse) String() string {
 func (*ListRegistrationEntriesResponse) ProtoMessage() {}
 
 func (x *ListRegistrationEntriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[55]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3373,7 +3425,7 @@ func (x *ListRegistrationEntriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRegistrationEntriesResponse.ProtoReflect.Descriptor instead.
 func (*ListRegistrationEntriesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{55}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *ListRegistrationEntriesResponse) GetEntries() []*RegistrationEntry {
@@ -3399,7 +3451,7 @@ type PruneRegistrationEntriesRequest struct {
 
 func (x *PruneRegistrationEntriesRequest) Reset() {
 	*x = PruneRegistrationEntriesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[56]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3411,7 +3463,7 @@ func (x *PruneRegistrationEntriesRequest) String() string {
 func (*PruneRegistrationEntriesRequest) ProtoMessage() {}
 
 func (x *PruneRegistrationEntriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[56]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3424,7 +3476,7 @@ func (x *PruneRegistrationEntriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneRegistrationEntriesRequest.ProtoReflect.Descriptor instead.
 func (*PruneRegistrationEntriesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{56}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *PruneRegistrationEntriesRequest) GetExpiresBefore() int64 {
@@ -3442,7 +3494,7 @@ type PruneRegistrationEntriesResponse struct {
 
 func (x *PruneRegistrationEntriesResponse) Reset() {
 	*x = PruneRegistrationEntriesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[57]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3454,7 +3506,7 @@ func (x *PruneRegistrationEntriesResponse) String() string {
 func (*PruneRegistrationEntriesResponse) ProtoMessage() {}
 
 func (x *PruneRegistrationEntriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[57]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3467,7 +3519,7 @@ func (x *PruneRegistrationEntriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneRegistrationEntriesResponse.ProtoReflect.Descriptor instead.
 func (*PruneRegistrationEntriesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{57}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{58}
 }
 
 type UpdateRegistrationEntryRequest struct {
@@ -3480,7 +3532,7 @@ type UpdateRegistrationEntryRequest struct {
 
 func (x *UpdateRegistrationEntryRequest) Reset() {
 	*x = UpdateRegistrationEntryRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[58]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3492,7 +3544,7 @@ func (x *UpdateRegistrationEntryRequest) String() string {
 func (*UpdateRegistrationEntryRequest) ProtoMessage() {}
 
 func (x *UpdateRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[58]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3505,7 +3557,7 @@ func (x *UpdateRegistrationEntryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRegistrationEntryRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRegistrationEntryRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{58}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *UpdateRegistrationEntryRequest) GetEntry() *RegistrationEntry {
@@ -3531,7 +3583,7 @@ type UpdateRegistrationEntryResponse struct {
 
 func (x *UpdateRegistrationEntryResponse) Reset() {
 	*x = UpdateRegistrationEntryResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[59]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3543,7 +3595,7 @@ func (x *UpdateRegistrationEntryResponse) String() string {
 func (*UpdateRegistrationEntryResponse) ProtoMessage() {}
 
 func (x *UpdateRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[59]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3556,7 +3608,7 @@ func (x *UpdateRegistrationEntryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRegistrationEntryResponse.ProtoReflect.Descriptor instead.
 func (*UpdateRegistrationEntryResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{59}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *UpdateRegistrationEntryResponse) GetEntry() *RegistrationEntry {
@@ -3577,7 +3629,7 @@ type ListRegistrationEntryEventsRequest struct {
 
 func (x *ListRegistrationEntryEventsRequest) Reset() {
 	*x = ListRegistrationEntryEventsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[60]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3589,7 +3641,7 @@ func (x *ListRegistrationEntryEventsRequest) String() string {
 func (*ListRegistrationEntryEventsRequest) ProtoMessage() {}
 
 func (x *ListRegistrationEntryEventsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[60]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3602,7 +3654,7 @@ func (x *ListRegistrationEntryEventsRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListRegistrationEntryEventsRequest.ProtoReflect.Descriptor instead.
 func (*ListRegistrationEntryEventsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{60}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *ListRegistrationEntryEventsRequest) GetGreaterThanEventId() uint64 {
@@ -3638,7 +3690,7 @@ type RegistrationEntryEvent struct {
 
 func (x *RegistrationEntryEvent) Reset() {
 	*x = RegistrationEntryEvent{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[61]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3650,7 +3702,7 @@ func (x *RegistrationEntryEvent) String() string {
 func (*RegistrationEntryEvent) ProtoMessage() {}
 
 func (x *RegistrationEntryEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[61]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3663,7 +3715,7 @@ func (x *RegistrationEntryEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegistrationEntryEvent.ProtoReflect.Descriptor instead.
 func (*RegistrationEntryEvent) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{61}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *RegistrationEntryEvent) GetEventId() uint64 {
@@ -3703,7 +3755,7 @@ type ListRegistrationEntryEventsResponse struct {
 
 func (x *ListRegistrationEntryEventsResponse) Reset() {
 	*x = ListRegistrationEntryEventsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[62]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3715,7 +3767,7 @@ func (x *ListRegistrationEntryEventsResponse) String() string {
 func (*ListRegistrationEntryEventsResponse) ProtoMessage() {}
 
 func (x *ListRegistrationEntryEventsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[62]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3728,7 +3780,7 @@ func (x *ListRegistrationEntryEventsResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ListRegistrationEntryEventsResponse.ProtoReflect.Descriptor instead.
 func (*ListRegistrationEntryEventsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{62}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *ListRegistrationEntryEventsResponse) GetEvents() []*RegistrationEntryEvent {
@@ -3747,7 +3799,7 @@ type PruneRegistrationEntryEventsRequest struct {
 
 func (x *PruneRegistrationEntryEventsRequest) Reset() {
 	*x = PruneRegistrationEntryEventsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[63]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3759,7 +3811,7 @@ func (x *PruneRegistrationEntryEventsRequest) String() string {
 func (*PruneRegistrationEntryEventsRequest) ProtoMessage() {}
 
 func (x *PruneRegistrationEntryEventsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[63]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3772,7 +3824,7 @@ func (x *PruneRegistrationEntryEventsRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use PruneRegistrationEntryEventsRequest.ProtoReflect.Descriptor instead.
 func (*PruneRegistrationEntryEventsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{63}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *PruneRegistrationEntryEventsRequest) GetExpiresBefore() int64 {
@@ -3790,7 +3842,7 @@ type PruneRegistrationEntryEventsResponse struct {
 
 func (x *PruneRegistrationEntryEventsResponse) Reset() {
 	*x = PruneRegistrationEntryEventsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[64]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3802,7 +3854,7 @@ func (x *PruneRegistrationEntryEventsResponse) String() string {
 func (*PruneRegistrationEntryEventsResponse) ProtoMessage() {}
 
 func (x *PruneRegistrationEntryEventsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[64]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3815,7 +3867,7 @@ func (x *PruneRegistrationEntryEventsResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use PruneRegistrationEntryEventsResponse.ProtoReflect.Descriptor instead.
 func (*PruneRegistrationEntryEventsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{64}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{65}
 }
 
 type FetchRegistrationEntryEventRequest struct {
@@ -3827,7 +3879,7 @@ type FetchRegistrationEntryEventRequest struct {
 
 func (x *FetchRegistrationEntryEventRequest) Reset() {
 	*x = FetchRegistrationEntryEventRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[65]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3839,7 +3891,7 @@ func (x *FetchRegistrationEntryEventRequest) String() string {
 func (*FetchRegistrationEntryEventRequest) ProtoMessage() {}
 
 func (x *FetchRegistrationEntryEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[65]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3852,7 +3904,7 @@ func (x *FetchRegistrationEntryEventRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use FetchRegistrationEntryEventRequest.ProtoReflect.Descriptor instead.
 func (*FetchRegistrationEntryEventRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{65}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *FetchRegistrationEntryEventRequest) GetEventId() uint64 {
@@ -3871,7 +3923,7 @@ type FetchRegistrationEntryEventResponse struct {
 
 func (x *FetchRegistrationEntryEventResponse) Reset() {
 	*x = FetchRegistrationEntryEventResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[66]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3883,7 +3935,7 @@ func (x *FetchRegistrationEntryEventResponse) String() string {
 func (*FetchRegistrationEntryEventResponse) ProtoMessage() {}
 
 func (x *FetchRegistrationEntryEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[66]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3896,7 +3948,7 @@ func (x *FetchRegistrationEntryEventResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use FetchRegistrationEntryEventResponse.ProtoReflect.Descriptor instead.
 func (*FetchRegistrationEntryEventResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{66}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *FetchRegistrationEntryEventResponse) GetEvent() *RegistrationEntryEvent {
@@ -3915,7 +3967,7 @@ type CreateRegistrationEntryEventRequest struct {
 
 func (x *CreateRegistrationEntryEventRequest) Reset() {
 	*x = CreateRegistrationEntryEventRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[67]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3927,7 +3979,7 @@ func (x *CreateRegistrationEntryEventRequest) String() string {
 func (*CreateRegistrationEntryEventRequest) ProtoMessage() {}
 
 func (x *CreateRegistrationEntryEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[67]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3940,7 +3992,7 @@ func (x *CreateRegistrationEntryEventRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use CreateRegistrationEntryEventRequest.ProtoReflect.Descriptor instead.
 func (*CreateRegistrationEntryEventRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{67}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *CreateRegistrationEntryEventRequest) GetEvent() *RegistrationEntryEvent {
@@ -3958,7 +4010,7 @@ type CreateRegistrationEntryEventResponse struct {
 
 func (x *CreateRegistrationEntryEventResponse) Reset() {
 	*x = CreateRegistrationEntryEventResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[68]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3970,7 +4022,7 @@ func (x *CreateRegistrationEntryEventResponse) String() string {
 func (*CreateRegistrationEntryEventResponse) ProtoMessage() {}
 
 func (x *CreateRegistrationEntryEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[68]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3983,7 +4035,7 @@ func (x *CreateRegistrationEntryEventResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use CreateRegistrationEntryEventResponse.ProtoReflect.Descriptor instead.
 func (*CreateRegistrationEntryEventResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{68}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{69}
 }
 
 type DeleteRegistrationEntryEventRequest struct {
@@ -3995,7 +4047,7 @@ type DeleteRegistrationEntryEventRequest struct {
 
 func (x *DeleteRegistrationEntryEventRequest) Reset() {
 	*x = DeleteRegistrationEntryEventRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[69]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4007,7 +4059,7 @@ func (x *DeleteRegistrationEntryEventRequest) String() string {
 func (*DeleteRegistrationEntryEventRequest) ProtoMessage() {}
 
 func (x *DeleteRegistrationEntryEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[69]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4020,7 +4072,7 @@ func (x *DeleteRegistrationEntryEventRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use DeleteRegistrationEntryEventRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRegistrationEntryEventRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{69}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *DeleteRegistrationEntryEventRequest) GetEventId() uint64 {
@@ -4038,7 +4090,7 @@ type DeleteRegistrationEntryEventResponse struct {
 
 func (x *DeleteRegistrationEntryEventResponse) Reset() {
 	*x = DeleteRegistrationEntryEventResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[70]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4050,7 +4102,7 @@ func (x *DeleteRegistrationEntryEventResponse) String() string {
 func (*DeleteRegistrationEntryEventResponse) ProtoMessage() {}
 
 func (x *DeleteRegistrationEntryEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[70]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4063,7 +4115,7 @@ func (x *DeleteRegistrationEntryEventResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use DeleteRegistrationEntryEventResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRegistrationEntryEventResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{70}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{71}
 }
 
 type CountAttestedNodesRequest struct {
@@ -4082,7 +4134,7 @@ type CountAttestedNodesRequest struct {
 
 func (x *CountAttestedNodesRequest) Reset() {
 	*x = CountAttestedNodesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[71]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4094,7 +4146,7 @@ func (x *CountAttestedNodesRequest) String() string {
 func (*CountAttestedNodesRequest) ProtoMessage() {}
 
 func (x *CountAttestedNodesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[71]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4107,7 +4159,7 @@ func (x *CountAttestedNodesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountAttestedNodesRequest.ProtoReflect.Descriptor instead.
 func (*CountAttestedNodesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{71}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *CountAttestedNodesRequest) GetBySelectors() *BySelectors {
@@ -4175,7 +4227,7 @@ type CountAttestedNodesResponse struct {
 
 func (x *CountAttestedNodesResponse) Reset() {
 	*x = CountAttestedNodesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[72]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4187,7 +4239,7 @@ func (x *CountAttestedNodesResponse) String() string {
 func (*CountAttestedNodesResponse) ProtoMessage() {}
 
 func (x *CountAttestedNodesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[72]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4200,7 +4252,7 @@ func (x *CountAttestedNodesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountAttestedNodesResponse.ProtoReflect.Descriptor instead.
 func (*CountAttestedNodesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{72}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *CountAttestedNodesResponse) GetCount() int32 {
@@ -4219,7 +4271,7 @@ type CreateAttestedNodeRequest struct {
 
 func (x *CreateAttestedNodeRequest) Reset() {
 	*x = CreateAttestedNodeRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[73]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4231,7 +4283,7 @@ func (x *CreateAttestedNodeRequest) String() string {
 func (*CreateAttestedNodeRequest) ProtoMessage() {}
 
 func (x *CreateAttestedNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[73]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4244,7 +4296,7 @@ func (x *CreateAttestedNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAttestedNodeRequest.ProtoReflect.Descriptor instead.
 func (*CreateAttestedNodeRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{73}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *CreateAttestedNodeRequest) GetNode() *AttestedNode {
@@ -4263,7 +4315,7 @@ type CreateAttestedNodeResponse struct {
 
 func (x *CreateAttestedNodeResponse) Reset() {
 	*x = CreateAttestedNodeResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[74]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4275,7 +4327,7 @@ func (x *CreateAttestedNodeResponse) String() string {
 func (*CreateAttestedNodeResponse) ProtoMessage() {}
 
 func (x *CreateAttestedNodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[74]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4288,7 +4340,7 @@ func (x *CreateAttestedNodeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAttestedNodeResponse.ProtoReflect.Descriptor instead.
 func (*CreateAttestedNodeResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{74}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *CreateAttestedNodeResponse) GetNode() *AttestedNode {
@@ -4307,7 +4359,7 @@ type DeleteAttestedNodeRequest struct {
 
 func (x *DeleteAttestedNodeRequest) Reset() {
 	*x = DeleteAttestedNodeRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[75]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4319,7 +4371,7 @@ func (x *DeleteAttestedNodeRequest) String() string {
 func (*DeleteAttestedNodeRequest) ProtoMessage() {}
 
 func (x *DeleteAttestedNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[75]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4332,7 +4384,7 @@ func (x *DeleteAttestedNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAttestedNodeRequest.ProtoReflect.Descriptor instead.
 func (*DeleteAttestedNodeRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{75}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *DeleteAttestedNodeRequest) GetSpiffeId() string {
@@ -4351,7 +4403,7 @@ type DeleteAttestedNodeResponse struct {
 
 func (x *DeleteAttestedNodeResponse) Reset() {
 	*x = DeleteAttestedNodeResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[76]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4363,7 +4415,7 @@ func (x *DeleteAttestedNodeResponse) String() string {
 func (*DeleteAttestedNodeResponse) ProtoMessage() {}
 
 func (x *DeleteAttestedNodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[76]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4376,7 +4428,7 @@ func (x *DeleteAttestedNodeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAttestedNodeResponse.ProtoReflect.Descriptor instead.
 func (*DeleteAttestedNodeResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{76}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *DeleteAttestedNodeResponse) GetNode() *AttestedNode {
@@ -4395,7 +4447,7 @@ type FetchAttestedNodeRequest struct {
 
 func (x *FetchAttestedNodeRequest) Reset() {
 	*x = FetchAttestedNodeRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[77]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4407,7 +4459,7 @@ func (x *FetchAttestedNodeRequest) String() string {
 func (*FetchAttestedNodeRequest) ProtoMessage() {}
 
 func (x *FetchAttestedNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[77]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4420,7 +4472,7 @@ func (x *FetchAttestedNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchAttestedNodeRequest.ProtoReflect.Descriptor instead.
 func (*FetchAttestedNodeRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{77}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *FetchAttestedNodeRequest) GetSpiffeId() string {
@@ -4439,7 +4491,7 @@ type FetchAttestedNodeResponse struct {
 
 func (x *FetchAttestedNodeResponse) Reset() {
 	*x = FetchAttestedNodeResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[78]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4451,7 +4503,7 @@ func (x *FetchAttestedNodeResponse) String() string {
 func (*FetchAttestedNodeResponse) ProtoMessage() {}
 
 func (x *FetchAttestedNodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[78]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4464,7 +4516,7 @@ func (x *FetchAttestedNodeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchAttestedNodeResponse.ProtoReflect.Descriptor instead.
 func (*FetchAttestedNodeResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{78}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *FetchAttestedNodeResponse) GetNode() *AttestedNode {
@@ -4493,7 +4545,7 @@ type ListAttestedNodesRequest struct {
 
 func (x *ListAttestedNodesRequest) Reset() {
 	*x = ListAttestedNodesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[79]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4505,7 +4557,7 @@ func (x *ListAttestedNodesRequest) String() string {
 func (*ListAttestedNodesRequest) ProtoMessage() {}
 
 func (x *ListAttestedNodesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[79]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4518,7 +4570,7 @@ func (x *ListAttestedNodesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAttestedNodesRequest.ProtoReflect.Descriptor instead.
 func (*ListAttestedNodesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{79}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *ListAttestedNodesRequest) GetPagination() *Pagination {
@@ -4608,7 +4660,7 @@ type ListAttestedNodesResponse struct {
 
 func (x *ListAttestedNodesResponse) Reset() {
 	*x = ListAttestedNodesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[80]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4620,7 +4672,7 @@ func (x *ListAttestedNodesResponse) String() string {
 func (*ListAttestedNodesResponse) ProtoMessage() {}
 
 func (x *ListAttestedNodesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[80]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4633,7 +4685,7 @@ func (x *ListAttestedNodesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAttestedNodesResponse.ProtoReflect.Descriptor instead.
 func (*ListAttestedNodesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{80}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *ListAttestedNodesResponse) GetNodes() []*AttestedNode {
@@ -4660,7 +4712,7 @@ type UpdateAttestedNodeRequest struct {
 
 func (x *UpdateAttestedNodeRequest) Reset() {
 	*x = UpdateAttestedNodeRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[81]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4672,7 +4724,7 @@ func (x *UpdateAttestedNodeRequest) String() string {
 func (*UpdateAttestedNodeRequest) ProtoMessage() {}
 
 func (x *UpdateAttestedNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[81]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4685,7 +4737,7 @@ func (x *UpdateAttestedNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateAttestedNodeRequest.ProtoReflect.Descriptor instead.
 func (*UpdateAttestedNodeRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{81}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *UpdateAttestedNodeRequest) GetNode() *AttestedNode {
@@ -4711,7 +4763,7 @@ type UpdateAttestedNodeResponse struct {
 
 func (x *UpdateAttestedNodeResponse) Reset() {
 	*x = UpdateAttestedNodeResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[82]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4723,7 +4775,7 @@ func (x *UpdateAttestedNodeResponse) String() string {
 func (*UpdateAttestedNodeResponse) ProtoMessage() {}
 
 func (x *UpdateAttestedNodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[82]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4736,7 +4788,7 @@ func (x *UpdateAttestedNodeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateAttestedNodeResponse.ProtoReflect.Descriptor instead.
 func (*UpdateAttestedNodeResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{82}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *UpdateAttestedNodeResponse) GetNode() *AttestedNode {
@@ -4757,7 +4809,7 @@ type PruneAttestedExpiredNodesRequest struct {
 
 func (x *PruneAttestedExpiredNodesRequest) Reset() {
 	*x = PruneAttestedExpiredNodesRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[83]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4769,7 +4821,7 @@ func (x *PruneAttestedExpiredNodesRequest) String() string {
 func (*PruneAttestedExpiredNodesRequest) ProtoMessage() {}
 
 func (x *PruneAttestedExpiredNodesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[83]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4782,7 +4834,7 @@ func (x *PruneAttestedExpiredNodesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneAttestedExpiredNodesRequest.ProtoReflect.Descriptor instead.
 func (*PruneAttestedExpiredNodesRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{83}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *PruneAttestedExpiredNodesRequest) GetExpiresBefore() int64 {
@@ -4814,7 +4866,7 @@ type PruneAttestedExpiredNodesResponse struct {
 
 func (x *PruneAttestedExpiredNodesResponse) Reset() {
 	*x = PruneAttestedExpiredNodesResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[84]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4826,7 +4878,7 @@ func (x *PruneAttestedExpiredNodesResponse) String() string {
 func (*PruneAttestedExpiredNodesResponse) ProtoMessage() {}
 
 func (x *PruneAttestedExpiredNodesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[84]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4839,7 +4891,7 @@ func (x *PruneAttestedExpiredNodesResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use PruneAttestedExpiredNodesResponse.ProtoReflect.Descriptor instead.
 func (*PruneAttestedExpiredNodesResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{84}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{85}
 }
 
 type ListAttestedNodeEventsRequest struct {
@@ -4853,7 +4905,7 @@ type ListAttestedNodeEventsRequest struct {
 
 func (x *ListAttestedNodeEventsRequest) Reset() {
 	*x = ListAttestedNodeEventsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[85]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4865,7 +4917,7 @@ func (x *ListAttestedNodeEventsRequest) String() string {
 func (*ListAttestedNodeEventsRequest) ProtoMessage() {}
 
 func (x *ListAttestedNodeEventsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[85]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4878,7 +4930,7 @@ func (x *ListAttestedNodeEventsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAttestedNodeEventsRequest.ProtoReflect.Descriptor instead.
 func (*ListAttestedNodeEventsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{85}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *ListAttestedNodeEventsRequest) GetGreaterThanEventId() int64 {
@@ -4914,7 +4966,7 @@ type AttestedNodeEvent struct {
 
 func (x *AttestedNodeEvent) Reset() {
 	*x = AttestedNodeEvent{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[86]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4926,7 +4978,7 @@ func (x *AttestedNodeEvent) String() string {
 func (*AttestedNodeEvent) ProtoMessage() {}
 
 func (x *AttestedNodeEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[86]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4939,7 +4991,7 @@ func (x *AttestedNodeEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AttestedNodeEvent.ProtoReflect.Descriptor instead.
 func (*AttestedNodeEvent) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{86}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *AttestedNodeEvent) GetEventId() uint64 {
@@ -4979,7 +5031,7 @@ type ListAttestedNodeEventsResponse struct {
 
 func (x *ListAttestedNodeEventsResponse) Reset() {
 	*x = ListAttestedNodeEventsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[87]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4991,7 +5043,7 @@ func (x *ListAttestedNodeEventsResponse) String() string {
 func (*ListAttestedNodeEventsResponse) ProtoMessage() {}
 
 func (x *ListAttestedNodeEventsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[87]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5004,7 +5056,7 @@ func (x *ListAttestedNodeEventsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAttestedNodeEventsResponse.ProtoReflect.Descriptor instead.
 func (*ListAttestedNodeEventsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{87}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *ListAttestedNodeEventsResponse) GetEvents() []*AttestedNodeEvent {
@@ -5023,7 +5075,7 @@ type PruneAttestedNodeEventsRequest struct {
 
 func (x *PruneAttestedNodeEventsRequest) Reset() {
 	*x = PruneAttestedNodeEventsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[88]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5035,7 +5087,7 @@ func (x *PruneAttestedNodeEventsRequest) String() string {
 func (*PruneAttestedNodeEventsRequest) ProtoMessage() {}
 
 func (x *PruneAttestedNodeEventsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[88]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5048,7 +5100,7 @@ func (x *PruneAttestedNodeEventsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneAttestedNodeEventsRequest.ProtoReflect.Descriptor instead.
 func (*PruneAttestedNodeEventsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{88}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *PruneAttestedNodeEventsRequest) GetOlderThan() int64 {
@@ -5066,7 +5118,7 @@ type PruneAttestedNodeEventsResponse struct {
 
 func (x *PruneAttestedNodeEventsResponse) Reset() {
 	*x = PruneAttestedNodeEventsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[89]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5078,7 +5130,7 @@ func (x *PruneAttestedNodeEventsResponse) String() string {
 func (*PruneAttestedNodeEventsResponse) ProtoMessage() {}
 
 func (x *PruneAttestedNodeEventsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[89]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5091,7 +5143,7 @@ func (x *PruneAttestedNodeEventsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneAttestedNodeEventsResponse.ProtoReflect.Descriptor instead.
 func (*PruneAttestedNodeEventsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{89}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{90}
 }
 
 type FetchAttestedNodeEventRequest struct {
@@ -5103,7 +5155,7 @@ type FetchAttestedNodeEventRequest struct {
 
 func (x *FetchAttestedNodeEventRequest) Reset() {
 	*x = FetchAttestedNodeEventRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[90]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5115,7 +5167,7 @@ func (x *FetchAttestedNodeEventRequest) String() string {
 func (*FetchAttestedNodeEventRequest) ProtoMessage() {}
 
 func (x *FetchAttestedNodeEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[90]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5128,7 +5180,7 @@ func (x *FetchAttestedNodeEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchAttestedNodeEventRequest.ProtoReflect.Descriptor instead.
 func (*FetchAttestedNodeEventRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{90}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *FetchAttestedNodeEventRequest) GetEventId() uint64 {
@@ -5147,7 +5199,7 @@ type FetchAttestedNodeEventResponse struct {
 
 func (x *FetchAttestedNodeEventResponse) Reset() {
 	*x = FetchAttestedNodeEventResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[91]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5159,7 +5211,7 @@ func (x *FetchAttestedNodeEventResponse) String() string {
 func (*FetchAttestedNodeEventResponse) ProtoMessage() {}
 
 func (x *FetchAttestedNodeEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[91]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5172,7 +5224,7 @@ func (x *FetchAttestedNodeEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchAttestedNodeEventResponse.ProtoReflect.Descriptor instead.
 func (*FetchAttestedNodeEventResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{91}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *FetchAttestedNodeEventResponse) GetEvent() *AttestedNodeEvent {
@@ -5191,7 +5243,7 @@ type CreateAttestedNodeEventRequest struct {
 
 func (x *CreateAttestedNodeEventRequest) Reset() {
 	*x = CreateAttestedNodeEventRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[92]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5203,7 +5255,7 @@ func (x *CreateAttestedNodeEventRequest) String() string {
 func (*CreateAttestedNodeEventRequest) ProtoMessage() {}
 
 func (x *CreateAttestedNodeEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[92]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5216,7 +5268,7 @@ func (x *CreateAttestedNodeEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAttestedNodeEventRequest.ProtoReflect.Descriptor instead.
 func (*CreateAttestedNodeEventRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{92}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *CreateAttestedNodeEventRequest) GetEvent() *AttestedNodeEvent {
@@ -5234,7 +5286,7 @@ type CreateAttestedNodeEventResponse struct {
 
 func (x *CreateAttestedNodeEventResponse) Reset() {
 	*x = CreateAttestedNodeEventResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[93]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5246,7 +5298,7 @@ func (x *CreateAttestedNodeEventResponse) String() string {
 func (*CreateAttestedNodeEventResponse) ProtoMessage() {}
 
 func (x *CreateAttestedNodeEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[93]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5259,7 +5311,7 @@ func (x *CreateAttestedNodeEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAttestedNodeEventResponse.ProtoReflect.Descriptor instead.
 func (*CreateAttestedNodeEventResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{93}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{94}
 }
 
 type DeleteAttestedNodeEventRequest struct {
@@ -5271,7 +5323,7 @@ type DeleteAttestedNodeEventRequest struct {
 
 func (x *DeleteAttestedNodeEventRequest) Reset() {
 	*x = DeleteAttestedNodeEventRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[94]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5283,7 +5335,7 @@ func (x *DeleteAttestedNodeEventRequest) String() string {
 func (*DeleteAttestedNodeEventRequest) ProtoMessage() {}
 
 func (x *DeleteAttestedNodeEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[94]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5296,7 +5348,7 @@ func (x *DeleteAttestedNodeEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAttestedNodeEventRequest.ProtoReflect.Descriptor instead.
 func (*DeleteAttestedNodeEventRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{94}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *DeleteAttestedNodeEventRequest) GetEventId() uint64 {
@@ -5314,7 +5366,7 @@ type DeleteAttestedNodeEventResponse struct {
 
 func (x *DeleteAttestedNodeEventResponse) Reset() {
 	*x = DeleteAttestedNodeEventResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[95]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5326,7 +5378,7 @@ func (x *DeleteAttestedNodeEventResponse) String() string {
 func (*DeleteAttestedNodeEventResponse) ProtoMessage() {}
 
 func (x *DeleteAttestedNodeEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[95]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5339,7 +5391,7 @@ func (x *DeleteAttestedNodeEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAttestedNodeEventResponse.ProtoReflect.Descriptor instead.
 func (*DeleteAttestedNodeEventResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{95}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{96}
 }
 
 type GetNodeSelectorsRequest struct {
@@ -5352,7 +5404,7 @@ type GetNodeSelectorsRequest struct {
 
 func (x *GetNodeSelectorsRequest) Reset() {
 	*x = GetNodeSelectorsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[96]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5364,7 +5416,7 @@ func (x *GetNodeSelectorsRequest) String() string {
 func (*GetNodeSelectorsRequest) ProtoMessage() {}
 
 func (x *GetNodeSelectorsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[96]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5377,7 +5429,7 @@ func (x *GetNodeSelectorsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNodeSelectorsRequest.ProtoReflect.Descriptor instead.
 func (*GetNodeSelectorsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{96}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *GetNodeSelectorsRequest) GetSpiffeId() string {
@@ -5403,7 +5455,7 @@ type GetNodeSelectorsResponse struct {
 
 func (x *GetNodeSelectorsResponse) Reset() {
 	*x = GetNodeSelectorsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[97]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5415,7 +5467,7 @@ func (x *GetNodeSelectorsResponse) String() string {
 func (*GetNodeSelectorsResponse) ProtoMessage() {}
 
 func (x *GetNodeSelectorsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[97]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5428,7 +5480,7 @@ func (x *GetNodeSelectorsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNodeSelectorsResponse.ProtoReflect.Descriptor instead.
 func (*GetNodeSelectorsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{97}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *GetNodeSelectorsResponse) GetSelectors() []*Selector {
@@ -5448,7 +5500,7 @@ type ListNodeSelectorsRequest struct {
 
 func (x *ListNodeSelectorsRequest) Reset() {
 	*x = ListNodeSelectorsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[98]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5460,7 +5512,7 @@ func (x *ListNodeSelectorsRequest) String() string {
 func (*ListNodeSelectorsRequest) ProtoMessage() {}
 
 func (x *ListNodeSelectorsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[98]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5473,7 +5525,7 @@ func (x *ListNodeSelectorsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNodeSelectorsRequest.ProtoReflect.Descriptor instead.
 func (*ListNodeSelectorsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{98}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *ListNodeSelectorsRequest) GetValidAt() int64 {
@@ -5499,7 +5551,7 @@ type ListNodeSelectorsResponse struct {
 
 func (x *ListNodeSelectorsResponse) Reset() {
 	*x = ListNodeSelectorsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[99]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5511,7 +5563,7 @@ func (x *ListNodeSelectorsResponse) String() string {
 func (*ListNodeSelectorsResponse) ProtoMessage() {}
 
 func (x *ListNodeSelectorsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[99]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5524,7 +5576,7 @@ func (x *ListNodeSelectorsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNodeSelectorsResponse.ProtoReflect.Descriptor instead.
 func (*ListNodeSelectorsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{99}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *ListNodeSelectorsResponse) GetSelectors() []*NodeSelectorEntry {
@@ -5544,7 +5596,7 @@ type NodeSelectorEntry struct {
 
 func (x *NodeSelectorEntry) Reset() {
 	*x = NodeSelectorEntry{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[100]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5556,7 +5608,7 @@ func (x *NodeSelectorEntry) String() string {
 func (*NodeSelectorEntry) ProtoMessage() {}
 
 func (x *NodeSelectorEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[100]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5569,7 +5621,7 @@ func (x *NodeSelectorEntry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NodeSelectorEntry.ProtoReflect.Descriptor instead.
 func (*NodeSelectorEntry) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{100}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *NodeSelectorEntry) GetSpiffeId() string {
@@ -5596,7 +5648,7 @@ type SetNodeSelectorsRequest struct {
 
 func (x *SetNodeSelectorsRequest) Reset() {
 	*x = SetNodeSelectorsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[101]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5608,7 +5660,7 @@ func (x *SetNodeSelectorsRequest) String() string {
 func (*SetNodeSelectorsRequest) ProtoMessage() {}
 
 func (x *SetNodeSelectorsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[101]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5621,7 +5673,7 @@ func (x *SetNodeSelectorsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetNodeSelectorsRequest.ProtoReflect.Descriptor instead.
 func (*SetNodeSelectorsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{101}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *SetNodeSelectorsRequest) GetSpiffeId() string {
@@ -5647,7 +5699,7 @@ type SetNodeSelectorsResponse struct {
 
 func (x *SetNodeSelectorsResponse) Reset() {
 	*x = SetNodeSelectorsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[102]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5659,7 +5711,7 @@ func (x *SetNodeSelectorsResponse) String() string {
 func (*SetNodeSelectorsResponse) ProtoMessage() {}
 
 func (x *SetNodeSelectorsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[102]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5672,7 +5724,7 @@ func (x *SetNodeSelectorsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetNodeSelectorsResponse.ProtoReflect.Descriptor instead.
 func (*SetNodeSelectorsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{102}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *SetNodeSelectorsResponse) GetSelectors() []*Selector {
@@ -5692,7 +5744,7 @@ type CreateJoinTokenRequest struct {
 
 func (x *CreateJoinTokenRequest) Reset() {
 	*x = CreateJoinTokenRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[103]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5704,7 +5756,7 @@ func (x *CreateJoinTokenRequest) String() string {
 func (*CreateJoinTokenRequest) ProtoMessage() {}
 
 func (x *CreateJoinTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[103]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5717,7 +5769,7 @@ func (x *CreateJoinTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateJoinTokenRequest.ProtoReflect.Descriptor instead.
 func (*CreateJoinTokenRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{103}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *CreateJoinTokenRequest) GetToken() string {
@@ -5744,7 +5796,7 @@ type CreateJoinTokenResponse struct {
 
 func (x *CreateJoinTokenResponse) Reset() {
 	*x = CreateJoinTokenResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[104]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5756,7 +5808,7 @@ func (x *CreateJoinTokenResponse) String() string {
 func (*CreateJoinTokenResponse) ProtoMessage() {}
 
 func (x *CreateJoinTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[104]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5769,7 +5821,7 @@ func (x *CreateJoinTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateJoinTokenResponse.ProtoReflect.Descriptor instead.
 func (*CreateJoinTokenResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{104}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *CreateJoinTokenResponse) GetToken() string {
@@ -5795,7 +5847,7 @@ type DeleteJoinTokenRequest struct {
 
 func (x *DeleteJoinTokenRequest) Reset() {
 	*x = DeleteJoinTokenRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[105]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5807,7 +5859,7 @@ func (x *DeleteJoinTokenRequest) String() string {
 func (*DeleteJoinTokenRequest) ProtoMessage() {}
 
 func (x *DeleteJoinTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[105]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5820,7 +5872,7 @@ func (x *DeleteJoinTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteJoinTokenRequest.ProtoReflect.Descriptor instead.
 func (*DeleteJoinTokenRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{105}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{106}
 }
 
 func (x *DeleteJoinTokenRequest) GetToken() string {
@@ -5838,7 +5890,7 @@ type DeleteJoinTokenResponse struct {
 
 func (x *DeleteJoinTokenResponse) Reset() {
 	*x = DeleteJoinTokenResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[106]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5850,7 +5902,7 @@ func (x *DeleteJoinTokenResponse) String() string {
 func (*DeleteJoinTokenResponse) ProtoMessage() {}
 
 func (x *DeleteJoinTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[106]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5863,7 +5915,7 @@ func (x *DeleteJoinTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteJoinTokenResponse.ProtoReflect.Descriptor instead.
 func (*DeleteJoinTokenResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{106}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{107}
 }
 
 type FetchJoinTokenRequest struct {
@@ -5875,7 +5927,7 @@ type FetchJoinTokenRequest struct {
 
 func (x *FetchJoinTokenRequest) Reset() {
 	*x = FetchJoinTokenRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[107]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5887,7 +5939,7 @@ func (x *FetchJoinTokenRequest) String() string {
 func (*FetchJoinTokenRequest) ProtoMessage() {}
 
 func (x *FetchJoinTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[107]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5900,7 +5952,7 @@ func (x *FetchJoinTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchJoinTokenRequest.ProtoReflect.Descriptor instead.
 func (*FetchJoinTokenRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{107}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{108}
 }
 
 func (x *FetchJoinTokenRequest) GetToken() string {
@@ -5920,7 +5972,7 @@ type FetchJoinTokenResponse struct {
 
 func (x *FetchJoinTokenResponse) Reset() {
 	*x = FetchJoinTokenResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[108]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5932,7 +5984,7 @@ func (x *FetchJoinTokenResponse) String() string {
 func (*FetchJoinTokenResponse) ProtoMessage() {}
 
 func (x *FetchJoinTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[108]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5945,7 +5997,7 @@ func (x *FetchJoinTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchJoinTokenResponse.ProtoReflect.Descriptor instead.
 func (*FetchJoinTokenResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{108}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{109}
 }
 
 func (x *FetchJoinTokenResponse) GetToken() string {
@@ -5971,7 +6023,7 @@ type PruneJoinTokensRequest struct {
 
 func (x *PruneJoinTokensRequest) Reset() {
 	*x = PruneJoinTokensRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[109]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5983,7 +6035,7 @@ func (x *PruneJoinTokensRequest) String() string {
 func (*PruneJoinTokensRequest) ProtoMessage() {}
 
 func (x *PruneJoinTokensRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[109]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5996,7 +6048,7 @@ func (x *PruneJoinTokensRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneJoinTokensRequest.ProtoReflect.Descriptor instead.
 func (*PruneJoinTokensRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{109}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{110}
 }
 
 func (x *PruneJoinTokensRequest) GetExpiresBefore() int64 {
@@ -6014,7 +6066,7 @@ type PruneJoinTokensResponse struct {
 
 func (x *PruneJoinTokensResponse) Reset() {
 	*x = PruneJoinTokensResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[110]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6026,7 +6078,7 @@ func (x *PruneJoinTokensResponse) String() string {
 func (*PruneJoinTokensResponse) ProtoMessage() {}
 
 func (x *PruneJoinTokensResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[110]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6039,7 +6091,7 @@ func (x *PruneJoinTokensResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneJoinTokensResponse.ProtoReflect.Descriptor instead.
 func (*PruneJoinTokensResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{110}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{111}
 }
 
 type FederationRelationship struct {
@@ -6059,7 +6111,7 @@ type FederationRelationship struct {
 
 func (x *FederationRelationship) Reset() {
 	*x = FederationRelationship{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[111]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6071,7 +6123,7 @@ func (x *FederationRelationship) String() string {
 func (*FederationRelationship) ProtoMessage() {}
 
 func (x *FederationRelationship) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[111]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6084,7 +6136,7 @@ func (x *FederationRelationship) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FederationRelationship.ProtoReflect.Descriptor instead.
 func (*FederationRelationship) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{111}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{112}
 }
 
 func (x *FederationRelationship) GetTrustDomainId() string {
@@ -6159,7 +6211,7 @@ type CreateFederationRelationshipRequest struct {
 
 func (x *CreateFederationRelationshipRequest) Reset() {
 	*x = CreateFederationRelationshipRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[112]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6171,7 +6223,7 @@ func (x *CreateFederationRelationshipRequest) String() string {
 func (*CreateFederationRelationshipRequest) ProtoMessage() {}
 
 func (x *CreateFederationRelationshipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[112]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6184,7 +6236,7 @@ func (x *CreateFederationRelationshipRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use CreateFederationRelationshipRequest.ProtoReflect.Descriptor instead.
 func (*CreateFederationRelationshipRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{112}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *CreateFederationRelationshipRequest) GetRelationship() *FederationRelationship {
@@ -6203,7 +6255,7 @@ type CreateFederationRelationshipResponse struct {
 
 func (x *CreateFederationRelationshipResponse) Reset() {
 	*x = CreateFederationRelationshipResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[113]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6215,7 +6267,7 @@ func (x *CreateFederationRelationshipResponse) String() string {
 func (*CreateFederationRelationshipResponse) ProtoMessage() {}
 
 func (x *CreateFederationRelationshipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[113]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6228,7 +6280,7 @@ func (x *CreateFederationRelationshipResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use CreateFederationRelationshipResponse.ProtoReflect.Descriptor instead.
 func (*CreateFederationRelationshipResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{113}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{114}
 }
 
 func (x *CreateFederationRelationshipResponse) GetRelationship() *FederationRelationship {
@@ -6247,7 +6299,7 @@ type FetchFederationRelationshipRequest struct {
 
 func (x *FetchFederationRelationshipRequest) Reset() {
 	*x = FetchFederationRelationshipRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[114]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6259,7 +6311,7 @@ func (x *FetchFederationRelationshipRequest) String() string {
 func (*FetchFederationRelationshipRequest) ProtoMessage() {}
 
 func (x *FetchFederationRelationshipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[114]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6272,7 +6324,7 @@ func (x *FetchFederationRelationshipRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use FetchFederationRelationshipRequest.ProtoReflect.Descriptor instead.
 func (*FetchFederationRelationshipRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{114}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{115}
 }
 
 func (x *FetchFederationRelationshipRequest) GetTrustDomainId() string {
@@ -6291,7 +6343,7 @@ type FetchFederationRelationshipResponse struct {
 
 func (x *FetchFederationRelationshipResponse) Reset() {
 	*x = FetchFederationRelationshipResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[115]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6303,7 +6355,7 @@ func (x *FetchFederationRelationshipResponse) String() string {
 func (*FetchFederationRelationshipResponse) ProtoMessage() {}
 
 func (x *FetchFederationRelationshipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[115]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6316,7 +6368,7 @@ func (x *FetchFederationRelationshipResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use FetchFederationRelationshipResponse.ProtoReflect.Descriptor instead.
 func (*FetchFederationRelationshipResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{115}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{116}
 }
 
 func (x *FetchFederationRelationshipResponse) GetRelationship() *FederationRelationship {
@@ -6335,7 +6387,7 @@ type ListFederationRelationshipsRequest struct {
 
 func (x *ListFederationRelationshipsRequest) Reset() {
 	*x = ListFederationRelationshipsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[116]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6347,7 +6399,7 @@ func (x *ListFederationRelationshipsRequest) String() string {
 func (*ListFederationRelationshipsRequest) ProtoMessage() {}
 
 func (x *ListFederationRelationshipsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[116]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6360,7 +6412,7 @@ func (x *ListFederationRelationshipsRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListFederationRelationshipsRequest.ProtoReflect.Descriptor instead.
 func (*ListFederationRelationshipsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{116}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{117}
 }
 
 func (x *ListFederationRelationshipsRequest) GetPagination() *Pagination {
@@ -6380,7 +6432,7 @@ type ListFederationRelationshipsResponse struct {
 
 func (x *ListFederationRelationshipsResponse) Reset() {
 	*x = ListFederationRelationshipsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[117]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[118]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6392,7 +6444,7 @@ func (x *ListFederationRelationshipsResponse) String() string {
 func (*ListFederationRelationshipsResponse) ProtoMessage() {}
 
 func (x *ListFederationRelationshipsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[117]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[118]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6405,7 +6457,7 @@ func (x *ListFederationRelationshipsResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ListFederationRelationshipsResponse.ProtoReflect.Descriptor instead.
 func (*ListFederationRelationshipsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{117}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{118}
 }
 
 func (x *ListFederationRelationshipsResponse) GetRelationships() []*FederationRelationship {
@@ -6431,7 +6483,7 @@ type DeleteFederationRelationshipRequest struct {
 
 func (x *DeleteFederationRelationshipRequest) Reset() {
 	*x = DeleteFederationRelationshipRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[118]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[119]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6443,7 +6495,7 @@ func (x *DeleteFederationRelationshipRequest) String() string {
 func (*DeleteFederationRelationshipRequest) ProtoMessage() {}
 
 func (x *DeleteFederationRelationshipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[118]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[119]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6456,7 +6508,7 @@ func (x *DeleteFederationRelationshipRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use DeleteFederationRelationshipRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFederationRelationshipRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{118}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{119}
 }
 
 func (x *DeleteFederationRelationshipRequest) GetTrustDomainId() string {
@@ -6474,7 +6526,7 @@ type DeleteFederationRelationshipResponse struct {
 
 func (x *DeleteFederationRelationshipResponse) Reset() {
 	*x = DeleteFederationRelationshipResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[119]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[120]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6486,7 +6538,7 @@ func (x *DeleteFederationRelationshipResponse) String() string {
 func (*DeleteFederationRelationshipResponse) ProtoMessage() {}
 
 func (x *DeleteFederationRelationshipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[119]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[120]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6499,7 +6551,7 @@ func (x *DeleteFederationRelationshipResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use DeleteFederationRelationshipResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFederationRelationshipResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{119}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{120}
 }
 
 type FederationRelationshipMask struct {
@@ -6513,7 +6565,7 @@ type FederationRelationshipMask struct {
 
 func (x *FederationRelationshipMask) Reset() {
 	*x = FederationRelationshipMask{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[120]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[121]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6525,7 +6577,7 @@ func (x *FederationRelationshipMask) String() string {
 func (*FederationRelationshipMask) ProtoMessage() {}
 
 func (x *FederationRelationshipMask) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[120]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[121]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6538,7 +6590,7 @@ func (x *FederationRelationshipMask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FederationRelationshipMask.ProtoReflect.Descriptor instead.
 func (*FederationRelationshipMask) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{120}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{121}
 }
 
 func (x *FederationRelationshipMask) GetBundleEndpointUrl() bool {
@@ -6572,7 +6624,7 @@ type UpdateFederationRelationshipRequest struct {
 
 func (x *UpdateFederationRelationshipRequest) Reset() {
 	*x = UpdateFederationRelationshipRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[121]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[122]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6584,7 +6636,7 @@ func (x *UpdateFederationRelationshipRequest) String() string {
 func (*UpdateFederationRelationshipRequest) ProtoMessage() {}
 
 func (x *UpdateFederationRelationshipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[121]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[122]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6597,7 +6649,7 @@ func (x *UpdateFederationRelationshipRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use UpdateFederationRelationshipRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFederationRelationshipRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{121}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{122}
 }
 
 func (x *UpdateFederationRelationshipRequest) GetRelationship() *FederationRelationship {
@@ -6623,7 +6675,7 @@ type UpdateFederationRelationshipResponse struct {
 
 func (x *UpdateFederationRelationshipResponse) Reset() {
 	*x = UpdateFederationRelationshipResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[122]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[123]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6635,7 +6687,7 @@ func (x *UpdateFederationRelationshipResponse) String() string {
 func (*UpdateFederationRelationshipResponse) ProtoMessage() {}
 
 func (x *UpdateFederationRelationshipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[122]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[123]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6648,7 +6700,7 @@ func (x *UpdateFederationRelationshipResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use UpdateFederationRelationshipResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFederationRelationshipResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{122}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{123}
 }
 
 func (x *UpdateFederationRelationshipResponse) GetRelationship() *FederationRelationship {
@@ -6671,7 +6723,7 @@ type CAJournal struct {
 
 func (x *CAJournal) Reset() {
 	*x = CAJournal{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[123]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[124]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6683,7 +6735,7 @@ func (x *CAJournal) String() string {
 func (*CAJournal) ProtoMessage() {}
 
 func (x *CAJournal) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[123]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[124]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6696,7 +6748,7 @@ func (x *CAJournal) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CAJournal.ProtoReflect.Descriptor instead.
 func (*CAJournal) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{123}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{124}
 }
 
 func (x *CAJournal) GetId() uint64 {
@@ -6743,7 +6795,7 @@ type SetCAJournalRequest struct {
 
 func (x *SetCAJournalRequest) Reset() {
 	*x = SetCAJournalRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[124]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[125]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6755,7 +6807,7 @@ func (x *SetCAJournalRequest) String() string {
 func (*SetCAJournalRequest) ProtoMessage() {}
 
 func (x *SetCAJournalRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[124]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[125]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6768,7 +6820,7 @@ func (x *SetCAJournalRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetCAJournalRequest.ProtoReflect.Descriptor instead.
 func (*SetCAJournalRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{124}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{125}
 }
 
 func (x *SetCAJournalRequest) GetJournal() *CAJournal {
@@ -6787,7 +6839,7 @@ type SetCAJournalResponse struct {
 
 func (x *SetCAJournalResponse) Reset() {
 	*x = SetCAJournalResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[125]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[126]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6799,7 +6851,7 @@ func (x *SetCAJournalResponse) String() string {
 func (*SetCAJournalResponse) ProtoMessage() {}
 
 func (x *SetCAJournalResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[125]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[126]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6812,7 +6864,7 @@ func (x *SetCAJournalResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetCAJournalResponse.ProtoReflect.Descriptor instead.
 func (*SetCAJournalResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{125}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{126}
 }
 
 func (x *SetCAJournalResponse) GetJournal() *CAJournal {
@@ -6831,7 +6883,7 @@ type FetchCAJournalRequest struct {
 
 func (x *FetchCAJournalRequest) Reset() {
 	*x = FetchCAJournalRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[126]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[127]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6843,7 +6895,7 @@ func (x *FetchCAJournalRequest) String() string {
 func (*FetchCAJournalRequest) ProtoMessage() {}
 
 func (x *FetchCAJournalRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[126]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[127]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6856,7 +6908,7 @@ func (x *FetchCAJournalRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchCAJournalRequest.ProtoReflect.Descriptor instead.
 func (*FetchCAJournalRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{126}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{127}
 }
 
 func (x *FetchCAJournalRequest) GetActiveX509AuthorityId() string {
@@ -6875,7 +6927,7 @@ type FetchCAJournalResponse struct {
 
 func (x *FetchCAJournalResponse) Reset() {
 	*x = FetchCAJournalResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[127]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[128]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6887,7 +6939,7 @@ func (x *FetchCAJournalResponse) String() string {
 func (*FetchCAJournalResponse) ProtoMessage() {}
 
 func (x *FetchCAJournalResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[127]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[128]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6900,7 +6952,7 @@ func (x *FetchCAJournalResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchCAJournalResponse.ProtoReflect.Descriptor instead.
 func (*FetchCAJournalResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{127}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{128}
 }
 
 func (x *FetchCAJournalResponse) GetJournal() *CAJournal {
@@ -6919,7 +6971,7 @@ type PruneCAJournalsRequest struct {
 
 func (x *PruneCAJournalsRequest) Reset() {
 	*x = PruneCAJournalsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[128]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[129]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6931,7 +6983,7 @@ func (x *PruneCAJournalsRequest) String() string {
 func (*PruneCAJournalsRequest) ProtoMessage() {}
 
 func (x *PruneCAJournalsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[128]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[129]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6944,7 +6996,7 @@ func (x *PruneCAJournalsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneCAJournalsRequest.ProtoReflect.Descriptor instead.
 func (*PruneCAJournalsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{128}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{129}
 }
 
 func (x *PruneCAJournalsRequest) GetExpiresBefore() int64 {
@@ -6962,7 +7014,7 @@ type PruneCAJournalsResponse struct {
 
 func (x *PruneCAJournalsResponse) Reset() {
 	*x = PruneCAJournalsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[129]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[130]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6974,7 +7026,7 @@ func (x *PruneCAJournalsResponse) String() string {
 func (*PruneCAJournalsResponse) ProtoMessage() {}
 
 func (x *PruneCAJournalsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[129]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[130]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6987,7 +7039,7 @@ func (x *PruneCAJournalsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PruneCAJournalsResponse.ProtoReflect.Descriptor instead.
 func (*PruneCAJournalsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{129}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{130}
 }
 
 type ListCAJournalsRequest struct {
@@ -6998,7 +7050,7 @@ type ListCAJournalsRequest struct {
 
 func (x *ListCAJournalsRequest) Reset() {
 	*x = ListCAJournalsRequest{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[130]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7010,7 +7062,7 @@ func (x *ListCAJournalsRequest) String() string {
 func (*ListCAJournalsRequest) ProtoMessage() {}
 
 func (x *ListCAJournalsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[130]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7023,7 +7075,7 @@ func (x *ListCAJournalsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCAJournalsRequest.ProtoReflect.Descriptor instead.
 func (*ListCAJournalsRequest) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{130}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{131}
 }
 
 type ListCAJournalsResponse struct {
@@ -7035,7 +7087,7 @@ type ListCAJournalsResponse struct {
 
 func (x *ListCAJournalsResponse) Reset() {
 	*x = ListCAJournalsResponse{}
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[131]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7047,7 +7099,7 @@ func (x *ListCAJournalsResponse) String() string {
 func (*ListCAJournalsResponse) ProtoMessage() {}
 
 func (x *ListCAJournalsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[131]
+	mi := &file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7060,7 +7112,7 @@ func (x *ListCAJournalsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCAJournalsResponse.ProtoReflect.Descriptor instead.
 func (*ListCAJournalsResponse) Descriptor() ([]byte, []int) {
-	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{131}
+	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{132}
 }
 
 func (x *ListCAJournalsResponse) GetJournals() []*CAJournal {
@@ -7123,7 +7175,10 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"created_at\x18\x0f \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
 	"updated_at\x18\x10 \x01(\x03R\tupdatedAt\x123\n" +
-	"\x15additional_attributes\x18\x11 \x01(\tR\x14additionalAttributes\"\x9f\x03\n" +
+	"\x15additional_attributes\x18\x11 \x01(\tR\x14additionalAttributes\"\x96\x01\n" +
+	"&RegistrationEntry_AdditionalAttributes\x12;\n" +
+	"\x1adisable_x509_svid_prefetch\x18\x01 \x01(\bR\x17disableX509SvidPrefetch\x12/\n" +
+	"\x14jwt_svid_include_jti\x18\x02 \x01(\bR\x11jwtSvidIncludeJti\"\x9f\x03\n" +
 	"\x15RegistrationEntryMask\x12\x1c\n" +
 	"\tselectors\x18\x01 \x01(\bR\tselectors\x12\x1b\n" +
 	"\tparent_id\x18\x02 \x01(\bR\bparentId\x12\x1b\n" +
@@ -7605,7 +7660,7 @@ func file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP() [
 }
 
 var file_spire_plugin_server_datastore_v1alpha1_datastore_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes = make([]protoimpl.MessageInfo, 132)
+var file_spire_plugin_server_datastore_v1alpha1_datastore_proto_msgTypes = make([]protoimpl.MessageInfo, 133)
 var file_spire_plugin_server_datastore_v1alpha1_datastore_proto_goTypes = []any{
 	(DataConsistency)(0),                            // 0: spire.plugin.server.datastore.v1alpha1.DataConsistency
 	(DeleteMode)(0),                                 // 1: spire.plugin.server.datastore.v1alpha1.DeleteMode
@@ -7617,157 +7672,158 @@ var file_spire_plugin_server_datastore_v1alpha1_datastore_proto_goTypes = []any{
 	(*Selectors)(nil),                               // 7: spire.plugin.server.datastore.v1alpha1.Selectors
 	(*AttestedNode)(nil),                            // 8: spire.plugin.server.datastore.v1alpha1.AttestedNode
 	(*RegistrationEntry)(nil),                       // 9: spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	(*RegistrationEntryMask)(nil),                   // 10: spire.plugin.server.datastore.v1alpha1.RegistrationEntryMask
-	(*RegistrationEntries)(nil),                     // 11: spire.plugin.server.datastore.v1alpha1.RegistrationEntries
-	(*Certificate)(nil),                             // 12: spire.plugin.server.datastore.v1alpha1.Certificate
-	(*PublicKey)(nil),                               // 13: spire.plugin.server.datastore.v1alpha1.PublicKey
-	(*Bundle)(nil),                                  // 14: spire.plugin.server.datastore.v1alpha1.Bundle
-	(*BundleMask)(nil),                              // 15: spire.plugin.server.datastore.v1alpha1.BundleMask
-	(*AttestedNodeMask)(nil),                        // 16: spire.plugin.server.datastore.v1alpha1.AttestedNodeMask
-	(*AppendBundleRequest)(nil),                     // 17: spire.plugin.server.datastore.v1alpha1.AppendBundleRequest
-	(*AppendBundleResponse)(nil),                    // 18: spire.plugin.server.datastore.v1alpha1.AppendBundleResponse
-	(*CreateBundleRequest)(nil),                     // 19: spire.plugin.server.datastore.v1alpha1.CreateBundleRequest
-	(*CreateBundleResponse)(nil),                    // 20: spire.plugin.server.datastore.v1alpha1.CreateBundleResponse
-	(*CountBundlesRequest)(nil),                     // 21: spire.plugin.server.datastore.v1alpha1.CountBundlesRequest
-	(*CountBundlesResponse)(nil),                    // 22: spire.plugin.server.datastore.v1alpha1.CountBundlesResponse
-	(*DeleteBundleRequest)(nil),                     // 23: spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest
-	(*DeleteBundleResponse)(nil),                    // 24: spire.plugin.server.datastore.v1alpha1.DeleteBundleResponse
-	(*FetchBundleRequest)(nil),                      // 25: spire.plugin.server.datastore.v1alpha1.FetchBundleRequest
-	(*FetchBundleResponse)(nil),                     // 26: spire.plugin.server.datastore.v1alpha1.FetchBundleResponse
-	(*Pagination)(nil),                              // 27: spire.plugin.server.datastore.v1alpha1.Pagination
-	(*ListBundlesRequest)(nil),                      // 28: spire.plugin.server.datastore.v1alpha1.ListBundlesRequest
-	(*ListBundlesResponse)(nil),                     // 29: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse
-	(*PruneBundleRequest)(nil),                      // 30: spire.plugin.server.datastore.v1alpha1.PruneBundleRequest
-	(*PruneBundleResponse)(nil),                     // 31: spire.plugin.server.datastore.v1alpha1.PruneBundleResponse
-	(*SetBundleRequest)(nil),                        // 32: spire.plugin.server.datastore.v1alpha1.SetBundleRequest
-	(*SetBundleResponse)(nil),                       // 33: spire.plugin.server.datastore.v1alpha1.SetBundleResponse
-	(*UpdateBundleRequest)(nil),                     // 34: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest
-	(*UpdateBundleResponse)(nil),                    // 35: spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse
-	(*TaintX509CARequest)(nil),                      // 36: spire.plugin.server.datastore.v1alpha1.TaintX509CARequest
-	(*TaintX509CAResponse)(nil),                     // 37: spire.plugin.server.datastore.v1alpha1.TaintX509CAResponse
-	(*RevokeX509CARequest)(nil),                     // 38: spire.plugin.server.datastore.v1alpha1.RevokeX509CARequest
-	(*RevokeX509CAResponse)(nil),                    // 39: spire.plugin.server.datastore.v1alpha1.RevokeX509CAResponse
-	(*TaintJWTKeyRequest)(nil),                      // 40: spire.plugin.server.datastore.v1alpha1.TaintJWTKeyRequest
-	(*TaintJWTKeyResponse)(nil),                     // 41: spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse
-	(*RevokeJWTKeyRequest)(nil),                     // 42: spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyRequest
-	(*RevokeJWTKeyResponse)(nil),                    // 43: spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse
-	(*CountRegistrationEntriesRequest)(nil),         // 44: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest
-	(*CountRegistrationEntriesResponse)(nil),        // 45: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesResponse
-	(*BySelectors)(nil),                             // 46: spire.plugin.server.datastore.v1alpha1.BySelectors
-	(*ByFederatesWith)(nil),                         // 47: spire.plugin.server.datastore.v1alpha1.ByFederatesWith
-	(*CreateRegistrationEntryRequest)(nil),          // 48: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryRequest
-	(*CreateRegistrationEntryResponse)(nil),         // 49: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryResponse
-	(*CreateOrReturnRegistrationEntryRequest)(nil),  // 50: spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryRequest
-	(*CreateOrReturnRegistrationEntryResponse)(nil), // 51: spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryResponse
-	(*DeleteRegistrationEntryRequest)(nil),          // 52: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryRequest
-	(*DeleteRegistrationEntryResponse)(nil),         // 53: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse
-	(*FetchRegistrationEntryRequest)(nil),           // 54: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryRequest
-	(*FetchRegistrationEntryResponse)(nil),          // 55: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse
-	(*FetchRegistrationEntriesRequest)(nil),         // 56: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesRequest
-	(*FetchRegistrationEntriesResponse)(nil),        // 57: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse
-	(*ListRegistrationEntriesRequest)(nil),          // 58: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest
-	(*ListRegistrationEntriesResponse)(nil),         // 59: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse
-	(*PruneRegistrationEntriesRequest)(nil),         // 60: spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesRequest
-	(*PruneRegistrationEntriesResponse)(nil),        // 61: spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesResponse
-	(*UpdateRegistrationEntryRequest)(nil),          // 62: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest
-	(*UpdateRegistrationEntryResponse)(nil),         // 63: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse
-	(*ListRegistrationEntryEventsRequest)(nil),      // 64: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest
-	(*RegistrationEntryEvent)(nil),                  // 65: spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
-	(*ListRegistrationEntryEventsResponse)(nil),     // 66: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse
-	(*PruneRegistrationEntryEventsRequest)(nil),     // 67: spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsRequest
-	(*PruneRegistrationEntryEventsResponse)(nil),    // 68: spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsResponse
-	(*FetchRegistrationEntryEventRequest)(nil),      // 69: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventRequest
-	(*FetchRegistrationEntryEventResponse)(nil),     // 70: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse
-	(*CreateRegistrationEntryEventRequest)(nil),     // 71: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest
-	(*CreateRegistrationEntryEventResponse)(nil),    // 72: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventResponse
-	(*DeleteRegistrationEntryEventRequest)(nil),     // 73: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventRequest
-	(*DeleteRegistrationEntryEventResponse)(nil),    // 74: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventResponse
-	(*CountAttestedNodesRequest)(nil),               // 75: spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest
-	(*CountAttestedNodesResponse)(nil),              // 76: spire.plugin.server.datastore.v1alpha1.CountAttestedNodesResponse
-	(*CreateAttestedNodeRequest)(nil),               // 77: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest
-	(*CreateAttestedNodeResponse)(nil),              // 78: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse
-	(*DeleteAttestedNodeRequest)(nil),               // 79: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeRequest
-	(*DeleteAttestedNodeResponse)(nil),              // 80: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse
-	(*FetchAttestedNodeRequest)(nil),                // 81: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeRequest
-	(*FetchAttestedNodeResponse)(nil),               // 82: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse
-	(*ListAttestedNodesRequest)(nil),                // 83: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest
-	(*ListAttestedNodesResponse)(nil),               // 84: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse
-	(*UpdateAttestedNodeRequest)(nil),               // 85: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest
-	(*UpdateAttestedNodeResponse)(nil),              // 86: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse
-	(*PruneAttestedExpiredNodesRequest)(nil),        // 87: spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesRequest
-	(*PruneAttestedExpiredNodesResponse)(nil),       // 88: spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesResponse
-	(*ListAttestedNodeEventsRequest)(nil),           // 89: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest
-	(*AttestedNodeEvent)(nil),                       // 90: spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
-	(*ListAttestedNodeEventsResponse)(nil),          // 91: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse
-	(*PruneAttestedNodeEventsRequest)(nil),          // 92: spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsRequest
-	(*PruneAttestedNodeEventsResponse)(nil),         // 93: spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsResponse
-	(*FetchAttestedNodeEventRequest)(nil),           // 94: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventRequest
-	(*FetchAttestedNodeEventResponse)(nil),          // 95: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse
-	(*CreateAttestedNodeEventRequest)(nil),          // 96: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest
-	(*CreateAttestedNodeEventResponse)(nil),         // 97: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventResponse
-	(*DeleteAttestedNodeEventRequest)(nil),          // 98: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventRequest
-	(*DeleteAttestedNodeEventResponse)(nil),         // 99: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventResponse
-	(*GetNodeSelectorsRequest)(nil),                 // 100: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest
-	(*GetNodeSelectorsResponse)(nil),                // 101: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse
-	(*ListNodeSelectorsRequest)(nil),                // 102: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest
-	(*ListNodeSelectorsResponse)(nil),               // 103: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse
-	(*NodeSelectorEntry)(nil),                       // 104: spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry
-	(*SetNodeSelectorsRequest)(nil),                 // 105: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest
-	(*SetNodeSelectorsResponse)(nil),                // 106: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse
-	(*CreateJoinTokenRequest)(nil),                  // 107: spire.plugin.server.datastore.v1alpha1.CreateJoinTokenRequest
-	(*CreateJoinTokenResponse)(nil),                 // 108: spire.plugin.server.datastore.v1alpha1.CreateJoinTokenResponse
-	(*DeleteJoinTokenRequest)(nil),                  // 109: spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenRequest
-	(*DeleteJoinTokenResponse)(nil),                 // 110: spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenResponse
-	(*FetchJoinTokenRequest)(nil),                   // 111: spire.plugin.server.datastore.v1alpha1.FetchJoinTokenRequest
-	(*FetchJoinTokenResponse)(nil),                  // 112: spire.plugin.server.datastore.v1alpha1.FetchJoinTokenResponse
-	(*PruneJoinTokensRequest)(nil),                  // 113: spire.plugin.server.datastore.v1alpha1.PruneJoinTokensRequest
-	(*PruneJoinTokensResponse)(nil),                 // 114: spire.plugin.server.datastore.v1alpha1.PruneJoinTokensResponse
-	(*FederationRelationship)(nil),                  // 115: spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	(*CreateFederationRelationshipRequest)(nil),     // 116: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest
-	(*CreateFederationRelationshipResponse)(nil),    // 117: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse
-	(*FetchFederationRelationshipRequest)(nil),      // 118: spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipRequest
-	(*FetchFederationRelationshipResponse)(nil),     // 119: spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse
-	(*ListFederationRelationshipsRequest)(nil),      // 120: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest
-	(*ListFederationRelationshipsResponse)(nil),     // 121: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse
-	(*DeleteFederationRelationshipRequest)(nil),     // 122: spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipRequest
-	(*DeleteFederationRelationshipResponse)(nil),    // 123: spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipResponse
-	(*FederationRelationshipMask)(nil),              // 124: spire.plugin.server.datastore.v1alpha1.FederationRelationshipMask
-	(*UpdateFederationRelationshipRequest)(nil),     // 125: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest
-	(*UpdateFederationRelationshipResponse)(nil),    // 126: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse
-	(*CAJournal)(nil),                               // 127: spire.plugin.server.datastore.v1alpha1.CAJournal
-	(*SetCAJournalRequest)(nil),                     // 128: spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest
-	(*SetCAJournalResponse)(nil),                    // 129: spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse
-	(*FetchCAJournalRequest)(nil),                   // 130: spire.plugin.server.datastore.v1alpha1.FetchCAJournalRequest
-	(*FetchCAJournalResponse)(nil),                  // 131: spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse
-	(*PruneCAJournalsRequest)(nil),                  // 132: spire.plugin.server.datastore.v1alpha1.PruneCAJournalsRequest
-	(*PruneCAJournalsResponse)(nil),                 // 133: spire.plugin.server.datastore.v1alpha1.PruneCAJournalsResponse
-	(*ListCAJournalsRequest)(nil),                   // 134: spire.plugin.server.datastore.v1alpha1.ListCAJournalsRequest
-	(*ListCAJournalsResponse)(nil),                  // 135: spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse
+	(*RegistrationEntry_AdditionalAttributes)(nil),  // 10: spire.plugin.server.datastore.v1alpha1.RegistrationEntry_AdditionalAttributes
+	(*RegistrationEntryMask)(nil),                   // 11: spire.plugin.server.datastore.v1alpha1.RegistrationEntryMask
+	(*RegistrationEntries)(nil),                     // 12: spire.plugin.server.datastore.v1alpha1.RegistrationEntries
+	(*Certificate)(nil),                             // 13: spire.plugin.server.datastore.v1alpha1.Certificate
+	(*PublicKey)(nil),                               // 14: spire.plugin.server.datastore.v1alpha1.PublicKey
+	(*Bundle)(nil),                                  // 15: spire.plugin.server.datastore.v1alpha1.Bundle
+	(*BundleMask)(nil),                              // 16: spire.plugin.server.datastore.v1alpha1.BundleMask
+	(*AttestedNodeMask)(nil),                        // 17: spire.plugin.server.datastore.v1alpha1.AttestedNodeMask
+	(*AppendBundleRequest)(nil),                     // 18: spire.plugin.server.datastore.v1alpha1.AppendBundleRequest
+	(*AppendBundleResponse)(nil),                    // 19: spire.plugin.server.datastore.v1alpha1.AppendBundleResponse
+	(*CreateBundleRequest)(nil),                     // 20: spire.plugin.server.datastore.v1alpha1.CreateBundleRequest
+	(*CreateBundleResponse)(nil),                    // 21: spire.plugin.server.datastore.v1alpha1.CreateBundleResponse
+	(*CountBundlesRequest)(nil),                     // 22: spire.plugin.server.datastore.v1alpha1.CountBundlesRequest
+	(*CountBundlesResponse)(nil),                    // 23: spire.plugin.server.datastore.v1alpha1.CountBundlesResponse
+	(*DeleteBundleRequest)(nil),                     // 24: spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest
+	(*DeleteBundleResponse)(nil),                    // 25: spire.plugin.server.datastore.v1alpha1.DeleteBundleResponse
+	(*FetchBundleRequest)(nil),                      // 26: spire.plugin.server.datastore.v1alpha1.FetchBundleRequest
+	(*FetchBundleResponse)(nil),                     // 27: spire.plugin.server.datastore.v1alpha1.FetchBundleResponse
+	(*Pagination)(nil),                              // 28: spire.plugin.server.datastore.v1alpha1.Pagination
+	(*ListBundlesRequest)(nil),                      // 29: spire.plugin.server.datastore.v1alpha1.ListBundlesRequest
+	(*ListBundlesResponse)(nil),                     // 30: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse
+	(*PruneBundleRequest)(nil),                      // 31: spire.plugin.server.datastore.v1alpha1.PruneBundleRequest
+	(*PruneBundleResponse)(nil),                     // 32: spire.plugin.server.datastore.v1alpha1.PruneBundleResponse
+	(*SetBundleRequest)(nil),                        // 33: spire.plugin.server.datastore.v1alpha1.SetBundleRequest
+	(*SetBundleResponse)(nil),                       // 34: spire.plugin.server.datastore.v1alpha1.SetBundleResponse
+	(*UpdateBundleRequest)(nil),                     // 35: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest
+	(*UpdateBundleResponse)(nil),                    // 36: spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse
+	(*TaintX509CARequest)(nil),                      // 37: spire.plugin.server.datastore.v1alpha1.TaintX509CARequest
+	(*TaintX509CAResponse)(nil),                     // 38: spire.plugin.server.datastore.v1alpha1.TaintX509CAResponse
+	(*RevokeX509CARequest)(nil),                     // 39: spire.plugin.server.datastore.v1alpha1.RevokeX509CARequest
+	(*RevokeX509CAResponse)(nil),                    // 40: spire.plugin.server.datastore.v1alpha1.RevokeX509CAResponse
+	(*TaintJWTKeyRequest)(nil),                      // 41: spire.plugin.server.datastore.v1alpha1.TaintJWTKeyRequest
+	(*TaintJWTKeyResponse)(nil),                     // 42: spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse
+	(*RevokeJWTKeyRequest)(nil),                     // 43: spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyRequest
+	(*RevokeJWTKeyResponse)(nil),                    // 44: spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse
+	(*CountRegistrationEntriesRequest)(nil),         // 45: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest
+	(*CountRegistrationEntriesResponse)(nil),        // 46: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesResponse
+	(*BySelectors)(nil),                             // 47: spire.plugin.server.datastore.v1alpha1.BySelectors
+	(*ByFederatesWith)(nil),                         // 48: spire.plugin.server.datastore.v1alpha1.ByFederatesWith
+	(*CreateRegistrationEntryRequest)(nil),          // 49: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryRequest
+	(*CreateRegistrationEntryResponse)(nil),         // 50: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryResponse
+	(*CreateOrReturnRegistrationEntryRequest)(nil),  // 51: spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryRequest
+	(*CreateOrReturnRegistrationEntryResponse)(nil), // 52: spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryResponse
+	(*DeleteRegistrationEntryRequest)(nil),          // 53: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryRequest
+	(*DeleteRegistrationEntryResponse)(nil),         // 54: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse
+	(*FetchRegistrationEntryRequest)(nil),           // 55: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryRequest
+	(*FetchRegistrationEntryResponse)(nil),          // 56: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse
+	(*FetchRegistrationEntriesRequest)(nil),         // 57: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesRequest
+	(*FetchRegistrationEntriesResponse)(nil),        // 58: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse
+	(*ListRegistrationEntriesRequest)(nil),          // 59: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest
+	(*ListRegistrationEntriesResponse)(nil),         // 60: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse
+	(*PruneRegistrationEntriesRequest)(nil),         // 61: spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesRequest
+	(*PruneRegistrationEntriesResponse)(nil),        // 62: spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesResponse
+	(*UpdateRegistrationEntryRequest)(nil),          // 63: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest
+	(*UpdateRegistrationEntryResponse)(nil),         // 64: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse
+	(*ListRegistrationEntryEventsRequest)(nil),      // 65: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest
+	(*RegistrationEntryEvent)(nil),                  // 66: spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
+	(*ListRegistrationEntryEventsResponse)(nil),     // 67: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse
+	(*PruneRegistrationEntryEventsRequest)(nil),     // 68: spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsRequest
+	(*PruneRegistrationEntryEventsResponse)(nil),    // 69: spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsResponse
+	(*FetchRegistrationEntryEventRequest)(nil),      // 70: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventRequest
+	(*FetchRegistrationEntryEventResponse)(nil),     // 71: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse
+	(*CreateRegistrationEntryEventRequest)(nil),     // 72: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest
+	(*CreateRegistrationEntryEventResponse)(nil),    // 73: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventResponse
+	(*DeleteRegistrationEntryEventRequest)(nil),     // 74: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventRequest
+	(*DeleteRegistrationEntryEventResponse)(nil),    // 75: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventResponse
+	(*CountAttestedNodesRequest)(nil),               // 76: spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest
+	(*CountAttestedNodesResponse)(nil),              // 77: spire.plugin.server.datastore.v1alpha1.CountAttestedNodesResponse
+	(*CreateAttestedNodeRequest)(nil),               // 78: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest
+	(*CreateAttestedNodeResponse)(nil),              // 79: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse
+	(*DeleteAttestedNodeRequest)(nil),               // 80: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeRequest
+	(*DeleteAttestedNodeResponse)(nil),              // 81: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse
+	(*FetchAttestedNodeRequest)(nil),                // 82: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeRequest
+	(*FetchAttestedNodeResponse)(nil),               // 83: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse
+	(*ListAttestedNodesRequest)(nil),                // 84: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest
+	(*ListAttestedNodesResponse)(nil),               // 85: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse
+	(*UpdateAttestedNodeRequest)(nil),               // 86: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest
+	(*UpdateAttestedNodeResponse)(nil),              // 87: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse
+	(*PruneAttestedExpiredNodesRequest)(nil),        // 88: spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesRequest
+	(*PruneAttestedExpiredNodesResponse)(nil),       // 89: spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesResponse
+	(*ListAttestedNodeEventsRequest)(nil),           // 90: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest
+	(*AttestedNodeEvent)(nil),                       // 91: spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
+	(*ListAttestedNodeEventsResponse)(nil),          // 92: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse
+	(*PruneAttestedNodeEventsRequest)(nil),          // 93: spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsRequest
+	(*PruneAttestedNodeEventsResponse)(nil),         // 94: spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsResponse
+	(*FetchAttestedNodeEventRequest)(nil),           // 95: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventRequest
+	(*FetchAttestedNodeEventResponse)(nil),          // 96: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse
+	(*CreateAttestedNodeEventRequest)(nil),          // 97: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest
+	(*CreateAttestedNodeEventResponse)(nil),         // 98: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventResponse
+	(*DeleteAttestedNodeEventRequest)(nil),          // 99: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventRequest
+	(*DeleteAttestedNodeEventResponse)(nil),         // 100: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventResponse
+	(*GetNodeSelectorsRequest)(nil),                 // 101: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest
+	(*GetNodeSelectorsResponse)(nil),                // 102: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse
+	(*ListNodeSelectorsRequest)(nil),                // 103: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest
+	(*ListNodeSelectorsResponse)(nil),               // 104: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse
+	(*NodeSelectorEntry)(nil),                       // 105: spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry
+	(*SetNodeSelectorsRequest)(nil),                 // 106: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest
+	(*SetNodeSelectorsResponse)(nil),                // 107: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse
+	(*CreateJoinTokenRequest)(nil),                  // 108: spire.plugin.server.datastore.v1alpha1.CreateJoinTokenRequest
+	(*CreateJoinTokenResponse)(nil),                 // 109: spire.plugin.server.datastore.v1alpha1.CreateJoinTokenResponse
+	(*DeleteJoinTokenRequest)(nil),                  // 110: spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenRequest
+	(*DeleteJoinTokenResponse)(nil),                 // 111: spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenResponse
+	(*FetchJoinTokenRequest)(nil),                   // 112: spire.plugin.server.datastore.v1alpha1.FetchJoinTokenRequest
+	(*FetchJoinTokenResponse)(nil),                  // 113: spire.plugin.server.datastore.v1alpha1.FetchJoinTokenResponse
+	(*PruneJoinTokensRequest)(nil),                  // 114: spire.plugin.server.datastore.v1alpha1.PruneJoinTokensRequest
+	(*PruneJoinTokensResponse)(nil),                 // 115: spire.plugin.server.datastore.v1alpha1.PruneJoinTokensResponse
+	(*FederationRelationship)(nil),                  // 116: spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	(*CreateFederationRelationshipRequest)(nil),     // 117: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest
+	(*CreateFederationRelationshipResponse)(nil),    // 118: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse
+	(*FetchFederationRelationshipRequest)(nil),      // 119: spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipRequest
+	(*FetchFederationRelationshipResponse)(nil),     // 120: spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse
+	(*ListFederationRelationshipsRequest)(nil),      // 121: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest
+	(*ListFederationRelationshipsResponse)(nil),     // 122: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse
+	(*DeleteFederationRelationshipRequest)(nil),     // 123: spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipRequest
+	(*DeleteFederationRelationshipResponse)(nil),    // 124: spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipResponse
+	(*FederationRelationshipMask)(nil),              // 125: spire.plugin.server.datastore.v1alpha1.FederationRelationshipMask
+	(*UpdateFederationRelationshipRequest)(nil),     // 126: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest
+	(*UpdateFederationRelationshipResponse)(nil),    // 127: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse
+	(*CAJournal)(nil),                               // 128: spire.plugin.server.datastore.v1alpha1.CAJournal
+	(*SetCAJournalRequest)(nil),                     // 129: spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest
+	(*SetCAJournalResponse)(nil),                    // 130: spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse
+	(*FetchCAJournalRequest)(nil),                   // 131: spire.plugin.server.datastore.v1alpha1.FetchCAJournalRequest
+	(*FetchCAJournalResponse)(nil),                  // 132: spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse
+	(*PruneCAJournalsRequest)(nil),                  // 133: spire.plugin.server.datastore.v1alpha1.PruneCAJournalsRequest
+	(*PruneCAJournalsResponse)(nil),                 // 134: spire.plugin.server.datastore.v1alpha1.PruneCAJournalsResponse
+	(*ListCAJournalsRequest)(nil),                   // 135: spire.plugin.server.datastore.v1alpha1.ListCAJournalsRequest
+	(*ListCAJournalsResponse)(nil),                  // 136: spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse
 }
 var file_spire_plugin_server_datastore_v1alpha1_datastore_proto_depIdxs = []int32{
 	6,   // 0: spire.plugin.server.datastore.v1alpha1.Selectors.entries:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	6,   // 1: spire.plugin.server.datastore.v1alpha1.AttestedNode.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	6,   // 2: spire.plugin.server.datastore.v1alpha1.RegistrationEntry.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	9,   // 3: spire.plugin.server.datastore.v1alpha1.RegistrationEntries.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	14,  // 4: spire.plugin.server.datastore.v1alpha1.AppendBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	14,  // 5: spire.plugin.server.datastore.v1alpha1.AppendBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	14,  // 6: spire.plugin.server.datastore.v1alpha1.CreateBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	14,  // 7: spire.plugin.server.datastore.v1alpha1.CreateBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 4: spire.plugin.server.datastore.v1alpha1.AppendBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 5: spire.plugin.server.datastore.v1alpha1.AppendBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 6: spire.plugin.server.datastore.v1alpha1.CreateBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 7: spire.plugin.server.datastore.v1alpha1.CreateBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
 	1,   // 8: spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest.mode:type_name -> spire.plugin.server.datastore.v1alpha1.DeleteMode
-	14,  // 9: spire.plugin.server.datastore.v1alpha1.FetchBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	27,  // 10: spire.plugin.server.datastore.v1alpha1.ListBundlesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	14,  // 11: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse.bundles:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	27,  // 12: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	14,  // 13: spire.plugin.server.datastore.v1alpha1.SetBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	14,  // 14: spire.plugin.server.datastore.v1alpha1.SetBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	14,  // 15: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	15,  // 16: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.BundleMask
-	14,  // 17: spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	13,  // 18: spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse.key:type_name -> spire.plugin.server.datastore.v1alpha1.PublicKey
-	13,  // 19: spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse.key:type_name -> spire.plugin.server.datastore.v1alpha1.PublicKey
+	15,  // 9: spire.plugin.server.datastore.v1alpha1.FetchBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	28,  // 10: spire.plugin.server.datastore.v1alpha1.ListBundlesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	15,  // 11: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse.bundles:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	28,  // 12: spire.plugin.server.datastore.v1alpha1.ListBundlesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	15,  // 13: spire.plugin.server.datastore.v1alpha1.SetBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 14: spire.plugin.server.datastore.v1alpha1.SetBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	15,  // 15: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	16,  // 16: spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.BundleMask
+	15,  // 17: spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse.bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	14,  // 18: spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse.key:type_name -> spire.plugin.server.datastore.v1alpha1.PublicKey
+	14,  // 19: spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse.key:type_name -> spire.plugin.server.datastore.v1alpha1.PublicKey
 	0,   // 20: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	46,  // 21: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
-	47,  // 22: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.by_federates_with:type_name -> spire.plugin.server.datastore.v1alpha1.ByFederatesWith
+	47,  // 21: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
+	48,  // 22: spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest.by_federates_with:type_name -> spire.plugin.server.datastore.v1alpha1.ByFederatesWith
 	2,   // 23: spire.plugin.server.datastore.v1alpha1.BySelectors.match_behavior:type_name -> spire.plugin.server.datastore.v1alpha1.MatchBehavior
 	6,   // 24: spire.plugin.server.datastore.v1alpha1.BySelectors.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	2,   // 25: spire.plugin.server.datastore.v1alpha1.ByFederatesWith.match_behavior:type_name -> spire.plugin.server.datastore.v1alpha1.MatchBehavior
@@ -7778,167 +7834,167 @@ var file_spire_plugin_server_datastore_v1alpha1_datastore_proto_depIdxs = []int3
 	9,   // 30: spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
 	9,   // 31: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
 	9,   // 32: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	27,  // 33: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	28,  // 33: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
 	0,   // 34: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	46,  // 35: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
-	47,  // 36: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.by_federates_with:type_name -> spire.plugin.server.datastore.v1alpha1.ByFederatesWith
+	47,  // 35: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
+	48,  // 36: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest.by_federates_with:type_name -> spire.plugin.server.datastore.v1alpha1.ByFederatesWith
 	9,   // 37: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse.entries:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	27,  // 38: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	28,  // 38: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
 	9,   // 39: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
-	10,  // 40: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryMask
+	11,  // 40: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryMask
 	9,   // 41: spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse.entry:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntry
 	0,   // 42: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	65,  // 43: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse.events:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
-	65,  // 44: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse.event:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
-	65,  // 45: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest.event:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
-	46,  // 46: spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
+	66,  // 43: spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse.events:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
+	66,  // 44: spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse.event:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
+	66,  // 45: spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest.event:type_name -> spire.plugin.server.datastore.v1alpha1.RegistrationEntryEvent
+	47,  // 46: spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
 	8,   // 47: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
 	8,   // 48: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
 	8,   // 49: spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
 	8,   // 50: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	27,  // 51: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	46,  // 52: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
+	28,  // 51: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	47,  // 52: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest.by_selectors:type_name -> spire.plugin.server.datastore.v1alpha1.BySelectors
 	8,   // 53: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse.nodes:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	27,  // 54: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	28,  // 54: spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
 	8,   // 55: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
-	16,  // 56: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeMask
+	17,  // 56: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeMask
 	8,   // 57: spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse.node:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNode
 	0,   // 58: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	90,  // 59: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse.events:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
-	90,  // 60: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse.event:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
-	90,  // 61: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest.event:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
+	91,  // 59: spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse.events:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
+	91,  // 60: spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse.event:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
+	91,  // 61: spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest.event:type_name -> spire.plugin.server.datastore.v1alpha1.AttestedNodeEvent
 	0,   // 62: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
 	6,   // 63: spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	0,   // 64: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest.data_consistency:type_name -> spire.plugin.server.datastore.v1alpha1.DataConsistency
-	104, // 65: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry
+	105, // 65: spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry
 	6,   // 66: spire.plugin.server.datastore.v1alpha1.NodeSelectorEntry.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	6,   // 67: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	6,   // 68: spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse.selectors:type_name -> spire.plugin.server.datastore.v1alpha1.Selector
 	3,   // 69: spire.plugin.server.datastore.v1alpha1.FederationRelationship.bundle_endpoint_type:type_name -> spire.plugin.server.datastore.v1alpha1.BundleEndpointType
-	14,  // 70: spire.plugin.server.datastore.v1alpha1.FederationRelationship.trust_domain_bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
-	115, // 71: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	115, // 72: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	115, // 73: spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	27,  // 74: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	115, // 75: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse.relationships:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	27,  // 76: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
-	115, // 77: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	124, // 78: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationshipMask
-	115, // 79: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
-	127, // 80: spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
-	127, // 81: spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
-	127, // 82: spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
-	127, // 83: spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse.journals:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
-	17,  // 84: spire.plugin.server.datastore.v1alpha1.DataStore.AppendBundle:input_type -> spire.plugin.server.datastore.v1alpha1.AppendBundleRequest
-	19,  // 85: spire.plugin.server.datastore.v1alpha1.DataStore.CreateBundle:input_type -> spire.plugin.server.datastore.v1alpha1.CreateBundleRequest
-	21,  // 86: spire.plugin.server.datastore.v1alpha1.DataStore.CountBundles:input_type -> spire.plugin.server.datastore.v1alpha1.CountBundlesRequest
-	23,  // 87: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteBundle:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest
-	25,  // 88: spire.plugin.server.datastore.v1alpha1.DataStore.FetchBundle:input_type -> spire.plugin.server.datastore.v1alpha1.FetchBundleRequest
-	28,  // 89: spire.plugin.server.datastore.v1alpha1.DataStore.ListBundles:input_type -> spire.plugin.server.datastore.v1alpha1.ListBundlesRequest
-	30,  // 90: spire.plugin.server.datastore.v1alpha1.DataStore.PruneBundle:input_type -> spire.plugin.server.datastore.v1alpha1.PruneBundleRequest
-	32,  // 91: spire.plugin.server.datastore.v1alpha1.DataStore.SetBundle:input_type -> spire.plugin.server.datastore.v1alpha1.SetBundleRequest
-	34,  // 92: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateBundle:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest
-	36,  // 93: spire.plugin.server.datastore.v1alpha1.DataStore.TaintX509CA:input_type -> spire.plugin.server.datastore.v1alpha1.TaintX509CARequest
-	38,  // 94: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeX509CA:input_type -> spire.plugin.server.datastore.v1alpha1.RevokeX509CARequest
-	40,  // 95: spire.plugin.server.datastore.v1alpha1.DataStore.TaintJWTKey:input_type -> spire.plugin.server.datastore.v1alpha1.TaintJWTKeyRequest
-	42,  // 96: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeJWTKey:input_type -> spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyRequest
-	44,  // 97: spire.plugin.server.datastore.v1alpha1.DataStore.CountRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest
-	48,  // 98: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryRequest
-	50,  // 99: spire.plugin.server.datastore.v1alpha1.DataStore.CreateOrReturnRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryRequest
-	52,  // 100: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryRequest
-	54,  // 101: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryRequest
-	56,  // 102: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesRequest
-	58,  // 103: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest
-	60,  // 104: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesRequest
-	62,  // 105: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest
-	64,  // 106: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntryEvents:input_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest
-	67,  // 107: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntryEvents:input_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsRequest
-	69,  // 108: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventRequest
-	71,  // 109: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest
-	73,  // 110: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventRequest
-	75,  // 111: spire.plugin.server.datastore.v1alpha1.DataStore.CountAttestedNodes:input_type -> spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest
-	77,  // 112: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest
-	79,  // 113: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeRequest
-	81,  // 114: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeRequest
-	83,  // 115: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodes:input_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest
-	85,  // 116: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest
-	87,  // 117: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedExpiredNodes:input_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesRequest
-	89,  // 118: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodeEvents:input_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest
-	92,  // 119: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedNodeEvents:input_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsRequest
-	94,  // 120: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventRequest
-	96,  // 121: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest
-	98,  // 122: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventRequest
-	100, // 123: spire.plugin.server.datastore.v1alpha1.DataStore.GetNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest
-	102, // 124: spire.plugin.server.datastore.v1alpha1.DataStore.ListNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest
-	105, // 125: spire.plugin.server.datastore.v1alpha1.DataStore.SetNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest
-	107, // 126: spire.plugin.server.datastore.v1alpha1.DataStore.CreateJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.CreateJoinTokenRequest
-	109, // 127: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenRequest
-	111, // 128: spire.plugin.server.datastore.v1alpha1.DataStore.FetchJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.FetchJoinTokenRequest
-	113, // 129: spire.plugin.server.datastore.v1alpha1.DataStore.PruneJoinTokens:input_type -> spire.plugin.server.datastore.v1alpha1.PruneJoinTokensRequest
-	116, // 130: spire.plugin.server.datastore.v1alpha1.DataStore.CreateFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest
-	118, // 131: spire.plugin.server.datastore.v1alpha1.DataStore.FetchFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipRequest
-	120, // 132: spire.plugin.server.datastore.v1alpha1.DataStore.ListFederationRelationships:input_type -> spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest
-	122, // 133: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipRequest
-	125, // 134: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest
-	128, // 135: spire.plugin.server.datastore.v1alpha1.DataStore.SetCAJournal:input_type -> spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest
-	130, // 136: spire.plugin.server.datastore.v1alpha1.DataStore.FetchCAJournal:input_type -> spire.plugin.server.datastore.v1alpha1.FetchCAJournalRequest
-	132, // 137: spire.plugin.server.datastore.v1alpha1.DataStore.PruneCAJournals:input_type -> spire.plugin.server.datastore.v1alpha1.PruneCAJournalsRequest
-	134, // 138: spire.plugin.server.datastore.v1alpha1.DataStore.ListCAJournals:input_type -> spire.plugin.server.datastore.v1alpha1.ListCAJournalsRequest
-	18,  // 139: spire.plugin.server.datastore.v1alpha1.DataStore.AppendBundle:output_type -> spire.plugin.server.datastore.v1alpha1.AppendBundleResponse
-	20,  // 140: spire.plugin.server.datastore.v1alpha1.DataStore.CreateBundle:output_type -> spire.plugin.server.datastore.v1alpha1.CreateBundleResponse
-	22,  // 141: spire.plugin.server.datastore.v1alpha1.DataStore.CountBundles:output_type -> spire.plugin.server.datastore.v1alpha1.CountBundlesResponse
-	24,  // 142: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteBundle:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteBundleResponse
-	26,  // 143: spire.plugin.server.datastore.v1alpha1.DataStore.FetchBundle:output_type -> spire.plugin.server.datastore.v1alpha1.FetchBundleResponse
-	29,  // 144: spire.plugin.server.datastore.v1alpha1.DataStore.ListBundles:output_type -> spire.plugin.server.datastore.v1alpha1.ListBundlesResponse
-	31,  // 145: spire.plugin.server.datastore.v1alpha1.DataStore.PruneBundle:output_type -> spire.plugin.server.datastore.v1alpha1.PruneBundleResponse
-	33,  // 146: spire.plugin.server.datastore.v1alpha1.DataStore.SetBundle:output_type -> spire.plugin.server.datastore.v1alpha1.SetBundleResponse
-	35,  // 147: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateBundle:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse
-	37,  // 148: spire.plugin.server.datastore.v1alpha1.DataStore.TaintX509CA:output_type -> spire.plugin.server.datastore.v1alpha1.TaintX509CAResponse
-	39,  // 149: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeX509CA:output_type -> spire.plugin.server.datastore.v1alpha1.RevokeX509CAResponse
-	41,  // 150: spire.plugin.server.datastore.v1alpha1.DataStore.TaintJWTKey:output_type -> spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse
-	43,  // 151: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeJWTKey:output_type -> spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse
-	45,  // 152: spire.plugin.server.datastore.v1alpha1.DataStore.CountRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesResponse
-	49,  // 153: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryResponse
-	51,  // 154: spire.plugin.server.datastore.v1alpha1.DataStore.CreateOrReturnRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryResponse
-	53,  // 155: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse
-	55,  // 156: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse
-	57,  // 157: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse
-	59,  // 158: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse
-	61,  // 159: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesResponse
-	63,  // 160: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse
-	66,  // 161: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntryEvents:output_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse
-	68,  // 162: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntryEvents:output_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsResponse
-	70,  // 163: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse
-	72,  // 164: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventResponse
-	74,  // 165: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventResponse
-	76,  // 166: spire.plugin.server.datastore.v1alpha1.DataStore.CountAttestedNodes:output_type -> spire.plugin.server.datastore.v1alpha1.CountAttestedNodesResponse
-	78,  // 167: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse
-	80,  // 168: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse
-	82,  // 169: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse
-	84,  // 170: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodes:output_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse
-	86,  // 171: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse
-	88,  // 172: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedExpiredNodes:output_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesResponse
-	91,  // 173: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodeEvents:output_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse
-	93,  // 174: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedNodeEvents:output_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsResponse
-	95,  // 175: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse
-	97,  // 176: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventResponse
-	99,  // 177: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventResponse
-	101, // 178: spire.plugin.server.datastore.v1alpha1.DataStore.GetNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse
-	103, // 179: spire.plugin.server.datastore.v1alpha1.DataStore.ListNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse
-	106, // 180: spire.plugin.server.datastore.v1alpha1.DataStore.SetNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse
-	108, // 181: spire.plugin.server.datastore.v1alpha1.DataStore.CreateJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.CreateJoinTokenResponse
-	110, // 182: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenResponse
-	112, // 183: spire.plugin.server.datastore.v1alpha1.DataStore.FetchJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.FetchJoinTokenResponse
-	114, // 184: spire.plugin.server.datastore.v1alpha1.DataStore.PruneJoinTokens:output_type -> spire.plugin.server.datastore.v1alpha1.PruneJoinTokensResponse
-	117, // 185: spire.plugin.server.datastore.v1alpha1.DataStore.CreateFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse
-	119, // 186: spire.plugin.server.datastore.v1alpha1.DataStore.FetchFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse
-	121, // 187: spire.plugin.server.datastore.v1alpha1.DataStore.ListFederationRelationships:output_type -> spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse
-	123, // 188: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipResponse
-	126, // 189: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse
-	129, // 190: spire.plugin.server.datastore.v1alpha1.DataStore.SetCAJournal:output_type -> spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse
-	131, // 191: spire.plugin.server.datastore.v1alpha1.DataStore.FetchCAJournal:output_type -> spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse
-	133, // 192: spire.plugin.server.datastore.v1alpha1.DataStore.PruneCAJournals:output_type -> spire.plugin.server.datastore.v1alpha1.PruneCAJournalsResponse
-	135, // 193: spire.plugin.server.datastore.v1alpha1.DataStore.ListCAJournals:output_type -> spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse
+	15,  // 70: spire.plugin.server.datastore.v1alpha1.FederationRelationship.trust_domain_bundle:type_name -> spire.plugin.server.datastore.v1alpha1.Bundle
+	116, // 71: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	116, // 72: spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	116, // 73: spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	28,  // 74: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	116, // 75: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse.relationships:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	28,  // 76: spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse.pagination:type_name -> spire.plugin.server.datastore.v1alpha1.Pagination
+	116, // 77: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	125, // 78: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest.mask:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationshipMask
+	116, // 79: spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse.relationship:type_name -> spire.plugin.server.datastore.v1alpha1.FederationRelationship
+	128, // 80: spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
+	128, // 81: spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
+	128, // 82: spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse.journal:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
+	128, // 83: spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse.journals:type_name -> spire.plugin.server.datastore.v1alpha1.CAJournal
+	18,  // 84: spire.plugin.server.datastore.v1alpha1.DataStore.AppendBundle:input_type -> spire.plugin.server.datastore.v1alpha1.AppendBundleRequest
+	20,  // 85: spire.plugin.server.datastore.v1alpha1.DataStore.CreateBundle:input_type -> spire.plugin.server.datastore.v1alpha1.CreateBundleRequest
+	22,  // 86: spire.plugin.server.datastore.v1alpha1.DataStore.CountBundles:input_type -> spire.plugin.server.datastore.v1alpha1.CountBundlesRequest
+	24,  // 87: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteBundle:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteBundleRequest
+	26,  // 88: spire.plugin.server.datastore.v1alpha1.DataStore.FetchBundle:input_type -> spire.plugin.server.datastore.v1alpha1.FetchBundleRequest
+	29,  // 89: spire.plugin.server.datastore.v1alpha1.DataStore.ListBundles:input_type -> spire.plugin.server.datastore.v1alpha1.ListBundlesRequest
+	31,  // 90: spire.plugin.server.datastore.v1alpha1.DataStore.PruneBundle:input_type -> spire.plugin.server.datastore.v1alpha1.PruneBundleRequest
+	33,  // 91: spire.plugin.server.datastore.v1alpha1.DataStore.SetBundle:input_type -> spire.plugin.server.datastore.v1alpha1.SetBundleRequest
+	35,  // 92: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateBundle:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateBundleRequest
+	37,  // 93: spire.plugin.server.datastore.v1alpha1.DataStore.TaintX509CA:input_type -> spire.plugin.server.datastore.v1alpha1.TaintX509CARequest
+	39,  // 94: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeX509CA:input_type -> spire.plugin.server.datastore.v1alpha1.RevokeX509CARequest
+	41,  // 95: spire.plugin.server.datastore.v1alpha1.DataStore.TaintJWTKey:input_type -> spire.plugin.server.datastore.v1alpha1.TaintJWTKeyRequest
+	43,  // 96: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeJWTKey:input_type -> spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyRequest
+	45,  // 97: spire.plugin.server.datastore.v1alpha1.DataStore.CountRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesRequest
+	49,  // 98: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryRequest
+	51,  // 99: spire.plugin.server.datastore.v1alpha1.DataStore.CreateOrReturnRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryRequest
+	53,  // 100: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryRequest
+	55,  // 101: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryRequest
+	57,  // 102: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesRequest
+	59,  // 103: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesRequest
+	61,  // 104: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntries:input_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesRequest
+	63,  // 105: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateRegistrationEntry:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryRequest
+	65,  // 106: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntryEvents:input_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsRequest
+	68,  // 107: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntryEvents:input_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsRequest
+	70,  // 108: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventRequest
+	72,  // 109: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventRequest
+	74,  // 110: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntryEvent:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventRequest
+	76,  // 111: spire.plugin.server.datastore.v1alpha1.DataStore.CountAttestedNodes:input_type -> spire.plugin.server.datastore.v1alpha1.CountAttestedNodesRequest
+	78,  // 112: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeRequest
+	80,  // 113: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeRequest
+	82,  // 114: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeRequest
+	84,  // 115: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodes:input_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodesRequest
+	86,  // 116: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateAttestedNode:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeRequest
+	88,  // 117: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedExpiredNodes:input_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesRequest
+	90,  // 118: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodeEvents:input_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsRequest
+	93,  // 119: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedNodeEvents:input_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsRequest
+	95,  // 120: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventRequest
+	97,  // 121: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventRequest
+	99,  // 122: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNodeEvent:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventRequest
+	101, // 123: spire.plugin.server.datastore.v1alpha1.DataStore.GetNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsRequest
+	103, // 124: spire.plugin.server.datastore.v1alpha1.DataStore.ListNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsRequest
+	106, // 125: spire.plugin.server.datastore.v1alpha1.DataStore.SetNodeSelectors:input_type -> spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsRequest
+	108, // 126: spire.plugin.server.datastore.v1alpha1.DataStore.CreateJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.CreateJoinTokenRequest
+	110, // 127: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenRequest
+	112, // 128: spire.plugin.server.datastore.v1alpha1.DataStore.FetchJoinToken:input_type -> spire.plugin.server.datastore.v1alpha1.FetchJoinTokenRequest
+	114, // 129: spire.plugin.server.datastore.v1alpha1.DataStore.PruneJoinTokens:input_type -> spire.plugin.server.datastore.v1alpha1.PruneJoinTokensRequest
+	117, // 130: spire.plugin.server.datastore.v1alpha1.DataStore.CreateFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipRequest
+	119, // 131: spire.plugin.server.datastore.v1alpha1.DataStore.FetchFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipRequest
+	121, // 132: spire.plugin.server.datastore.v1alpha1.DataStore.ListFederationRelationships:input_type -> spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsRequest
+	123, // 133: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipRequest
+	126, // 134: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateFederationRelationship:input_type -> spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipRequest
+	129, // 135: spire.plugin.server.datastore.v1alpha1.DataStore.SetCAJournal:input_type -> spire.plugin.server.datastore.v1alpha1.SetCAJournalRequest
+	131, // 136: spire.plugin.server.datastore.v1alpha1.DataStore.FetchCAJournal:input_type -> spire.plugin.server.datastore.v1alpha1.FetchCAJournalRequest
+	133, // 137: spire.plugin.server.datastore.v1alpha1.DataStore.PruneCAJournals:input_type -> spire.plugin.server.datastore.v1alpha1.PruneCAJournalsRequest
+	135, // 138: spire.plugin.server.datastore.v1alpha1.DataStore.ListCAJournals:input_type -> spire.plugin.server.datastore.v1alpha1.ListCAJournalsRequest
+	19,  // 139: spire.plugin.server.datastore.v1alpha1.DataStore.AppendBundle:output_type -> spire.plugin.server.datastore.v1alpha1.AppendBundleResponse
+	21,  // 140: spire.plugin.server.datastore.v1alpha1.DataStore.CreateBundle:output_type -> spire.plugin.server.datastore.v1alpha1.CreateBundleResponse
+	23,  // 141: spire.plugin.server.datastore.v1alpha1.DataStore.CountBundles:output_type -> spire.plugin.server.datastore.v1alpha1.CountBundlesResponse
+	25,  // 142: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteBundle:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteBundleResponse
+	27,  // 143: spire.plugin.server.datastore.v1alpha1.DataStore.FetchBundle:output_type -> spire.plugin.server.datastore.v1alpha1.FetchBundleResponse
+	30,  // 144: spire.plugin.server.datastore.v1alpha1.DataStore.ListBundles:output_type -> spire.plugin.server.datastore.v1alpha1.ListBundlesResponse
+	32,  // 145: spire.plugin.server.datastore.v1alpha1.DataStore.PruneBundle:output_type -> spire.plugin.server.datastore.v1alpha1.PruneBundleResponse
+	34,  // 146: spire.plugin.server.datastore.v1alpha1.DataStore.SetBundle:output_type -> spire.plugin.server.datastore.v1alpha1.SetBundleResponse
+	36,  // 147: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateBundle:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateBundleResponse
+	38,  // 148: spire.plugin.server.datastore.v1alpha1.DataStore.TaintX509CA:output_type -> spire.plugin.server.datastore.v1alpha1.TaintX509CAResponse
+	40,  // 149: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeX509CA:output_type -> spire.plugin.server.datastore.v1alpha1.RevokeX509CAResponse
+	42,  // 150: spire.plugin.server.datastore.v1alpha1.DataStore.TaintJWTKey:output_type -> spire.plugin.server.datastore.v1alpha1.TaintJWTKeyResponse
+	44,  // 151: spire.plugin.server.datastore.v1alpha1.DataStore.RevokeJWTKey:output_type -> spire.plugin.server.datastore.v1alpha1.RevokeJWTKeyResponse
+	46,  // 152: spire.plugin.server.datastore.v1alpha1.DataStore.CountRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.CountRegistrationEntriesResponse
+	50,  // 153: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryResponse
+	52,  // 154: spire.plugin.server.datastore.v1alpha1.DataStore.CreateOrReturnRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.CreateOrReturnRegistrationEntryResponse
+	54,  // 155: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryResponse
+	56,  // 156: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryResponse
+	58,  // 157: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntriesResponse
+	60,  // 158: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntriesResponse
+	62,  // 159: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntries:output_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntriesResponse
+	64,  // 160: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateRegistrationEntry:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateRegistrationEntryResponse
+	67,  // 161: spire.plugin.server.datastore.v1alpha1.DataStore.ListRegistrationEntryEvents:output_type -> spire.plugin.server.datastore.v1alpha1.ListRegistrationEntryEventsResponse
+	69,  // 162: spire.plugin.server.datastore.v1alpha1.DataStore.PruneRegistrationEntryEvents:output_type -> spire.plugin.server.datastore.v1alpha1.PruneRegistrationEntryEventsResponse
+	71,  // 163: spire.plugin.server.datastore.v1alpha1.DataStore.FetchRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.FetchRegistrationEntryEventResponse
+	73,  // 164: spire.plugin.server.datastore.v1alpha1.DataStore.CreateRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.CreateRegistrationEntryEventResponse
+	75,  // 165: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteRegistrationEntryEvent:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteRegistrationEntryEventResponse
+	77,  // 166: spire.plugin.server.datastore.v1alpha1.DataStore.CountAttestedNodes:output_type -> spire.plugin.server.datastore.v1alpha1.CountAttestedNodesResponse
+	79,  // 167: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeResponse
+	81,  // 168: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeResponse
+	83,  // 169: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeResponse
+	85,  // 170: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodes:output_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodesResponse
+	87,  // 171: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateAttestedNode:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateAttestedNodeResponse
+	89,  // 172: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedExpiredNodes:output_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedExpiredNodesResponse
+	92,  // 173: spire.plugin.server.datastore.v1alpha1.DataStore.ListAttestedNodeEvents:output_type -> spire.plugin.server.datastore.v1alpha1.ListAttestedNodeEventsResponse
+	94,  // 174: spire.plugin.server.datastore.v1alpha1.DataStore.PruneAttestedNodeEvents:output_type -> spire.plugin.server.datastore.v1alpha1.PruneAttestedNodeEventsResponse
+	96,  // 175: spire.plugin.server.datastore.v1alpha1.DataStore.FetchAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.FetchAttestedNodeEventResponse
+	98,  // 176: spire.plugin.server.datastore.v1alpha1.DataStore.CreateAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.CreateAttestedNodeEventResponse
+	100, // 177: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteAttestedNodeEvent:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteAttestedNodeEventResponse
+	102, // 178: spire.plugin.server.datastore.v1alpha1.DataStore.GetNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.GetNodeSelectorsResponse
+	104, // 179: spire.plugin.server.datastore.v1alpha1.DataStore.ListNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.ListNodeSelectorsResponse
+	107, // 180: spire.plugin.server.datastore.v1alpha1.DataStore.SetNodeSelectors:output_type -> spire.plugin.server.datastore.v1alpha1.SetNodeSelectorsResponse
+	109, // 181: spire.plugin.server.datastore.v1alpha1.DataStore.CreateJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.CreateJoinTokenResponse
+	111, // 182: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteJoinTokenResponse
+	113, // 183: spire.plugin.server.datastore.v1alpha1.DataStore.FetchJoinToken:output_type -> spire.plugin.server.datastore.v1alpha1.FetchJoinTokenResponse
+	115, // 184: spire.plugin.server.datastore.v1alpha1.DataStore.PruneJoinTokens:output_type -> spire.plugin.server.datastore.v1alpha1.PruneJoinTokensResponse
+	118, // 185: spire.plugin.server.datastore.v1alpha1.DataStore.CreateFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.CreateFederationRelationshipResponse
+	120, // 186: spire.plugin.server.datastore.v1alpha1.DataStore.FetchFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.FetchFederationRelationshipResponse
+	122, // 187: spire.plugin.server.datastore.v1alpha1.DataStore.ListFederationRelationships:output_type -> spire.plugin.server.datastore.v1alpha1.ListFederationRelationshipsResponse
+	124, // 188: spire.plugin.server.datastore.v1alpha1.DataStore.DeleteFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.DeleteFederationRelationshipResponse
+	127, // 189: spire.plugin.server.datastore.v1alpha1.DataStore.UpdateFederationRelationship:output_type -> spire.plugin.server.datastore.v1alpha1.UpdateFederationRelationshipResponse
+	130, // 190: spire.plugin.server.datastore.v1alpha1.DataStore.SetCAJournal:output_type -> spire.plugin.server.datastore.v1alpha1.SetCAJournalResponse
+	132, // 191: spire.plugin.server.datastore.v1alpha1.DataStore.FetchCAJournal:output_type -> spire.plugin.server.datastore.v1alpha1.FetchCAJournalResponse
+	134, // 192: spire.plugin.server.datastore.v1alpha1.DataStore.PruneCAJournals:output_type -> spire.plugin.server.datastore.v1alpha1.PruneCAJournalsResponse
+	136, // 193: spire.plugin.server.datastore.v1alpha1.DataStore.ListCAJournals:output_type -> spire.plugin.server.datastore.v1alpha1.ListCAJournalsResponse
 	139, // [139:194] is the sub-list for method output_type
 	84,  // [84:139] is the sub-list for method input_type
 	84,  // [84:84] is the sub-list for extension type_name
@@ -7957,7 +8013,7 @@ func file_spire_plugin_server_datastore_v1alpha1_datastore_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc), len(file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   132,
+			NumMessages:   133,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -134,6 +134,12 @@ message RegistrationEntry {
     string additional_attributes = 17;
 }
 
+message RegistrationEntry_AdditionalAttributes {
+    bool disable_x509_svid_prefetch = 1;
+
+    bool jwt_svid_include_jti = 2;
+}
+
 /** The RegistrationEntryMask is used to update only selected fields of the RegistrationEntry */
 message RegistrationEntryMask {
     bool selectors = 1;
