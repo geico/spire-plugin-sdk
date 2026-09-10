@@ -21,11 +21,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// DataConsistency specifies whether the datastore can return potentially stale data (from a read-only replica or non-quorum)
+// or if it must return the most up-to-date data (from a quorum of nodes or a leader).
 type DataConsistency int32
 
 const (
+	// The datastore must return the most up-to-date data (from a quorum of nodes or a leader).
 	DataConsistency_DATA_CONSISTENCY_REQUIRE_CURRENT DataConsistency = 0
-	DataConsistency_DATA_CONSISTENCY_TOLERATE_STALE  DataConsistency = 1
+	// The datastore can return potentially stale data (from a read-only replica or non-quorum).
+	DataConsistency_DATA_CONSISTENCY_TOLERATE_STALE DataConsistency = 1
 )
 
 // Enum value maps for DataConsistency.
@@ -67,11 +71,15 @@ func (DataConsistency) EnumDescriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{0}
 }
 
+// DeleteMode specifies the behavior of a delete operation when the resource being deleted has dependent resources.
 type DeleteMode int32
 
 const (
-	DeleteMode_DELETE_MODE_RESTRICT   DeleteMode = 0
-	DeleteMode_DELETE_MODE_DELETE     DeleteMode = 1
+	// The delete operation will fail if the resource being deleted has dependent resources.
+	DeleteMode_DELETE_MODE_RESTRICT DeleteMode = 0
+	// The delete operation will delete the resource and all dependent resources.
+	DeleteMode_DELETE_MODE_DELETE DeleteMode = 1
+	// The delete operation will delete the resource and dissociate all dependent resources.
 	DeleteMode_DELETE_MODE_DISSOCIATE DeleteMode = 2
 )
 
@@ -116,13 +124,20 @@ func (DeleteMode) EnumDescriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{1}
 }
 
+// MatchBehavior specifies how a set of filters should be applied to a set of resources. Used for selectors and federated trust domains.
 type MatchBehavior int32
 
 const (
-	MatchBehavior_MATCH_BEHAVIOR_MATCH_EXACT    MatchBehavior = 0
-	MatchBehavior_MATCH_BEHAVIOR_MATCH_SUBSET   MatchBehavior = 1
+	// The resource must match all of the filters precisely (set equality).
+	MatchBehavior_MATCH_BEHAVIOR_MATCH_EXACT MatchBehavior = 0
+	// The resource must match some of the conditions in the filter
+	// but may not have additional elements not in the filter.
+	MatchBehavior_MATCH_BEHAVIOR_MATCH_SUBSET MatchBehavior = 1
+	// The resource must match all of the conditions in the filter
+	// but may have additional elements not in the filter.
 	MatchBehavior_MATCH_BEHAVIOR_MATCH_SUPERSET MatchBehavior = 2
-	MatchBehavior_MATCH_BEHAVIOR_MATCH_ANY      MatchBehavior = 3
+	// The resource must match at least one of the conditions in the filter.
+	MatchBehavior_MATCH_BEHAVIOR_MATCH_ANY MatchBehavior = 3
 )
 
 // Enum value maps for MatchBehavior.
@@ -168,6 +183,7 @@ func (MatchBehavior) EnumDescriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{2}
 }
 
+// BundleEndpointType specifies the type of endpoint used to fetch a bundle from a federated trust domain.
 type BundleEndpointType int32
 
 const (
@@ -250,12 +266,12 @@ func (*Empty) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{0}
 }
 
-// * A type which contains attestation data for specific platform.
+// A type which contains attestation data for specific platform.
 type AttestationData struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// * Type of attestation to perform.
+	// Type of attestation to perform.
 	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	// * The attestation data.
+	// The attestation data.
 	Data          []byte `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -305,14 +321,14 @@ func (x *AttestationData) GetData() []byte {
 	return nil
 }
 
-// * A type which describes the conditions under which a registration
+// A selector describes the conditions under which a registration
 // entry is matched.
 type Selector struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// * A selector type represents the type of attestation used in attesting
+	// A selector type represents the type of attestation used in attesting
 	// the entity (Eg: AWS, K8).
 	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	// * The value to be attested.
+	// The value to be attested.
 	Value         string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -362,10 +378,11 @@ func (x *Selector) GetValue() string {
 	return ""
 }
 
-// * Represents a type with a list of Selector.
+// Selectors is a list of Selector. It is used to represent the selectors
+// associated with an attested node or registration entry.
 type Selectors struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// * A list of Selector.
+	// A list of Selector.
 	Entries       []*Selector `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -408,7 +425,9 @@ func (x *Selectors) GetEntries() []*Selector {
 	return nil
 }
 
-// Represents an attested SPIRE agent
+// AttestedNode represents a node that has been successfully attested by the SPIRE server.
+// It contains information about the node's agent identity, selectors produced during attestation,
+// and other metadata related to the node's attestation status.
 type AttestedNode struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Node SPIFFE ID
@@ -428,9 +447,11 @@ type AttestedNode struct {
 	// CanReattest field (can the attestation safely be deleted and recreated automatically)
 	CanReattest bool `protobuf:"varint,8,opt,name=can_reattest,json=canReattest,proto3" json:"can_reattest,omitempty"`
 	// AgentVersion is the version of the SPIRE agent
-	AgentVersion  string `protobuf:"bytes,9,opt,name=agent_version,json=agentVersion,proto3" json:"agent_version,omitempty"`
-	CreatedAt     int64  `protobuf:"varint,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     int64  `protobuf:"varint,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	AgentVersion string `protobuf:"bytes,9,opt,name=agent_version,json=agentVersion,proto3" json:"agent_version,omitempty"`
+	// CreatedAt (seconds since unix epoch)
+	CreatedAt int64 `protobuf:"varint,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// UpdatedAt (seconds since unix epoch)
+	UpdatedAt     int64 `protobuf:"varint,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -542,48 +563,50 @@ func (x *AttestedNode) GetUpdatedAt() int64 {
 	return 0
 }
 
-// * This is a curated record that the Server uses to set up and
+// This is a curated record that the Server uses to set up and
 // manage the various registered nodes and workloads that are controlled by it.
 type RegistrationEntry struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// * A list of selectors.
+	// A list of selectors that describe attributes that must be produced by attestation
+	// to match this registration entry.
 	Selectors []*Selector `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
-	// * The SPIFFE ID of an entity that is authorized to attest the validity
-	// of a selector
+	// The parent ID of the registration entry. This is the SPIFFE ID of the parent node
+	// that is allowed to create this registration entry.
 	ParentId string `protobuf:"bytes,2,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"`
-	// * The SPIFFE ID is a structured string used to identify a resource or
+	// The SPIFFE ID is a structured string used to identify a resource or
 	// caller. It is defined as a URI comprising a “trust domain” and an
 	// associated path.
 	SpiffeId string `protobuf:"bytes,3,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
-	// * Time to live for X509-SVIDs generated from this entry. Was previously called 'ttl'.
+	// The time to live for X.509 SVIDs generated from this entry, in seconds.
 	X509SvidTtl int32 `protobuf:"varint,4,opt,name=x509_svid_ttl,json=x509SvidTtl,proto3" json:"x509_svid_ttl,omitempty"`
-	// * A list of federated trust domain SPIFFE IDs.
+	// Trust domains with which this registration entry federates.
 	FederatesWith []string `protobuf:"bytes,5,rep,name=federates_with,json=federatesWith,proto3" json:"federates_with,omitempty"`
-	// * Entry ID
+	// Entry ID. Typically a guid, but can be any string that uniquely identifies the entry.
 	EntryId string `protobuf:"bytes,6,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
-	// * whether the workload is an admin workload. Admin workloads
+	// Whether the workload is an admin workload. Admin workloads
 	// can use their SVID's to authenticate with the Server APIs, for
 	// example.
 	Admin bool `protobuf:"varint,7,opt,name=admin,proto3" json:"admin,omitempty"`
-	// * To enable signing CA CSR in upstream spire server
+	// To enable signing CA CSR in upstream spire server
 	Downstream bool `protobuf:"varint,8,opt,name=downstream,proto3" json:"downstream,omitempty"`
-	// * Expiration of this entry, in seconds from epoch
+	// Expiration of this entry, in seconds from epoch
 	EntryExpiry int64 `protobuf:"varint,9,opt,name=entryExpiry,proto3" json:"entryExpiry,omitempty"`
-	// * DNS entries
+	// DNS entries
 	DnsNames []string `protobuf:"bytes,10,rep,name=dns_names,json=dnsNames,proto3" json:"dns_names,omitempty"`
-	// * Revision number is bumped every time the entry is updated
+	// Revision number is bumped every time the entry is updated
 	RevisionNumber int64 `protobuf:"varint,11,opt,name=revision_number,json=revisionNumber,proto3" json:"revision_number,omitempty"`
-	// * Determines if the issued SVID must be stored through an SVIDStore plugin
+	// Determines if the issued SVID must be stored through an SVIDStore plugin
 	StoreSvid bool `protobuf:"varint,12,opt,name=store_svid,json=storeSvid,proto3" json:"store_svid,omitempty"`
-	// * Time to live for JWT-SVIDs generated from this entry, if set will override ttl field.
+	// The time to live for JWT SVIDs generated from this entry, in seconds.
 	JwtSvidTtl int32 `protobuf:"varint,13,opt,name=jwt_svid_ttl,json=jwtSvidTtl,proto3" json:"jwt_svid_ttl,omitempty"`
-	// * An operator-specified string used to provide guidance on how this
+	// An operator-specified string used to provide guidance on how this
 	// identity should be used by a workload when more than one SVID is returned.
 	Hint string `protobuf:"bytes,14,opt,name=hint,proto3" json:"hint,omitempty"`
-	// * Time of creation, in seconds from epoch
+	// Time of creation, in seconds from epoch
 	CreatedAt int64 `protobuf:"varint,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// Time of last update, in seconds from epoch
 	UpdatedAt int64 `protobuf:"varint,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	// * Additional attributes may contain a number of optional fields controlling
+	// Additional attributes may contain a number of optional fields controlling
 	// the various aspects of the agent's behavior with respect to a given
 	// registration entry.
 	AdditionalAttributes *RegistrationEntry_AdditionalAttributes `protobuf:"bytes,17,opt,name=additional_attributes,json=additionalAttributes,proto3" json:"additional_attributes,omitempty"`
@@ -740,12 +763,17 @@ func (x *RegistrationEntry) GetAdditionalAttributes() *RegistrationEntry_Additio
 	return nil
 }
 
+// Additional attributes may contain a number of optional fields controlling
+// the various aspects of the agent's behavior with respect to a given
+// registration entry.
 type RegistrationEntry_AdditionalAttributes struct {
-	state                   protoimpl.MessageState `protogen:"open.v1"`
-	DisableX509SvidPrefetch bool                   `protobuf:"varint,1,opt,name=disable_x509_svid_prefetch,json=disableX509SvidPrefetch,proto3" json:"disable_x509_svid_prefetch,omitempty"`
-	JwtSvidIncludeJti       bool                   `protobuf:"varint,2,opt,name=jwt_svid_include_jti,json=jwtSvidIncludeJti,proto3" json:"jwt_svid_include_jti,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// If true, the SPIRE Server will not prefetch X.509 SVIDs for this entry.
+	DisableX509SvidPrefetch bool `protobuf:"varint,1,opt,name=disable_x509_svid_prefetch,json=disableX509SvidPrefetch,proto3" json:"disable_x509_svid_prefetch,omitempty"`
+	// If true, the SPIRE Server will include a jti claim in JWT SVIDs for this entry.
+	JwtSvidIncludeJti bool `protobuf:"varint,2,opt,name=jwt_svid_include_jti,json=jwtSvidIncludeJti,proto3" json:"jwt_svid_include_jti,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *RegistrationEntry_AdditionalAttributes) Reset() {
@@ -792,22 +820,35 @@ func (x *RegistrationEntry_AdditionalAttributes) GetJwtSvidIncludeJti() bool {
 	return false
 }
 
-// * The RegistrationEntryMask is used to update only selected fields of the RegistrationEntry
+// The RegistrationEntryMask is used to update only selected fields of the RegistrationEntry
 type RegistrationEntryMask struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Selectors     bool                   `protobuf:"varint,1,opt,name=selectors,proto3" json:"selectors,omitempty"`
-	ParentId      bool                   `protobuf:"varint,2,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"`
-	SpiffeId      bool                   `protobuf:"varint,3,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
-	X509SvidTtl   bool                   `protobuf:"varint,4,opt,name=x509_svid_ttl,json=x509SvidTtl,proto3" json:"x509_svid_ttl,omitempty"`
-	FederatesWith bool                   `protobuf:"varint,5,opt,name=federates_with,json=federatesWith,proto3" json:"federates_with,omitempty"`
-	EntryId       bool                   `protobuf:"varint,6,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
-	Admin         bool                   `protobuf:"varint,7,opt,name=admin,proto3" json:"admin,omitempty"`
-	Downstream    bool                   `protobuf:"varint,8,opt,name=downstream,proto3" json:"downstream,omitempty"`
-	EntryExpiry   bool                   `protobuf:"varint,9,opt,name=entryExpiry,proto3" json:"entryExpiry,omitempty"`
-	DnsNames      bool                   `protobuf:"varint,10,opt,name=dns_names,json=dnsNames,proto3" json:"dns_names,omitempty"`
-	StoreSvid     bool                   `protobuf:"varint,11,opt,name=store_svid,json=storeSvid,proto3" json:"store_svid,omitempty"`
-	JwtSvidTtl    bool                   `protobuf:"varint,12,opt,name=jwt_svid_ttl,json=jwtSvidTtl,proto3" json:"jwt_svid_ttl,omitempty"`
-	Hint          bool                   `protobuf:"varint,13,opt,name=hint,proto3" json:"hint,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// If true, the selectors of the registration entry will be updated.
+	Selectors bool `protobuf:"varint,1,opt,name=selectors,proto3" json:"selectors,omitempty"`
+	// If true, the parent_id of the registration entry will be updated.
+	ParentId bool `protobuf:"varint,2,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"`
+	// If true, the spiffe_id of the registration entry will be updated.
+	SpiffeId bool `protobuf:"varint,3,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
+	// If true, the x509_svid_ttl of the registration entry will be updated.
+	X509SvidTtl bool `protobuf:"varint,4,opt,name=x509_svid_ttl,json=x509SvidTtl,proto3" json:"x509_svid_ttl,omitempty"`
+	// If true, federated trust domains for the registration entry will be updated.
+	FederatesWith bool `protobuf:"varint,5,opt,name=federates_with,json=federatesWith,proto3" json:"federates_with,omitempty"`
+	// If true, the entry_id of the registration entry will be updated.
+	EntryId bool `protobuf:"varint,6,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
+	// If true, the admin field of the registration entry will be updated.
+	Admin bool `protobuf:"varint,7,opt,name=admin,proto3" json:"admin,omitempty"`
+	// If true, the downstream field of the registration entry will be updated.
+	Downstream bool `protobuf:"varint,8,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	// If true, the entryExpiry of the registration entry will be updated.
+	EntryExpiry bool `protobuf:"varint,9,opt,name=entry_expiry,json=entryExpiry,proto3" json:"entry_expiry,omitempty"`
+	// If true, the dns_names of the registration entry will be updated.
+	DnsNames bool `protobuf:"varint,10,opt,name=dns_names,json=dnsNames,proto3" json:"dns_names,omitempty"`
+	// If true, the store_svid of the registration entry will be updated.
+	StoreSvid bool `protobuf:"varint,11,opt,name=store_svid,json=storeSvid,proto3" json:"store_svid,omitempty"`
+	// If true, the jwt_svid_ttl of the registration entry will be updated.
+	JwtSvidTtl bool `protobuf:"varint,12,opt,name=jwt_svid_ttl,json=jwtSvidTtl,proto3" json:"jwt_svid_ttl,omitempty"`
+	// If true, the hint of the registration entry will be updated.
+	Hint          bool `protobuf:"varint,13,opt,name=hint,proto3" json:"hint,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -933,11 +974,10 @@ func (x *RegistrationEntryMask) GetHint() bool {
 	return false
 }
 
-// * A list of registration entries.
+// RegistrationEntries is a list of RegistrationEntry retrieved from the datastore.
 type RegistrationEntries struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// * A list of RegistrationEntry.
-	Entries       []*RegistrationEntry `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Entries       []*RegistrationEntry   `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -979,11 +1019,13 @@ func (x *RegistrationEntries) GetEntries() []*RegistrationEntry {
 	return nil
 }
 
-// * Certificate represents a ASN.1/DER encoded X509 certificate
+// Certificate represents a ASN.1/DER encoded X509 certificate
 type Certificate struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	DerBytes      []byte                 `protobuf:"bytes,1,opt,name=der_bytes,json=derBytes,proto3" json:"der_bytes,omitempty"`
-	TaintedKey    bool                   `protobuf:"varint,2,opt,name=tainted_key,json=taintedKey,proto3" json:"tainted_key,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ASN.1/DER encoded certificate data
+	DerBytes []byte `protobuf:"bytes,1,opt,name=der_bytes,json=derBytes,proto3" json:"der_bytes,omitempty"`
+	// whether the certificate is tainted
+	TaintedKey    bool `protobuf:"varint,2,opt,name=tainted_key,json=taintedKey,proto3" json:"tainted_key,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1032,16 +1074,16 @@ func (x *Certificate) GetTaintedKey() bool {
 	return false
 }
 
-// * PublicKey represents a PKIX encoded public key
+// PublicKey represents a PKIX encoded public key
 type PublicKey struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// * PKIX encoded key data
+	// PKIX encoded key data
 	PkixBytes []byte `protobuf:"bytes,1,opt,name=pkix_bytes,json=pkixBytes,proto3" json:"pkix_bytes,omitempty"`
-	// * key identifier
+	// key identifier
 	Kid string `protobuf:"bytes,2,opt,name=kid,proto3" json:"kid,omitempty"`
-	// * not after (seconds since unix epoch, 0 means "never expires")
+	// not after (seconds since unix epoch, 0 means "never expires")
 	NotAfter int64 `protobuf:"varint,3,opt,name=not_after,json=notAfter,proto3" json:"not_after,omitempty"`
-	// * whether the key is tainted
+	// whether the key is tainted
 	TaintedKey    bool `protobuf:"varint,4,opt,name=tainted_key,json=taintedKey,proto3" json:"tainted_key,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1105,13 +1147,17 @@ func (x *PublicKey) GetTaintedKey() bool {
 	return false
 }
 
+// Bundle represents a set of X.509 root CAs and JWT signing keys for a trust domain.
 type Bundle struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// * the SPIFFE ID of the trust domain the bundle belongs to
+	// The trust domain of the bundle.
 	TrustDomainId string `protobuf:"bytes,1,opt,name=trust_domain_id,json=trustDomainId,proto3" json:"trust_domain_id,omitempty"`
-	Data          []byte `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	CreatedAt     int64  `protobuf:"varint,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     int64  `protobuf:"varint,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// The bundle data.
+	Data []byte `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	// The time at which the bundle was created.
+	CreatedAt int64 `protobuf:"varint,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// The time at which the bundle was last updated.
+	UpdatedAt     int64 `protobuf:"varint,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1174,16 +1220,23 @@ func (x *Bundle) GetUpdatedAt() int64 {
 	return 0
 }
 
+// BundleMask is used to update only selected fields of the Bundle
 type BundleMask struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	RootCas         bool                   `protobuf:"varint,1,opt,name=root_cas,json=rootCas,proto3" json:"root_cas,omitempty"`
-	JwtSigningKeys  bool                   `protobuf:"varint,2,opt,name=jwt_signing_keys,json=jwtSigningKeys,proto3" json:"jwt_signing_keys,omitempty"`
-	RefreshHint     bool                   `protobuf:"varint,3,opt,name=refresh_hint,json=refreshHint,proto3" json:"refresh_hint,omitempty"`
-	SequenceNumber  bool                   `protobuf:"varint,4,opt,name=sequence_number,json=sequenceNumber,proto3" json:"sequence_number,omitempty"`
-	X509TaintedKeys bool                   `protobuf:"varint,5,opt,name=x509_tainted_keys,json=x509TaintedKeys,proto3" json:"x509_tainted_keys,omitempty"`
-	WitSigningKeys  bool                   `protobuf:"varint,6,opt,name=wit_signing_keys,json=witSigningKeys,proto3" json:"wit_signing_keys,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// If true, the root CAs of the bundle will be updated.
+	RootCas bool `protobuf:"varint,1,opt,name=root_cas,json=rootCas,proto3" json:"root_cas,omitempty"`
+	// If true, the JWT signing keys of the bundle will be updated.
+	JwtSigningKeys bool `protobuf:"varint,2,opt,name=jwt_signing_keys,json=jwtSigningKeys,proto3" json:"jwt_signing_keys,omitempty"`
+	// If true, the refresh hint of the bundle will be updated.
+	RefreshHint bool `protobuf:"varint,3,opt,name=refresh_hint,json=refreshHint,proto3" json:"refresh_hint,omitempty"`
+	// If true, the sequence number of the bundle will be updated.
+	SequenceNumber bool `protobuf:"varint,4,opt,name=sequence_number,json=sequenceNumber,proto3" json:"sequence_number,omitempty"`
+	// If true, the x509 tainted keys of the bundle will be updated.
+	X509TaintedKeys bool `protobuf:"varint,5,opt,name=x509_tainted_keys,json=x509TaintedKeys,proto3" json:"x509_tainted_keys,omitempty"`
+	// If true, the jwt tainted keys of the bundle will be updated.
+	WitSigningKeys bool `protobuf:"varint,6,opt,name=wit_signing_keys,json=witSigningKeys,proto3" json:"wit_signing_keys,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *BundleMask) Reset() {
@@ -1258,17 +1311,25 @@ func (x *BundleMask) GetWitSigningKeys() bool {
 	return false
 }
 
+// AttestedNodeMask is used to update only selected fields of the AttestedNode
 type AttestedNodeMask struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	AttestationDataType bool                   `protobuf:"varint,1,opt,name=attestation_data_type,json=attestationDataType,proto3" json:"attestation_data_type,omitempty"`
-	CertSerialNumber    bool                   `protobuf:"varint,2,opt,name=cert_serial_number,json=certSerialNumber,proto3" json:"cert_serial_number,omitempty"`
-	CertNotAfter        bool                   `protobuf:"varint,3,opt,name=cert_not_after,json=certNotAfter,proto3" json:"cert_not_after,omitempty"`
-	NewCertSerialNumber bool                   `protobuf:"varint,4,opt,name=new_cert_serial_number,json=newCertSerialNumber,proto3" json:"new_cert_serial_number,omitempty"`
-	NewCertNotAfter     bool                   `protobuf:"varint,5,opt,name=new_cert_not_after,json=newCertNotAfter,proto3" json:"new_cert_not_after,omitempty"`
-	CanReattest         bool                   `protobuf:"varint,6,opt,name=can_reattest,json=canReattest,proto3" json:"can_reattest,omitempty"`
-	AgentVersion        bool                   `protobuf:"varint,7,opt,name=agent_version,json=agentVersion,proto3" json:"agent_version,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// If true, the attestation data type of the attested node will be updated.
+	AttestationDataType bool `protobuf:"varint,1,opt,name=attestation_data_type,json=attestationDataType,proto3" json:"attestation_data_type,omitempty"`
+	// If true, the certificate serial number associated with the attested node will be updated.
+	CertSerialNumber bool `protobuf:"varint,2,opt,name=cert_serial_number,json=certSerialNumber,proto3" json:"cert_serial_number,omitempty"`
+	// If true, the certificate expiry associated with the attested node will be updated.
+	CertNotAfter bool `protobuf:"varint,3,opt,name=cert_not_after,json=certNotAfter,proto3" json:"cert_not_after,omitempty"`
+	// If true, the new certificate serial number for the attested node will be updated.
+	NewCertSerialNumber bool `protobuf:"varint,4,opt,name=new_cert_serial_number,json=newCertSerialNumber,proto3" json:"new_cert_serial_number,omitempty"`
+	// If true, the new certificate expiry for the attested node will be updated.
+	NewCertNotAfter bool `protobuf:"varint,5,opt,name=new_cert_not_after,json=newCertNotAfter,proto3" json:"new_cert_not_after,omitempty"`
+	// If true, the can_reattest field for the attested node will be updated.
+	CanReattest bool `protobuf:"varint,6,opt,name=can_reattest,json=canReattest,proto3" json:"can_reattest,omitempty"`
+	// If true, the agent version for the attested node will be updated.
+	AgentVersion  bool `protobuf:"varint,7,opt,name=agent_version,json=agentVersion,proto3" json:"agent_version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AttestedNodeMask) Reset() {
@@ -1350,9 +1411,11 @@ func (x *AttestedNodeMask) GetAgentVersion() bool {
 	return false
 }
 
+// AppendBundleRequest is used to append a new bundle for a trust domain to the datastore.
 type AppendBundleRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Bundle        *Bundle                `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The bundle to append.
+	Bundle        *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1394,9 +1457,11 @@ func (x *AppendBundleRequest) GetBundle() *Bundle {
 	return nil
 }
 
+// AppendBundleResponse is the response returned after appending a new bundle.
 type AppendBundleResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Bundle        *Bundle                `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The bundle that was appended.
+	Bundle        *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1438,9 +1503,11 @@ func (x *AppendBundleResponse) GetBundle() *Bundle {
 	return nil
 }
 
+// CreateBundleRequest is used to create a new bundle in the datastore.
 type CreateBundleRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Bundle        *Bundle                `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The bundle to create.
+	Bundle        *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1482,9 +1549,11 @@ func (x *CreateBundleRequest) GetBundle() *Bundle {
 	return nil
 }
 
+// CreateBundleResponse is the response returned after creating a new bundle.
 type CreateBundleResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Bundle        *Bundle                `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The bundle that was created.
+	Bundle        *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1526,6 +1595,7 @@ func (x *CreateBundleResponse) GetBundle() *Bundle {
 	return nil
 }
 
+// CountBundlesRequest is used to count the number of bundles in the datastore.
 type CountBundlesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -1562,9 +1632,11 @@ func (*CountBundlesRequest) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{18}
 }
 
+// CountBundlesResponse is the response returned after counting the number of bundles in the datastore.
 type CountBundlesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Count         int32                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Count is the number of bundles in the datastore.
+	Count         int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1606,10 +1678,12 @@ func (x *CountBundlesResponse) GetCount() int32 {
 	return 0
 }
 
+// DeleteBundleRequest is used to delete a bundle for a trust domain from the datastore.
 type DeleteBundleRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Required. The trust domain of the bundle to delete.
-	TrustDomain   string     `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
+	TrustDomain string `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
+	// Optional. Defaults to DELETE_MODE_RESTRICT, which will prevent deletion
 	Mode          DeleteMode `protobuf:"varint,2,opt,name=mode,proto3,enum=spire.plugin.server.datastore.v1alpha1.DeleteMode" json:"mode,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1659,6 +1733,7 @@ func (x *DeleteBundleRequest) GetMode() DeleteMode {
 	return DeleteMode_DELETE_MODE_RESTRICT
 }
 
+// DeleteBundleResponse is the response returned after deleting a bundle.
 type DeleteBundleResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -1695,6 +1770,7 @@ func (*DeleteBundleResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{21}
 }
 
+// FetchBundleRequest is used to fetch a bundle for a trust domain from the datastore.
 type FetchBundleRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Required. The trust domain of the bundle to fetch.
@@ -1740,9 +1816,10 @@ func (x *FetchBundleRequest) GetTrustDomain() string {
 	return ""
 }
 
+// FetchBundleResponse is the response returned after fetching a bundle for a trust domain.
 type FetchBundleResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Required. The bundle to return.
+	// Required. The bundle retrieved.
 	Bundle        *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1785,6 +1862,7 @@ func (x *FetchBundleResponse) GetBundle() *Bundle {
 	return nil
 }
 
+// Pagination is used to paginate through a list of results.
 type Pagination struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The number of items to return in a single page. If not specified, the
@@ -1841,9 +1919,11 @@ func (x *Pagination) GetPageToken() string {
 	return ""
 }
 
+// ListBundlesRequest is the request used to list bundles in the datastore.
 type ListBundlesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pagination    *Pagination            `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Optional. Pagination information for the request.
+	Pagination    *Pagination `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1885,10 +1965,12 @@ func (x *ListBundlesRequest) GetPagination() *Pagination {
 	return nil
 }
 
+// ListBundlesResponse is the response returned after listing bundles in the datastore.
 type ListBundlesResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Required. The bundles to return.
-	Bundles       []*Bundle   `protobuf:"bytes,1,rep,name=bundles,proto3" json:"bundles,omitempty"`
+	Bundles []*Bundle `protobuf:"bytes,1,rep,name=bundles,proto3" json:"bundles,omitempty"`
+	// Optional. Pagination information for the response.
 	Pagination    *Pagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1938,10 +2020,13 @@ func (x *ListBundlesResponse) GetPagination() *Pagination {
 	return nil
 }
 
+// PruneBundleRequest is used to prune a bundle for a trust domain from the datastore.
 type PruneBundleRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrustDomain   string                 `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
-	ExpiresBefore int64                  `protobuf:"varint,2,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The trust domain of the bundle to prune.
+	TrustDomain string `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
+	// Required. The timestamp before which the bundle should be pruned.
+	ExpiresBefore int64 `protobuf:"varint,2,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1990,9 +2075,11 @@ func (x *PruneBundleRequest) GetExpiresBefore() int64 {
 	return 0
 }
 
+// PruneBundleResponse is the response returned after pruning a bundle.
 type PruneBundleResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Changed       bool                   `protobuf:"varint,1,opt,name=changed,proto3" json:"changed,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Indicates whether the bundle was changed as a result of the prune operation.
+	Changed       bool `protobuf:"varint,1,opt,name=changed,proto3" json:"changed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2034,9 +2121,11 @@ func (x *PruneBundleResponse) GetChanged() bool {
 	return false
 }
 
+// SetBundleRequest is used to set a bundle in the datastore.
 type SetBundleRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Bundle        *Bundle                `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The bundle to set.
+	Bundle        *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2078,9 +2167,11 @@ func (x *SetBundleRequest) GetBundle() *Bundle {
 	return nil
 }
 
+// SetBundleResponse is the response returned after setting a bundle in the datastore.
 type SetBundleResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Bundle        *Bundle                `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The bundle that was set.
+	Bundle        *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2122,10 +2213,13 @@ func (x *SetBundleResponse) GetBundle() *Bundle {
 	return nil
 }
 
+// UpdateBundleRequest is used to update a bundle in the datastore.
 type UpdateBundleRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Bundle        *Bundle                `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
-	Mask          *BundleMask            `protobuf:"bytes,2,opt,name=mask,proto3" json:"mask,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The bundle to update.
+	Bundle *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
+	// Required. The mask specifying which fields of the bundle to update.
+	Mask          *BundleMask `protobuf:"bytes,2,opt,name=mask,proto3" json:"mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2174,9 +2268,11 @@ func (x *UpdateBundleRequest) GetMask() *BundleMask {
 	return nil
 }
 
+// UpdateBundleResponse is the response returned after updating a bundle in the datastore.
 type UpdateBundleResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Bundle        *Bundle                `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The bundle that was updated.
+	Bundle        *Bundle `protobuf:"bytes,1,opt,name=bundle,proto3" json:"bundle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2218,10 +2314,13 @@ func (x *UpdateBundleResponse) GetBundle() *Bundle {
 	return nil
 }
 
+// TaintX509CARequest is used to mark an X509 CA as tainted in the datastore.
 type TaintX509CARequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrustDomain   string                 `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
-	KeyId         string                 `protobuf:"bytes,2,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The trust domain of the X509 CA to taint.
+	TrustDomain string `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
+	// Required. The key ID of the X509 CA to taint.
+	KeyId         string `protobuf:"bytes,2,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2270,6 +2369,7 @@ func (x *TaintX509CARequest) GetKeyId() string {
 	return ""
 }
 
+// TaintX509CAResponse is the response returned after marking an X509 CA as tainted.
 type TaintX509CAResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -2306,10 +2406,13 @@ func (*TaintX509CAResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{34}
 }
 
+// RevokeX509CARequest is used to revoke an X509 CA in the datastore.
 type RevokeX509CARequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrustDomain   string                 `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
-	KeyId         string                 `protobuf:"bytes,2,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The trust domain of the X509 CA to revoke.
+	TrustDomain string `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
+	// Required. The key ID of the X509 CA to revoke.
+	KeyId         string `protobuf:"bytes,2,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2358,6 +2461,7 @@ func (x *RevokeX509CARequest) GetKeyId() string {
 	return ""
 }
 
+// RevokeX509CAResponse is the response returned after revoking an X509 CA.
 type RevokeX509CAResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -2394,10 +2498,13 @@ func (*RevokeX509CAResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{36}
 }
 
+// TaintJWTKeyRequest is used to mark a JWT key as tainted in the datastore.
 type TaintJWTKeyRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrustDomain   string                 `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
-	AuthorityId   string                 `protobuf:"bytes,2,opt,name=authority_id,json=authorityId,proto3" json:"authority_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The trust domain of the JWT key to taint.
+	TrustDomain string `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
+	// Required. The authority ID of the JWT key to taint.
+	AuthorityId   string `protobuf:"bytes,2,opt,name=authority_id,json=authorityId,proto3" json:"authority_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2446,9 +2553,11 @@ func (x *TaintJWTKeyRequest) GetAuthorityId() string {
 	return ""
 }
 
+// TaintJWTKeyResponse is the response returned after marking a JWT key as tainted.
 type TaintJWTKeyResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Key           *PublicKey             `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The JWT key that was tainted.
+	Key           *PublicKey `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2490,10 +2599,13 @@ func (x *TaintJWTKeyResponse) GetKey() *PublicKey {
 	return nil
 }
 
+// RevokeJWTKeyRequest is used to revoke a JWT key in the datastore.
 type RevokeJWTKeyRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrustDomain   string                 `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
-	AuthorityId   string                 `protobuf:"bytes,2,opt,name=authority_id,json=authorityId,proto3" json:"authority_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The trust domain of the JWT key to revoke.
+	TrustDomain string `protobuf:"bytes,1,opt,name=trust_domain,json=trustDomain,proto3" json:"trust_domain,omitempty"`
+	// Required. The authority ID of the JWT key to revoke.
+	AuthorityId   string `protobuf:"bytes,2,opt,name=authority_id,json=authorityId,proto3" json:"authority_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2542,9 +2654,11 @@ func (x *RevokeJWTKeyRequest) GetAuthorityId() string {
 	return ""
 }
 
+// RevokeJWTKeyResponse is the response returned after revoking a JWT key.
 type RevokeJWTKeyResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Key           *PublicKey             `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The JWT key that was revoked.
+	Key           *PublicKey `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2586,18 +2700,27 @@ func (x *RevokeJWTKeyResponse) GetKey() *PublicKey {
 	return nil
 }
 
+// CountRegistrationEntriesRequest is used to count registration entries in the datastore.
 type CountRegistrationEntriesRequest struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	DataConsistency    DataConsistency        `protobuf:"varint,1,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
-	ByParentId         string                 `protobuf:"bytes,2,opt,name=by_parent_id,json=byParentId,proto3" json:"by_parent_id,omitempty"`
-	BySpiffeId         string                 `protobuf:"bytes,3,opt,name=by_spiffe_id,json=bySpiffeId,proto3" json:"by_spiffe_id,omitempty"`
-	ByHint             string                 `protobuf:"bytes,4,opt,name=by_hint,json=byHint,proto3" json:"by_hint,omitempty"`
-	FilterByDownstream bool                   `protobuf:"varint,5,opt,name=filter_by_downstream,json=filterByDownstream,proto3" json:"filter_by_downstream,omitempty"`
-	DownstreamValue    bool                   `protobuf:"varint,6,opt,name=downstream_value,json=downstreamValue,proto3" json:"downstream_value,omitempty"`
-	BySelectors        *BySelectors           `protobuf:"bytes,7,opt,name=by_selectors,json=bySelectors,proto3" json:"by_selectors,omitempty"`
-	ByFederatesWith    *ByFederatesWith       `protobuf:"bytes,8,opt,name=by_federates_with,json=byFederatesWith,proto3" json:"by_federates_with,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// DataConsistency specifies the level of consistency to use when counting registration entries.
+	DataConsistency DataConsistency `protobuf:"varint,1,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
+	// Optional. Filter registration entries by their parent ID.
+	ByParentId string `protobuf:"bytes,2,opt,name=by_parent_id,json=byParentId,proto3" json:"by_parent_id,omitempty"`
+	// Optional. Filter registration entries by their SPIFFE ID.
+	BySpiffeId string `protobuf:"bytes,3,opt,name=by_spiffe_id,json=bySpiffeId,proto3" json:"by_spiffe_id,omitempty"`
+	// Optional. Filter registration entries by their hint.
+	ByHint string `protobuf:"bytes,4,opt,name=by_hint,json=byHint,proto3" json:"by_hint,omitempty"`
+	// Optional. Filter registration entries by whether they are downstream.
+	FilterByDownstream bool `protobuf:"varint,5,opt,name=filter_by_downstream,json=filterByDownstream,proto3" json:"filter_by_downstream,omitempty"`
+	// Optional. The value to filter downstream registration entries by.
+	DownstreamValue bool `protobuf:"varint,6,opt,name=downstream_value,json=downstreamValue,proto3" json:"downstream_value,omitempty"`
+	// Optional. Filter registration entries by their selectors.
+	BySelectors *BySelectors `protobuf:"bytes,7,opt,name=by_selectors,json=bySelectors,proto3" json:"by_selectors,omitempty"`
+	// Optional. Filter registration entries by their federates_with relationship.
+	ByFederatesWith *ByFederatesWith `protobuf:"bytes,8,opt,name=by_federates_with,json=byFederatesWith,proto3" json:"by_federates_with,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *CountRegistrationEntriesRequest) Reset() {
@@ -2686,9 +2809,11 @@ func (x *CountRegistrationEntriesRequest) GetByFederatesWith() *ByFederatesWith 
 	return nil
 }
 
+// CountRegistrationEntriesResponse is the response returned after counting registration entries in the datastore.
 type CountRegistrationEntriesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Count         int32                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The number of registration entries that match the specified filters.
+	Count         int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2730,6 +2855,7 @@ func (x *CountRegistrationEntriesResponse) GetCount() int32 {
 	return 0
 }
 
+// BySelectors is used to filter registration entries by their selectors.
 type BySelectors struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MatchBehavior MatchBehavior          `protobuf:"varint,1,opt,name=match_behavior,json=matchBehavior,proto3,enum=spire.plugin.server.datastore.v1alpha1.MatchBehavior" json:"match_behavior,omitempty"`
@@ -2782,6 +2908,7 @@ func (x *BySelectors) GetSelectors() []*Selector {
 	return nil
 }
 
+// ByFederatesWith is used to filter registration entries by the trust domains they federate with.
 type ByFederatesWith struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MatchBehavior MatchBehavior          `protobuf:"varint,1,opt,name=match_behavior,json=matchBehavior,proto3,enum=spire.plugin.server.datastore.v1alpha1.MatchBehavior" json:"match_behavior,omitempty"`
@@ -2834,9 +2961,11 @@ func (x *ByFederatesWith) GetFederatesWith() []string {
 	return nil
 }
 
+// CreateRegistrationEntryRequest is used to create a new registration entry in the datastore.
 type CreateRegistrationEntryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entry         *RegistrationEntry     `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The registration entry to create.
+	Entry         *RegistrationEntry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2878,9 +3007,11 @@ func (x *CreateRegistrationEntryRequest) GetEntry() *RegistrationEntry {
 	return nil
 }
 
+// CreateRegistrationEntryResponse is the response returned after creating a new registration entry in the datastore.
 type CreateRegistrationEntryResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entry         *RegistrationEntry     `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The registration entry that was created.
+	Entry         *RegistrationEntry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2922,9 +3053,11 @@ func (x *CreateRegistrationEntryResponse) GetEntry() *RegistrationEntry {
 	return nil
 }
 
+// CreateOrReturnRegistrationEntryRequest is used to create a new registration entry or return an existing one if it already exists.
 type CreateOrReturnRegistrationEntryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entry         *RegistrationEntry     `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The registration entry to create or return.
+	Entry         *RegistrationEntry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2966,10 +3099,13 @@ func (x *CreateOrReturnRegistrationEntryRequest) GetEntry() *RegistrationEntry {
 	return nil
 }
 
+// CreateOrReturnRegistrationEntryResponse is the response returned after attempting to create a new registration entry or returning an existing one.
 type CreateOrReturnRegistrationEntryResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entry         *RegistrationEntry     `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
-	Created       bool                   `protobuf:"varint,2,opt,name=created,proto3" json:"created,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The registration entry that was created or returned.
+	Entry *RegistrationEntry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	// Indicates whether the registration entry was newly created.
+	Created       bool `protobuf:"varint,2,opt,name=created,proto3" json:"created,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3018,9 +3154,11 @@ func (x *CreateOrReturnRegistrationEntryResponse) GetCreated() bool {
 	return false
 }
 
+// DeleteRegistrationEntryRequest is used to delete a registration entry from the datastore.
 type DeleteRegistrationEntryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EntryId       string                 `protobuf:"bytes,1,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The ID of the registration entry to delete.
+	EntryId       string `protobuf:"bytes,1,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3062,9 +3200,11 @@ func (x *DeleteRegistrationEntryRequest) GetEntryId() string {
 	return ""
 }
 
+// DeleteRegistrationEntryResponse is the response returned after deleting a registration entry from the datastore.
 type DeleteRegistrationEntryResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entry         *RegistrationEntry     `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The registration entry that was deleted.
+	Entry         *RegistrationEntry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3106,9 +3246,11 @@ func (x *DeleteRegistrationEntryResponse) GetEntry() *RegistrationEntry {
 	return nil
 }
 
+// FetchRegistrationEntryRequest is used to fetch a registration entry by its ID.
 type FetchRegistrationEntryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EntryId       string                 `protobuf:"bytes,1,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The ID of the registration entry to fetch.
+	EntryId       string `protobuf:"bytes,1,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3150,9 +3292,11 @@ func (x *FetchRegistrationEntryRequest) GetEntryId() string {
 	return ""
 }
 
+// FetchRegistrationEntryResponse is the response returned after fetching a registration entry by its ID.
 type FetchRegistrationEntryResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entry         *RegistrationEntry     `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The registration entry that was fetched.
+	Entry         *RegistrationEntry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3194,9 +3338,11 @@ func (x *FetchRegistrationEntryResponse) GetEntry() *RegistrationEntry {
 	return nil
 }
 
+// FetchRegistrationEntriesRequest is used to fetch multiple registration entries by their IDs.
 type FetchRegistrationEntriesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EntryIds      []string               `protobuf:"bytes,1,rep,name=entry_ids,json=entryIds,proto3" json:"entry_ids,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The IDs of the registration entries to fetch.
+	EntryIds      []string `protobuf:"bytes,1,rep,name=entry_ids,json=entryIds,proto3" json:"entry_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3238,9 +3384,11 @@ func (x *FetchRegistrationEntriesRequest) GetEntryIds() []string {
 	return nil
 }
 
+// FetchRegistrationEntriesResponse is the response returned after fetching multiple registration entries by their IDs.
 type FetchRegistrationEntriesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entries       []*RegistrationEntry   `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The registration entries that were fetched.
+	Entries       []*RegistrationEntry `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3282,19 +3430,29 @@ func (x *FetchRegistrationEntriesResponse) GetEntries() []*RegistrationEntry {
 	return nil
 }
 
+// ListRegistrationEntriesRequest is used to list registration entries with various filtering and pagination options.
 type ListRegistrationEntriesRequest struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	Pagination         *Pagination            `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	DataConsistency    DataConsistency        `protobuf:"varint,2,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
-	ByParentId         string                 `protobuf:"bytes,3,opt,name=by_parent_id,json=byParentId,proto3" json:"by_parent_id,omitempty"`
-	BySpiffeId         string                 `protobuf:"bytes,4,opt,name=by_spiffe_id,json=bySpiffeId,proto3" json:"by_spiffe_id,omitempty"`
-	ByHint             string                 `protobuf:"bytes,5,opt,name=by_hint,json=byHint,proto3" json:"by_hint,omitempty"`
-	FilterByDownstream bool                   `protobuf:"varint,6,opt,name=filter_by_downstream,json=filterByDownstream,proto3" json:"filter_by_downstream,omitempty"`
-	DownstreamValue    bool                   `protobuf:"varint,7,opt,name=downstream_value,json=downstreamValue,proto3" json:"downstream_value,omitempty"`
-	BySelectors        *BySelectors           `protobuf:"bytes,8,opt,name=by_selectors,json=bySelectors,proto3" json:"by_selectors,omitempty"`
-	ByFederatesWith    *ByFederatesWith       `protobuf:"bytes,9,opt,name=by_federates_with,json=byFederatesWith,proto3" json:"by_federates_with,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Pagination information for listing registration entries.
+	Pagination *Pagination `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	// The desired data consistency level for the list operation.
+	DataConsistency DataConsistency `protobuf:"varint,2,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
+	// Filter registration entries by their parent ID.
+	ByParentId string `protobuf:"bytes,3,opt,name=by_parent_id,json=byParentId,proto3" json:"by_parent_id,omitempty"`
+	// Filter registration entries by their SPIFFE ID.
+	BySpiffeId string `protobuf:"bytes,4,opt,name=by_spiffe_id,json=bySpiffeId,proto3" json:"by_spiffe_id,omitempty"`
+	// Filter registration entries by their hint.
+	ByHint string `protobuf:"bytes,5,opt,name=by_hint,json=byHint,proto3" json:"by_hint,omitempty"`
+	// Filter registration entries by whether they are downstream.
+	FilterByDownstream bool `protobuf:"varint,6,opt,name=filter_by_downstream,json=filterByDownstream,proto3" json:"filter_by_downstream,omitempty"`
+	// The value indicating whether the registration entries are downstream.
+	DownstreamValue bool `protobuf:"varint,7,opt,name=downstream_value,json=downstreamValue,proto3" json:"downstream_value,omitempty"`
+	// Filter registration entries by their selectors.
+	BySelectors *BySelectors `protobuf:"bytes,8,opt,name=by_selectors,json=bySelectors,proto3" json:"by_selectors,omitempty"`
+	// Filter registration entries by their federates-with relationships.
+	ByFederatesWith *ByFederatesWith `protobuf:"bytes,9,opt,name=by_federates_with,json=byFederatesWith,proto3" json:"by_federates_with,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ListRegistrationEntriesRequest) Reset() {
@@ -3390,10 +3548,13 @@ func (x *ListRegistrationEntriesRequest) GetByFederatesWith() *ByFederatesWith {
 	return nil
 }
 
+// ListRegistrationEntriesResponse is the response returned after listing registration entries.
 type ListRegistrationEntriesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entries       []*RegistrationEntry   `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
-	Pagination    *Pagination            `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The registration entries that matched the provided filters.
+	Entries []*RegistrationEntry `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+	// Pagination information for the listed registration entries.
+	Pagination    *Pagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3442,9 +3603,11 @@ func (x *ListRegistrationEntriesResponse) GetPagination() *Pagination {
 	return nil
 }
 
+// PruneRegistrationEntriesRequest is used to prune registration entries that have expired before a certain timestamp.
 type PruneRegistrationEntriesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ExpiresBefore int64                  `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Required. The timestamp before which registration entries should be pruned.
+	ExpiresBefore int64 `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3486,6 +3649,7 @@ func (x *PruneRegistrationEntriesRequest) GetExpiresBefore() int64 {
 	return 0
 }
 
+// PruneRegistrationEntriesResponse is the response returned after pruning registration entries.
 type PruneRegistrationEntriesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -3522,9 +3686,12 @@ func (*PruneRegistrationEntriesResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{58}
 }
 
+// UpdateRegistrationEntryRequest is used to update an existing registration entry.
 type UpdateRegistrationEntryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entry         *RegistrationEntry     `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The registration entry to be updated.
+	Entry *RegistrationEntry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	// The mask specifying which fields of the registration entry should be updated.
 	Mask          *RegistrationEntryMask `protobuf:"bytes,2,opt,name=mask,proto3" json:"mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3574,9 +3741,11 @@ func (x *UpdateRegistrationEntryRequest) GetMask() *RegistrationEntryMask {
 	return nil
 }
 
+// UpdateRegistrationEntryResponse is the response returned after updating a registration entry.
 type UpdateRegistrationEntryResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entry         *RegistrationEntry     `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The updated registration entry.
+	Entry         *RegistrationEntry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3618,13 +3787,17 @@ func (x *UpdateRegistrationEntryResponse) GetEntry() *RegistrationEntry {
 	return nil
 }
 
+// ListRegistrationEntryEventsRequest is used to list registration entry events that match the parameters.
 type ListRegistrationEntryEventsRequest struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	GreaterThanEventId uint64                 `protobuf:"varint,1,opt,name=greater_than_event_id,json=greaterThanEventId,proto3" json:"greater_than_event_id,omitempty"`
-	LessThanEventId    uint64                 `protobuf:"varint,2,opt,name=less_than_event_id,json=lessThanEventId,proto3" json:"less_than_event_id,omitempty"`
-	DataConsistency    DataConsistency        `protobuf:"varint,3,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The event ID after which to fetch registration entry events. Only events with an ID greater than this value will be returned.
+	GreaterThanEventId uint64 `protobuf:"varint,1,opt,name=greater_than_event_id,json=greaterThanEventId,proto3" json:"greater_than_event_id,omitempty"`
+	// The event ID before which to fetch registration entry events. Only events with an ID less than this value will be returned.
+	LessThanEventId uint64 `protobuf:"varint,2,opt,name=less_than_event_id,json=lessThanEventId,proto3" json:"less_than_event_id,omitempty"`
+	// The data consistency level to be used when fetching registration entry events.
+	DataConsistency DataConsistency `protobuf:"varint,3,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ListRegistrationEntryEventsRequest) Reset() {
@@ -3678,12 +3851,17 @@ func (x *ListRegistrationEntryEventsRequest) GetDataConsistency() DataConsistenc
 	return DataConsistency_DATA_CONSISTENCY_REQUIRE_CURRENT
 }
 
+// RegistrationEntryEvent represents an event related to a registration entry.
 type RegistrationEntryEvent struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EventId       uint64                 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
-	EntryId       string                 `protobuf:"bytes,2,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
-	CreatedAt     uint64                 `protobuf:"varint,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     uint64                 `protobuf:"varint,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The unique ID of the registration entry event.
+	EventId uint64 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	// The ID of the registration entry associated with this event.
+	EntryId string `protobuf:"bytes,2,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
+	// The timestamp when the event was created.
+	CreatedAt uint64 `protobuf:"varint,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// The timestamp when the event was last updated.
+	UpdatedAt     uint64 `protobuf:"varint,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3746,8 +3924,10 @@ func (x *RegistrationEntryEvent) GetUpdatedAt() uint64 {
 	return 0
 }
 
+// ListRegistrationEntryEventsResponse is the response returned after listing registration entry events.
 type ListRegistrationEntryEventsResponse struct {
-	state         protoimpl.MessageState    `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The list of registration entry events that match the request parameters.
 	Events        []*RegistrationEntryEvent `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3790,9 +3970,11 @@ func (x *ListRegistrationEntryEventsResponse) GetEvents() []*RegistrationEntryEv
 	return nil
 }
 
+// PruneRegistrationEntryEventsRequest is used to prune registration entry events that occurred before a certain timestamp.
 type PruneRegistrationEntryEventsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ExpiresBefore int64                  `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The timestamp before which registration entry events should be pruned.
+	ExpiresBefore int64 `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3834,6 +4016,7 @@ func (x *PruneRegistrationEntryEventsRequest) GetExpiresBefore() int64 {
 	return 0
 }
 
+// PruneRegistrationEntryEventsResponse is the response returned after pruning registration entry events.
 type PruneRegistrationEntryEventsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -3870,6 +4053,7 @@ func (*PruneRegistrationEntryEventsResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{65}
 }
 
+// FetchRegistrationEntryEventRequest is used to fetch a specific registration entry event by its ID.
 type FetchRegistrationEntryEventRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EventId       uint64                 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
@@ -3914,6 +4098,7 @@ func (x *FetchRegistrationEntryEventRequest) GetEventId() uint64 {
 	return 0
 }
 
+// FetchRegistrationEntryEventResponse is the response returned after fetching a specific registration entry event.
 type FetchRegistrationEntryEventResponse struct {
 	state         protoimpl.MessageState  `protogen:"open.v1"`
 	Event         *RegistrationEntryEvent `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
@@ -3958,6 +4143,7 @@ func (x *FetchRegistrationEntryEventResponse) GetEvent() *RegistrationEntryEvent
 	return nil
 }
 
+// CreateRegistrationEntryEventRequest is used to create a new registration entry event.
 type CreateRegistrationEntryEventRequest struct {
 	state         protoimpl.MessageState  `protogen:"open.v1"`
 	Event         *RegistrationEntryEvent `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
@@ -4002,6 +4188,7 @@ func (x *CreateRegistrationEntryEventRequest) GetEvent() *RegistrationEntryEvent
 	return nil
 }
 
+// CreateRegistrationEntryEventResponse is the response returned after creating a new registration entry event.
 type CreateRegistrationEntryEventResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -4038,6 +4225,7 @@ func (*CreateRegistrationEntryEventResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{69}
 }
 
+// DeleteRegistrationEntryEventRequest is used to delete a specific registration entry event by its ID.
 type DeleteRegistrationEntryEventRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EventId       uint64                 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
@@ -4082,6 +4270,7 @@ func (x *DeleteRegistrationEntryEventRequest) GetEventId() uint64 {
 	return 0
 }
 
+// DeleteRegistrationEntryEventResponse is the response returned after deleting a specific registration entry event.
 type DeleteRegistrationEntryEventResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -4118,18 +4307,27 @@ func (*DeleteRegistrationEntryEventResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{71}
 }
 
+// CountAttestedNodesRequest is used to count attested nodes based on various filters.
 type CountAttestedNodesRequest struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	BySelectors       *BySelectors           `protobuf:"bytes,1,opt,name=by_selectors,json=bySelectors,proto3" json:"by_selectors,omitempty"`
-	FetchSelectors    bool                   `protobuf:"varint,2,opt,name=fetch_selectors,json=fetchSelectors,proto3" json:"fetch_selectors,omitempty"`
-	ByExpiresBefore   int64                  `protobuf:"varint,3,opt,name=by_expires_before,json=byExpiresBefore,proto3" json:"by_expires_before,omitempty"`
-	ByAttestationType string                 `protobuf:"bytes,4,opt,name=by_attestation_type,json=byAttestationType,proto3" json:"by_attestation_type,omitempty"`
-	ByCanReattest     bool                   `protobuf:"varint,5,opt,name=by_can_reattest,json=byCanReattest,proto3" json:"by_can_reattest,omitempty"`
-	CanReattestValue  bool                   `protobuf:"varint,6,opt,name=can_reattest_value,json=canReattestValue,proto3" json:"can_reattest_value,omitempty"`
-	ByBanned          bool                   `protobuf:"varint,7,opt,name=by_banned,json=byBanned,proto3" json:"by_banned,omitempty"`
-	BannedValue       bool                   `protobuf:"varint,8,opt,name=banned_value,json=bannedValue,proto3" json:"banned_value,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Filters for selecting attested nodes based on their selectors.
+	BySelectors *BySelectors `protobuf:"bytes,1,opt,name=by_selectors,json=bySelectors,proto3" json:"by_selectors,omitempty"`
+	// Whether to fetch the selectors associated with the attested nodes.
+	FetchSelectors bool `protobuf:"varint,2,opt,name=fetch_selectors,json=fetchSelectors,proto3" json:"fetch_selectors,omitempty"`
+	// Filters for selecting attested nodes that will expire before a certain timestamp.
+	ByExpiresBefore int64 `protobuf:"varint,3,opt,name=by_expires_before,json=byExpiresBefore,proto3" json:"by_expires_before,omitempty"`
+	// Filters for selecting attested nodes based on their attestation type.
+	ByAttestationType string `protobuf:"bytes,4,opt,name=by_attestation_type,json=byAttestationType,proto3" json:"by_attestation_type,omitempty"`
+	// Filters for selecting attested nodes based on whether they can reattest.
+	ByCanReattest bool `protobuf:"varint,5,opt,name=by_can_reattest,json=byCanReattest,proto3" json:"by_can_reattest,omitempty"`
+	// The value indicating whether the attested node can reattest.
+	CanReattestValue bool `protobuf:"varint,6,opt,name=can_reattest_value,json=canReattestValue,proto3" json:"can_reattest_value,omitempty"`
+	// Filters for selecting attested nodes based on whether they are banned.
+	ByBanned bool `protobuf:"varint,7,opt,name=by_banned,json=byBanned,proto3" json:"by_banned,omitempty"`
+	// The value indicating whether the attested node is banned.
+	BannedValue   bool `protobuf:"varint,8,opt,name=banned_value,json=bannedValue,proto3" json:"banned_value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CountAttestedNodesRequest) Reset() {
@@ -4218,9 +4416,11 @@ func (x *CountAttestedNodesRequest) GetBannedValue() bool {
 	return false
 }
 
+// CountAttestedNodesResponse is the response returned after counting attested nodes.
 type CountAttestedNodesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Count         int32                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The total number of attested nodes that match the request parameters.
+	Count         int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4262,9 +4462,11 @@ func (x *CountAttestedNodesResponse) GetCount() int32 {
 	return 0
 }
 
+// CreateAttestedNodeRequest is used to create a new attested node.
 type CreateAttestedNodeRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Node          *AttestedNode          `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The attested node to be created.
+	Node          *AttestedNode `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4306,9 +4508,11 @@ func (x *CreateAttestedNodeRequest) GetNode() *AttestedNode {
 	return nil
 }
 
+// CreateAttestedNodeResponse is the response returned after creating a new attested node.
 type CreateAttestedNodeResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Node          *AttestedNode          `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The attested node that was created.
+	Node          *AttestedNode `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4350,9 +4554,11 @@ func (x *CreateAttestedNodeResponse) GetNode() *AttestedNode {
 	return nil
 }
 
+// DeleteAttestedNodeRequest is used to delete a specific attested node by its SPIFFE ID.
 type DeleteAttestedNodeRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SpiffeId      string                 `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The SPIFFE ID of the attested node to be deleted.
+	SpiffeId      string `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4394,9 +4600,11 @@ func (x *DeleteAttestedNodeRequest) GetSpiffeId() string {
 	return ""
 }
 
+// DeleteAttestedNodeResponse is the response returned after deleting a specific attested node.
 type DeleteAttestedNodeResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Node          *AttestedNode          `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The attested node that was deleted.
+	Node          *AttestedNode `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4438,9 +4646,11 @@ func (x *DeleteAttestedNodeResponse) GetNode() *AttestedNode {
 	return nil
 }
 
+// FetchAttestedNodeRequest is used to fetch a specific attested node by its SPIFFE ID.
 type FetchAttestedNodeRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SpiffeId      string                 `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The SPIFFE ID of the attested node to be fetched.
+	SpiffeId      string `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4482,9 +4692,11 @@ func (x *FetchAttestedNodeRequest) GetSpiffeId() string {
 	return ""
 }
 
+// FetchAttestedNodeResponse is the response returned after fetching a specific attested node.
 type FetchAttestedNodeResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Node          *AttestedNode          `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The attested node that was fetched.
+	Node          *AttestedNode `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4526,21 +4738,33 @@ func (x *FetchAttestedNodeResponse) GetNode() *AttestedNode {
 	return nil
 }
 
+// ListAttestedNodesRequest is used to list attested nodes based on various filters.
 type ListAttestedNodesRequest struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	Pagination        *Pagination            `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	BySelectors       *BySelectors           `protobuf:"bytes,2,opt,name=by_selectors,json=bySelectors,proto3" json:"by_selectors,omitempty"`
-	FetchSelectors    bool                   `protobuf:"varint,3,opt,name=fetch_selectors,json=fetchSelectors,proto3" json:"fetch_selectors,omitempty"`
-	ByExpiresBefore   int64                  `protobuf:"varint,4,opt,name=by_expires_before,json=byExpiresBefore,proto3" json:"by_expires_before,omitempty"`
-	ByAttestationType string                 `protobuf:"bytes,5,opt,name=by_attestation_type,json=byAttestationType,proto3" json:"by_attestation_type,omitempty"`
-	ByCanReattest     bool                   `protobuf:"varint,6,opt,name=by_can_reattest,json=byCanReattest,proto3" json:"by_can_reattest,omitempty"`
-	CanReattestValue  bool                   `protobuf:"varint,7,opt,name=can_reattest_value,json=canReattestValue,proto3" json:"can_reattest_value,omitempty"`
-	ByBanned          bool                   `protobuf:"varint,8,opt,name=by_banned,json=byBanned,proto3" json:"by_banned,omitempty"`
-	BannedValue       bool                   `protobuf:"varint,9,opt,name=banned_value,json=bannedValue,proto3" json:"banned_value,omitempty"`
-	ByValidAt         int64                  `protobuf:"varint,10,opt,name=by_valid_at,json=byValidAt,proto3" json:"by_valid_at,omitempty"`
-	BySpiffeIds       []string               `protobuf:"bytes,11,rep,name=by_spiffe_ids,json=bySpiffeIds,proto3" json:"by_spiffe_ids,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Pagination information for listing attested nodes.
+	Pagination *Pagination `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	// Filters for selecting attested nodes based on their selectors.
+	BySelectors *BySelectors `protobuf:"bytes,2,opt,name=by_selectors,json=bySelectors,proto3" json:"by_selectors,omitempty"`
+	// Whether to fetch the selectors associated with the attested nodes.
+	FetchSelectors bool `protobuf:"varint,3,opt,name=fetch_selectors,json=fetchSelectors,proto3" json:"fetch_selectors,omitempty"`
+	// Filters for selecting attested nodes based on their expiration time.
+	ByExpiresBefore int64 `protobuf:"varint,4,opt,name=by_expires_before,json=byExpiresBefore,proto3" json:"by_expires_before,omitempty"`
+	// Filters for selecting attested nodes based on their attestation type.
+	ByAttestationType string `protobuf:"bytes,5,opt,name=by_attestation_type,json=byAttestationType,proto3" json:"by_attestation_type,omitempty"`
+	// Filters for selecting attested nodes based on their ability to reattest.
+	ByCanReattest bool `protobuf:"varint,6,opt,name=by_can_reattest,json=byCanReattest,proto3" json:"by_can_reattest,omitempty"`
+	// The value indicating whether the attested node can reattest.
+	CanReattestValue bool `protobuf:"varint,7,opt,name=can_reattest_value,json=canReattestValue,proto3" json:"can_reattest_value,omitempty"`
+	// Filters for selecting attested nodes based on their banned status.
+	ByBanned bool `protobuf:"varint,8,opt,name=by_banned,json=byBanned,proto3" json:"by_banned,omitempty"`
+	// The value indicating whether the attested node is banned.
+	BannedValue bool `protobuf:"varint,9,opt,name=banned_value,json=bannedValue,proto3" json:"banned_value,omitempty"`
+	// Filters for selecting attested nodes based on their validity at a specific timestamp.
+	ByValidAt int64 `protobuf:"varint,10,opt,name=by_valid_at,json=byValidAt,proto3" json:"by_valid_at,omitempty"`
+	// Filters for selecting attested nodes based on their SPIFFE IDs.
+	BySpiffeIds   []string `protobuf:"bytes,11,rep,name=by_spiffe_ids,json=bySpiffeIds,proto3" json:"by_spiffe_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListAttestedNodesRequest) Reset() {
@@ -4650,10 +4874,13 @@ func (x *ListAttestedNodesRequest) GetBySpiffeIds() []string {
 	return nil
 }
 
+// ListAttestedNodesResponse is the response returned after listing attested nodes.
 type ListAttestedNodesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Nodes         []*AttestedNode        `protobuf:"bytes,1,rep,name=nodes,proto3" json:"nodes,omitempty"`
-	Pagination    *Pagination            `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The list of attested nodes that match the request parameters.
+	Nodes []*AttestedNode `protobuf:"bytes,1,rep,name=nodes,proto3" json:"nodes,omitempty"`
+	// Pagination information for the list of attested nodes.
+	Pagination    *Pagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4702,10 +4929,13 @@ func (x *ListAttestedNodesResponse) GetPagination() *Pagination {
 	return nil
 }
 
+// UpdateAttestedNodeRequest is used to update a specific attested node.
 type UpdateAttestedNodeRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Node          *AttestedNode          `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
-	Mask          *AttestedNodeMask      `protobuf:"bytes,2,opt,name=mask,proto3" json:"mask,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The attested node to be updated.
+	Node *AttestedNode `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	// The mask specifying which fields of the attested node should be updated.
+	Mask          *AttestedNodeMask `protobuf:"bytes,2,opt,name=mask,proto3" json:"mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4754,9 +4984,11 @@ func (x *UpdateAttestedNodeRequest) GetMask() *AttestedNodeMask {
 	return nil
 }
 
+// UpdateAttestedNodeResponse is the response returned after updating a specific attested node.
 type UpdateAttestedNodeResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Node          *AttestedNode          `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The attested node that was updated.
+	Node          *AttestedNode `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4798,13 +5030,17 @@ func (x *UpdateAttestedNodeResponse) GetNode() *AttestedNode {
 	return nil
 }
 
+// PruneAttestedExpiredNodesRequest is used to prune attested nodes that have expired.
 type PruneAttestedExpiredNodesRequest struct {
-	state                  protoimpl.MessageState `protogen:"open.v1"`
-	ExpiresBefore          int64                  `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
-	IncludeNonReattestable bool                   `protobuf:"varint,2,opt,name=include_non_reattestable,json=includeNonReattestable,proto3" json:"include_non_reattestable,omitempty"`
-	BatchSize              int64                  `protobuf:"varint,3,opt,name=batch_size,json=batchSize,proto3" json:"batch_size,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The timestamp before which attested nodes are considered expired and should be pruned.
+	ExpiresBefore int64 `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
+	// Whether to include non-reattestable attested nodes in the pruning process.
+	IncludeNonReattestable bool `protobuf:"varint,2,opt,name=include_non_reattestable,json=includeNonReattestable,proto3" json:"include_non_reattestable,omitempty"`
+	// The maximum number of attested nodes to prune in a single batch.
+	BatchSize     int64 `protobuf:"varint,3,opt,name=batch_size,json=batchSize,proto3" json:"batch_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PruneAttestedExpiredNodesRequest) Reset() {
@@ -4858,6 +5094,7 @@ func (x *PruneAttestedExpiredNodesRequest) GetBatchSize() int64 {
 	return 0
 }
 
+// PruneAttestedExpiredNodesResponse is the response returned after pruning attested nodes that have expired.
 type PruneAttestedExpiredNodesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -4894,13 +5131,17 @@ func (*PruneAttestedExpiredNodesResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{85}
 }
 
+// ListAttestedNodeEventsRequest is used to list attested node events based on various filters.
 type ListAttestedNodeEventsRequest struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	GreaterThanEventId int64                  `protobuf:"varint,1,opt,name=greater_than_event_id,json=greaterThanEventId,proto3" json:"greater_than_event_id,omitempty"`
-	LessThanEventId    int64                  `protobuf:"varint,2,opt,name=less_than_event_id,json=lessThanEventId,proto3" json:"less_than_event_id,omitempty"`
-	DataConsistency    DataConsistency        `protobuf:"varint,3,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The event ID after which to list attested node events.
+	GreaterThanEventId int64 `protobuf:"varint,1,opt,name=greater_than_event_id,json=greaterThanEventId,proto3" json:"greater_than_event_id,omitempty"`
+	// The event ID before which to list attested node events.
+	LessThanEventId int64 `protobuf:"varint,2,opt,name=less_than_event_id,json=lessThanEventId,proto3" json:"less_than_event_id,omitempty"`
+	// The data consistency level to use when listing attested node events.
+	DataConsistency DataConsistency `protobuf:"varint,3,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ListAttestedNodeEventsRequest) Reset() {
@@ -4954,12 +5195,17 @@ func (x *ListAttestedNodeEventsRequest) GetDataConsistency() DataConsistency {
 	return DataConsistency_DATA_CONSISTENCY_REQUIRE_CURRENT
 }
 
+// AttestedNodeEvent represents an event related to an attested node.
 type AttestedNodeEvent struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EventId       uint64                 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
-	SpiffeId      string                 `protobuf:"bytes,2,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     int64                  `protobuf:"varint,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The unique ID of the event.
+	EventId uint64 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	// The SPIFFE ID of the attested node associated with the event.
+	SpiffeId string `protobuf:"bytes,2,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
+	// The timestamp when the event was created.
+	CreatedAt int64 `protobuf:"varint,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// The timestamp when the event was last updated.
+	UpdatedAt     int64 `protobuf:"varint,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5022,9 +5268,11 @@ func (x *AttestedNodeEvent) GetUpdatedAt() int64 {
 	return 0
 }
 
+// ListAttestedNodeEventsResponse is the response returned after listing attested node events.
 type ListAttestedNodeEventsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Events        []*AttestedNodeEvent   `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The list of attested node events that match the specified filters.
+	Events        []*AttestedNodeEvent `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5066,9 +5314,11 @@ func (x *ListAttestedNodeEventsResponse) GetEvents() []*AttestedNodeEvent {
 	return nil
 }
 
+// PruneAttestedNodeEventsRequest is used to prune attested node events that are older than a specified timestamp.
 type PruneAttestedNodeEventsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OlderThan     int64                  `protobuf:"varint,1,opt,name=older_than,json=olderThan,proto3" json:"older_than,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The timestamp before which attested node events should be pruned.
+	OlderThan     int64 `protobuf:"varint,1,opt,name=older_than,json=olderThan,proto3" json:"older_than,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5110,6 +5360,7 @@ func (x *PruneAttestedNodeEventsRequest) GetOlderThan() int64 {
 	return 0
 }
 
+// PruneAttestedNodeEventsResponse is the response returned after pruning attested node events.
 type PruneAttestedNodeEventsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -5146,9 +5397,11 @@ func (*PruneAttestedNodeEventsResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{90}
 }
 
+// FetchAttestedNodeEventRequest is used to fetch a specific attested node event by its event ID.
 type FetchAttestedNodeEventRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EventId       uint64                 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The unique ID of the attested node event to fetch.
+	EventId       uint64 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5190,9 +5443,11 @@ func (x *FetchAttestedNodeEventRequest) GetEventId() uint64 {
 	return 0
 }
 
+// FetchAttestedNodeEventResponse is the response returned after fetching a specific attested node event.
 type FetchAttestedNodeEventResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Event         *AttestedNodeEvent     `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The attested node event that was fetched.
+	Event         *AttestedNodeEvent `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5234,9 +5489,11 @@ func (x *FetchAttestedNodeEventResponse) GetEvent() *AttestedNodeEvent {
 	return nil
 }
 
+// CreateAttestedNodeEventRequest is used to create a new attested node event.
 type CreateAttestedNodeEventRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Event         *AttestedNodeEvent     `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The attested node event to create.
+	Event         *AttestedNodeEvent `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5278,6 +5535,7 @@ func (x *CreateAttestedNodeEventRequest) GetEvent() *AttestedNodeEvent {
 	return nil
 }
 
+// CreateAttestedNodeEventResponse is the response returned after creating a new attested node event.
 type CreateAttestedNodeEventResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -5314,9 +5572,11 @@ func (*CreateAttestedNodeEventResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{94}
 }
 
+// DeleteAttestedNodeEventRequest is used to delete a specific attested node event by its event ID.
 type DeleteAttestedNodeEventRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EventId       uint64                 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The unique ID of the attested node event to delete.
+	EventId       uint64 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5358,6 +5618,7 @@ func (x *DeleteAttestedNodeEventRequest) GetEventId() uint64 {
 	return 0
 }
 
+// DeleteAttestedNodeEventResponse is the response returned after deleting a specific attested node event.
 type DeleteAttestedNodeEventResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -5394,10 +5655,13 @@ func (*DeleteAttestedNodeEventResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{96}
 }
 
+// GetNodeSelectorsRequest is used to fetch the selectors for a specific node.
 type GetNodeSelectorsRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	SpiffeId        string                 `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
-	DataConsistency DataConsistency        `protobuf:"varint,2,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The SPIFFE ID of the node whose selectors are being fetched.
+	SpiffeId string `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
+	// The data consistency requirement for fetching the node selectors.
+	DataConsistency DataConsistency `protobuf:"varint,2,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -5446,9 +5710,11 @@ func (x *GetNodeSelectorsRequest) GetDataConsistency() DataConsistency {
 	return DataConsistency_DATA_CONSISTENCY_REQUIRE_CURRENT
 }
 
+// GetNodeSelectorsResponse is the response returned after fetching the selectors for a specific node.
 type GetNodeSelectorsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Selectors     []*Selector            `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Selectors associated with the node.
+	Selectors     []*Selector `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5490,10 +5756,13 @@ func (x *GetNodeSelectorsResponse) GetSelectors() []*Selector {
 	return nil
 }
 
+// ListNodeSelectorsRequest is used to list the selectors for all nodes at a specific point in time.
 type ListNodeSelectorsRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	ValidAt         int64                  `protobuf:"varint,1,opt,name=valid_at,json=validAt,proto3" json:"valid_at,omitempty"`
-	DataConsistency DataConsistency        `protobuf:"varint,2,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The point in time at which to list the node selectors.
+	ValidAt int64 `protobuf:"varint,1,opt,name=valid_at,json=validAt,proto3" json:"valid_at,omitempty"`
+	// The data consistency requirement for listing the node selectors.
+	DataConsistency DataConsistency `protobuf:"varint,2,opt,name=data_consistency,json=dataConsistency,proto3,enum=spire.plugin.server.datastore.v1alpha1.DataConsistency" json:"data_consistency,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -5542,9 +5811,11 @@ func (x *ListNodeSelectorsRequest) GetDataConsistency() DataConsistency {
 	return DataConsistency_DATA_CONSISTENCY_REQUIRE_CURRENT
 }
 
+// ListNodeSelectorsResponse is the response returned after listing the selectors for all nodes.
 type ListNodeSelectorsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Selectors     []*NodeSelectorEntry   `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The list of node selector entries.
+	Selectors     []*NodeSelectorEntry `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5586,10 +5857,13 @@ func (x *ListNodeSelectorsResponse) GetSelectors() []*NodeSelectorEntry {
 	return nil
 }
 
+// NodeSelectorEntry represents the selectors associated with a specific node.
 type NodeSelectorEntry struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SpiffeId      string                 `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
-	Selectors     []*Selector            `protobuf:"bytes,2,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The SPIFFE ID of the node.
+	SpiffeId string `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
+	// The selectors associated with the node.
+	Selectors     []*Selector `protobuf:"bytes,2,rep,name=selectors,proto3" json:"selectors,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5638,10 +5912,13 @@ func (x *NodeSelectorEntry) GetSelectors() []*Selector {
 	return nil
 }
 
+// SetNodeSelectorsRequest is used to set the selectors for a specific node.
 type SetNodeSelectorsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SpiffeId      string                 `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
-	Selectors     []*Selector            `protobuf:"bytes,2,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The SPIFFE ID of the node whose selectors are being set.
+	SpiffeId string `protobuf:"bytes,1,opt,name=spiffe_id,json=spiffeId,proto3" json:"spiffe_id,omitempty"`
+	// The selectors to associate with the node.
+	Selectors     []*Selector `protobuf:"bytes,2,rep,name=selectors,proto3" json:"selectors,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5690,9 +5967,11 @@ func (x *SetNodeSelectorsRequest) GetSelectors() []*Selector {
 	return nil
 }
 
+// SetNodeSelectorsResponse is the response returned after setting the selectors for a specific node.
 type SetNodeSelectorsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Selectors     []*Selector            `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The selectors that were set for the node.
+	Selectors     []*Selector `protobuf:"bytes,1,rep,name=selectors,proto3" json:"selectors,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5734,10 +6013,13 @@ func (x *SetNodeSelectorsResponse) GetSelectors() []*Selector {
 	return nil
 }
 
+// CreateJoinTokenRequest is used to create a new join token.
 type CreateJoinTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	ExpiresAt     int64                  `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The token value to create.
+	Token string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	// The expiration time of the join token.
+	ExpiresAt     int64 `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5786,10 +6068,13 @@ func (x *CreateJoinTokenRequest) GetExpiresAt() int64 {
 	return 0
 }
 
+// CreateJoinTokenResponse is the response returned after creating a new join token.
 type CreateJoinTokenResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	ExpiresAt     int64                  `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The join token that was created.
+	Token string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	// The expiration time of the join token.
+	ExpiresAt     int64 `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5838,9 +6123,11 @@ func (x *CreateJoinTokenResponse) GetExpiresAt() int64 {
 	return 0
 }
 
+// DeleteJoinTokenRequest is used to delete a specific join token.
 type DeleteJoinTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The value of the join token to delete.
+	Token         string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5882,6 +6169,7 @@ func (x *DeleteJoinTokenRequest) GetToken() string {
 	return ""
 }
 
+// DeleteJoinTokenResponse is the response returned after deleting a specific join token.
 type DeleteJoinTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -5918,9 +6206,11 @@ func (*DeleteJoinTokenResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{107}
 }
 
+// FetchJoinTokenRequest is used to fetch a specific join token.
 type FetchJoinTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The value of the join token to fetch.
+	Token         string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5962,10 +6252,13 @@ func (x *FetchJoinTokenRequest) GetToken() string {
 	return ""
 }
 
+// FetchJoinTokenResponse is the response returned after fetching a specific join token.
 type FetchJoinTokenResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	ExpiresAt     int64                  `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The join token that was fetched.
+	Token string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	// The expiration time of the join token.
+	ExpiresAt     int64 `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6014,9 +6307,11 @@ func (x *FetchJoinTokenResponse) GetExpiresAt() int64 {
 	return 0
 }
 
+// PruneJoinTokensRequest is used to prune join tokens that have expired before a specific time.
 type PruneJoinTokensRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ExpiresBefore int64                  `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The time before which join tokens should be pruned.
+	ExpiresBefore int64 `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6058,6 +6353,7 @@ func (x *PruneJoinTokensRequest) GetExpiresBefore() int64 {
 	return 0
 }
 
+// PruneJoinTokensResponse is the response returned after pruning join tokens.
 type PruneJoinTokensResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -6094,19 +6390,29 @@ func (*PruneJoinTokensResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{111}
 }
 
+// FederationRelationship represents a federation relationship with another trust domain.
 type FederationRelationship struct {
-	state                         protoimpl.MessageState `protogen:"open.v1"`
-	TrustDomainId                 string                 `protobuf:"bytes,1,opt,name=trust_domain_id,json=trustDomainId,proto3" json:"trust_domain_id,omitempty"`
-	BundleEndpointType            BundleEndpointType     `protobuf:"varint,2,opt,name=bundle_endpoint_type,json=bundleEndpointType,proto3,enum=spire.plugin.server.datastore.v1alpha1.BundleEndpointType" json:"bundle_endpoint_type,omitempty"`
-	BundleEndpointUrl             string                 `protobuf:"bytes,3,opt,name=bundle_endpoint_url,json=bundleEndpointUrl,proto3" json:"bundle_endpoint_url,omitempty"`
-	BundleEndpointSpiffeId        string                 `protobuf:"bytes,4,opt,name=bundle_endpoint_spiffe_id,json=bundleEndpointSpiffeId,proto3" json:"bundle_endpoint_spiffe_id,omitempty"`
-	RefreshInterval               int64                  `protobuf:"varint,5,opt,name=refresh_interval,json=refreshInterval,proto3" json:"refresh_interval,omitempty"`
-	TrustDomainBundleEndpointAuth bool                   `protobuf:"varint,6,opt,name=trust_domain_bundle_endpoint_auth,json=trustDomainBundleEndpointAuth,proto3" json:"trust_domain_bundle_endpoint_auth,omitempty"`
-	TrustDomainBundle             *Bundle                `protobuf:"bytes,7,opt,name=trust_domain_bundle,json=trustDomainBundle,proto3" json:"trust_domain_bundle,omitempty"`
-	CreatedAt                     int64                  `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt                     int64                  `protobuf:"varint,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields                 protoimpl.UnknownFields
-	sizeCache                     protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The trust domain ID of the federation relationship.
+	TrustDomainId string `protobuf:"bytes,1,opt,name=trust_domain_id,json=trustDomainId,proto3" json:"trust_domain_id,omitempty"`
+	// The type of the bundle endpoint.
+	BundleEndpointType BundleEndpointType `protobuf:"varint,2,opt,name=bundle_endpoint_type,json=bundleEndpointType,proto3,enum=spire.plugin.server.datastore.v1alpha1.BundleEndpointType" json:"bundle_endpoint_type,omitempty"`
+	// The URL of the bundle endpoint.
+	BundleEndpointUrl string `protobuf:"bytes,3,opt,name=bundle_endpoint_url,json=bundleEndpointUrl,proto3" json:"bundle_endpoint_url,omitempty"`
+	// The SPIFFE ID of the bundle endpoint.
+	BundleEndpointSpiffeId string `protobuf:"bytes,4,opt,name=bundle_endpoint_spiffe_id,json=bundleEndpointSpiffeId,proto3" json:"bundle_endpoint_spiffe_id,omitempty"`
+	// The refresh interval for the federation relationship.
+	RefreshInterval int64 `protobuf:"varint,5,opt,name=refresh_interval,json=refreshInterval,proto3" json:"refresh_interval,omitempty"`
+	// Whether the trust domain bundle endpoint authentication is enabled.
+	TrustDomainBundleEndpointAuth bool `protobuf:"varint,6,opt,name=trust_domain_bundle_endpoint_auth,json=trustDomainBundleEndpointAuth,proto3" json:"trust_domain_bundle_endpoint_auth,omitempty"`
+	// The trust domain bundle associated with the federation relationship.
+	TrustDomainBundle *Bundle `protobuf:"bytes,7,opt,name=trust_domain_bundle,json=trustDomainBundle,proto3" json:"trust_domain_bundle,omitempty"`
+	// The creation time of the federation relationship.
+	CreatedAt int64 `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// The last update time of the federation relationship.
+	UpdatedAt     int64 `protobuf:"varint,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FederationRelationship) Reset() {
@@ -6202,8 +6508,10 @@ func (x *FederationRelationship) GetUpdatedAt() int64 {
 	return 0
 }
 
+// CreateFederationRelationshipRequest is used to create a new federation relationship.
 type CreateFederationRelationshipRequest struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The federation relationship to be created.
 	Relationship  *FederationRelationship `protobuf:"bytes,1,opt,name=relationship,proto3" json:"relationship,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -6246,8 +6554,10 @@ func (x *CreateFederationRelationshipRequest) GetRelationship() *FederationRelat
 	return nil
 }
 
+// CreateFederationRelationshipResponse is the response returned after creating a federation relationship.
 type CreateFederationRelationshipResponse struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The federation relationship that was created.
 	Relationship  *FederationRelationship `protobuf:"bytes,1,opt,name=relationship,proto3" json:"relationship,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -6290,9 +6600,11 @@ func (x *CreateFederationRelationshipResponse) GetRelationship() *FederationRela
 	return nil
 }
 
+// FetchFederationRelationshipRequest is used to fetch a specific federation relationship.
 type FetchFederationRelationshipRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrustDomainId string                 `protobuf:"bytes,1,opt,name=trust_domain_id,json=trustDomainId,proto3" json:"trust_domain_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The trust domain ID of the federation relationship to be fetched.
+	TrustDomainId string `protobuf:"bytes,1,opt,name=trust_domain_id,json=trustDomainId,proto3" json:"trust_domain_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6334,8 +6646,10 @@ func (x *FetchFederationRelationshipRequest) GetTrustDomainId() string {
 	return ""
 }
 
+// FetchFederationRelationshipResponse is the response returned when fetching a federation relationship.
 type FetchFederationRelationshipResponse struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Federation relationship that was fetched.
 	Relationship  *FederationRelationship `protobuf:"bytes,1,opt,name=relationship,proto3" json:"relationship,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -6378,9 +6692,11 @@ func (x *FetchFederationRelationshipResponse) GetRelationship() *FederationRelat
 	return nil
 }
 
+// ListFederationRelationshipsRequest is used to list federation relationships.
 type ListFederationRelationshipsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pagination    *Pagination            `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Pagination information for listing federation relationships.
+	Pagination    *Pagination `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6422,10 +6738,13 @@ func (x *ListFederationRelationshipsRequest) GetPagination() *Pagination {
 	return nil
 }
 
+// ListFederationRelationshipsResponse is the response returned when listing federation relationships.
 type ListFederationRelationshipsResponse struct {
-	state         protoimpl.MessageState    `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The list of federation relationships.
 	Relationships []*FederationRelationship `protobuf:"bytes,1,rep,name=relationships,proto3" json:"relationships,omitempty"`
-	Pagination    *Pagination               `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	// Pagination information for the list of federation relationships.
+	Pagination    *Pagination `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6474,9 +6793,11 @@ func (x *ListFederationRelationshipsResponse) GetPagination() *Pagination {
 	return nil
 }
 
+// DeleteFederationRelationshipRequest is used to delete a federation relationship.
 type DeleteFederationRelationshipRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrustDomainId string                 `protobuf:"bytes,1,opt,name=trust_domain_id,json=trustDomainId,proto3" json:"trust_domain_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The trust domain ID of the federation relationship to be deleted.
+	TrustDomainId string `protobuf:"bytes,1,opt,name=trust_domain_id,json=trustDomainId,proto3" json:"trust_domain_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6518,6 +6839,7 @@ func (x *DeleteFederationRelationshipRequest) GetTrustDomainId() string {
 	return ""
 }
 
+// DeleteFederationRelationshipResponse is the response returned after deleting a federation relationship.
 type DeleteFederationRelationshipResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -6554,13 +6876,17 @@ func (*DeleteFederationRelationshipResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{120}
 }
 
+// FederationRelationshipMask is used to specify which fields of a federation relationship should be updated.
 type FederationRelationshipMask struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	BundleEndpointUrl     bool                   `protobuf:"varint,1,opt,name=bundle_endpoint_url,json=bundleEndpointUrl,proto3" json:"bundle_endpoint_url,omitempty"`
-	BundleEndpointProfile bool                   `protobuf:"varint,2,opt,name=bundle_endpoint_profile,json=bundleEndpointProfile,proto3" json:"bundle_endpoint_profile,omitempty"`
-	TrustDomainBundle     bool                   `protobuf:"varint,3,opt,name=trust_domain_bundle,json=trustDomainBundle,proto3" json:"trust_domain_bundle,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Whether the bundle endpoint URL should be updated.
+	BundleEndpointUrl bool `protobuf:"varint,1,opt,name=bundle_endpoint_url,json=bundleEndpointUrl,proto3" json:"bundle_endpoint_url,omitempty"`
+	// Whether the bundle endpoint profile should be updated.
+	BundleEndpointProfile bool `protobuf:"varint,2,opt,name=bundle_endpoint_profile,json=bundleEndpointProfile,proto3" json:"bundle_endpoint_profile,omitempty"`
+	// Whether the trust domain bundle should be updated.
+	TrustDomainBundle bool `protobuf:"varint,3,opt,name=trust_domain_bundle,json=trustDomainBundle,proto3" json:"trust_domain_bundle,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *FederationRelationshipMask) Reset() {
@@ -6614,9 +6940,12 @@ func (x *FederationRelationshipMask) GetTrustDomainBundle() bool {
 	return false
 }
 
+// UpdateFederationRelationshipRequest is used to update a federation relationship.
 type UpdateFederationRelationshipRequest struct {
-	state         protoimpl.MessageState      `protogen:"open.v1"`
-	Relationship  *FederationRelationship     `protobuf:"bytes,1,opt,name=relationship,proto3" json:"relationship,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The federation relationship to be updated.
+	Relationship *FederationRelationship `protobuf:"bytes,1,opt,name=relationship,proto3" json:"relationship,omitempty"`
+	// The mask specifying which fields of the federation relationship should be updated.
 	Mask          *FederationRelationshipMask `protobuf:"bytes,2,opt,name=mask,proto3" json:"mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -6666,8 +6995,10 @@ func (x *UpdateFederationRelationshipRequest) GetMask() *FederationRelationshipM
 	return nil
 }
 
+// UpdateFederationRelationshipResponse is the response returned after updating a federation relationship.
 type UpdateFederationRelationshipResponse struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The updated federation relationship.
 	Relationship  *FederationRelationship `protobuf:"bytes,1,opt,name=relationship,proto3" json:"relationship,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -6710,15 +7041,21 @@ func (x *UpdateFederationRelationshipResponse) GetRelationship() *FederationRela
 	return nil
 }
 
+// CAJournal represents a Certificate Authority journal entry.
 type CAJournal struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Id                    uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	ActiveX509AuthorityId string                 `protobuf:"bytes,2,opt,name=active_x509_authority_id,json=activeX509AuthorityId,proto3" json:"active_x509_authority_id,omitempty"`
-	Data                  []byte                 `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
-	CreatedAt             int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt             int64                  `protobuf:"varint,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The unique ID of the CA journal entry.
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The ID of the active X.509 authority associated with this CA journal entry.
+	ActiveX509AuthorityId string `protobuf:"bytes,2,opt,name=active_x509_authority_id,json=activeX509AuthorityId,proto3" json:"active_x509_authority_id,omitempty"`
+	// The serialized data of the CA journal entry.
+	Data []byte `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	// The timestamp when the CA journal entry was created.
+	CreatedAt int64 `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// The timestamp when the CA journal entry was last updated.
+	UpdatedAt     int64 `protobuf:"varint,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CAJournal) Reset() {
@@ -6786,9 +7123,11 @@ func (x *CAJournal) GetUpdatedAt() int64 {
 	return 0
 }
 
+// SetCAJournalRequest is used to set a CA journal.
 type SetCAJournalRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Journal       *CAJournal             `protobuf:"bytes,1,opt,name=journal,proto3" json:"journal,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The CA journal to be set.
+	Journal       *CAJournal `protobuf:"bytes,1,opt,name=journal,proto3" json:"journal,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6830,9 +7169,11 @@ func (x *SetCAJournalRequest) GetJournal() *CAJournal {
 	return nil
 }
 
+// SetCAJournalResponse is the response returned after setting a CA journal.
 type SetCAJournalResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Journal       *CAJournal             `protobuf:"bytes,1,opt,name=journal,proto3" json:"journal,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The CA journal that was set.
+	Journal       *CAJournal `protobuf:"bytes,1,opt,name=journal,proto3" json:"journal,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6874,9 +7215,11 @@ func (x *SetCAJournalResponse) GetJournal() *CAJournal {
 	return nil
 }
 
+// FetchCAJournalRequest is used to fetch a specific CA journal.
 type FetchCAJournalRequest struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	ActiveX509AuthorityId string                 `protobuf:"bytes,1,opt,name=active_x509_authority_id,json=activeX509AuthorityId,proto3" json:"active_x509_authority_id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The ID of the active X.509 authority whose CA journal is being fetched.
+	ActiveX509AuthorityId string `protobuf:"bytes,1,opt,name=active_x509_authority_id,json=activeX509AuthorityId,proto3" json:"active_x509_authority_id,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -6918,9 +7261,11 @@ func (x *FetchCAJournalRequest) GetActiveX509AuthorityId() string {
 	return ""
 }
 
+// FetchCAJournalResponse is the response returned after fetching a specific CA journal.
 type FetchCAJournalResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Journal       *CAJournal             `protobuf:"bytes,1,opt,name=journal,proto3" json:"journal,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The CA journal that was fetched.
+	Journal       *CAJournal `protobuf:"bytes,1,opt,name=journal,proto3" json:"journal,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6962,9 +7307,11 @@ func (x *FetchCAJournalResponse) GetJournal() *CAJournal {
 	return nil
 }
 
+// PruneCAJournalsRequest is used to prune CA journals that have expired before a specific timestamp.
 type PruneCAJournalsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ExpiresBefore int64                  `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The timestamp before which CA journals should be pruned.
+	ExpiresBefore int64 `protobuf:"varint,1,opt,name=expires_before,json=expiresBefore,proto3" json:"expires_before,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -7006,6 +7353,7 @@ func (x *PruneCAJournalsRequest) GetExpiresBefore() int64 {
 	return 0
 }
 
+// PruneCAJournalsResponse is the response returned after pruning CA journals.
 type PruneCAJournalsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -7042,6 +7390,7 @@ func (*PruneCAJournalsResponse) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{130}
 }
 
+// ListCAJournalsRequest is used to list all CA journals.
 type ListCAJournalsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -7078,9 +7427,11 @@ func (*ListCAJournalsRequest) Descriptor() ([]byte, []int) {
 	return file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDescGZIP(), []int{131}
 }
 
+// ListCAJournalsResponse is the response returned after listing CA journals.
 type ListCAJournalsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Journals      []*CAJournal           `protobuf:"bytes,1,rep,name=journals,proto3" json:"journals,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The list of CA journals.
+	Journals      []*CAJournal `protobuf:"bytes,1,rep,name=journals,proto3" json:"journals,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -7178,7 +7529,7 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"\x15additional_attributes\x18\x11 \x01(\v2N.spire.plugin.server.datastore.v1alpha1.RegistrationEntry_AdditionalAttributesR\x14additionalAttributes\"\x96\x01\n" +
 	"&RegistrationEntry_AdditionalAttributes\x12;\n" +
 	"\x1adisable_x509_svid_prefetch\x18\x01 \x01(\bR\x17disableX509SvidPrefetch\x12/\n" +
-	"\x14jwt_svid_include_jti\x18\x02 \x01(\bR\x11jwtSvidIncludeJti\"\x9f\x03\n" +
+	"\x14jwt_svid_include_jti\x18\x02 \x01(\bR\x11jwtSvidIncludeJti\"\xa0\x03\n" +
 	"\x15RegistrationEntryMask\x12\x1c\n" +
 	"\tselectors\x18\x01 \x01(\bR\tselectors\x12\x1b\n" +
 	"\tparent_id\x18\x02 \x01(\bR\bparentId\x12\x1b\n" +
@@ -7189,8 +7540,8 @@ const file_spire_plugin_server_datastore_v1alpha1_datastore_proto_rawDesc = "" +
 	"\x05admin\x18\a \x01(\bR\x05admin\x12\x1e\n" +
 	"\n" +
 	"downstream\x18\b \x01(\bR\n" +
-	"downstream\x12 \n" +
-	"\ventryExpiry\x18\t \x01(\bR\ventryExpiry\x12\x1b\n" +
+	"downstream\x12!\n" +
+	"\fentry_expiry\x18\t \x01(\bR\ventryExpiry\x12\x1b\n" +
 	"\tdns_names\x18\n" +
 	" \x01(\bR\bdnsNames\x12\x1d\n" +
 	"\n" +

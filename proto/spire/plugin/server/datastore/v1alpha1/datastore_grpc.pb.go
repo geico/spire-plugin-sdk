@@ -79,6 +79,8 @@ const (
 // DataStoreClient is the client API for DataStore service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// DataStore defines the interface for the SPIRE server's datastore plugin.
 type DataStoreClient interface {
 	AppendBundle(ctx context.Context, in *AppendBundleRequest, opts ...grpc.CallOption) (*AppendBundleResponse, error)
 	CreateBundle(ctx context.Context, in *CreateBundleRequest, opts ...grpc.CallOption) (*CreateBundleResponse, error)
@@ -698,6 +700,8 @@ func (c *dataStoreClient) ListCAJournals(ctx context.Context, in *ListCAJournals
 // DataStoreServer is the server API for DataStore service.
 // All implementations must embed UnimplementedDataStoreServer
 // for forward compatibility.
+//
+// DataStore defines the interface for the SPIRE server's datastore plugin.
 type DataStoreServer interface {
 	AppendBundle(context.Context, *AppendBundleRequest) (*AppendBundleResponse, error)
 	CreateBundle(context.Context, *CreateBundleRequest) (*CreateBundleResponse, error)
