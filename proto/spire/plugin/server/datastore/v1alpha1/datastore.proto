@@ -1243,7 +1243,6 @@ service DataStore {
     rpc CreateRegistrationEntry(CreateRegistrationEntryRequest) returns (CreateRegistrationEntryResponse);
     rpc CreateOrReturnRegistrationEntry(CreateOrReturnRegistrationEntryRequest) returns (CreateOrReturnRegistrationEntryResponse);
     rpc DeleteRegistrationEntry(DeleteRegistrationEntryRequest) returns (DeleteRegistrationEntryResponse);
-    rpc FetchRegistrationEntry(FetchRegistrationEntryRequest) returns (FetchRegistrationEntryResponse);
     rpc FetchRegistrationEntries(FetchRegistrationEntriesRequest) returns (FetchRegistrationEntriesResponse);
     rpc ListRegistrationEntries(ListRegistrationEntriesRequest) returns (ListRegistrationEntriesResponse);
     rpc PruneRegistrationEntries(PruneRegistrationEntriesRequest) returns (PruneRegistrationEntriesResponse);

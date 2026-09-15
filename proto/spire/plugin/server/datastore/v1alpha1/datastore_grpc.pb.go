@@ -36,7 +36,6 @@ const (
 	DataStore_CreateRegistrationEntry_FullMethodName         = "/spire.plugin.server.datastore.v1alpha1.DataStore/CreateRegistrationEntry"
 	DataStore_CreateOrReturnRegistrationEntry_FullMethodName = "/spire.plugin.server.datastore.v1alpha1.DataStore/CreateOrReturnRegistrationEntry"
 	DataStore_DeleteRegistrationEntry_FullMethodName         = "/spire.plugin.server.datastore.v1alpha1.DataStore/DeleteRegistrationEntry"
-	DataStore_FetchRegistrationEntry_FullMethodName          = "/spire.plugin.server.datastore.v1alpha1.DataStore/FetchRegistrationEntry"
 	DataStore_FetchRegistrationEntries_FullMethodName        = "/spire.plugin.server.datastore.v1alpha1.DataStore/FetchRegistrationEntries"
 	DataStore_ListRegistrationEntries_FullMethodName         = "/spire.plugin.server.datastore.v1alpha1.DataStore/ListRegistrationEntries"
 	DataStore_PruneRegistrationEntries_FullMethodName        = "/spire.plugin.server.datastore.v1alpha1.DataStore/PruneRegistrationEntries"
@@ -99,7 +98,6 @@ type DataStoreClient interface {
 	CreateRegistrationEntry(ctx context.Context, in *CreateRegistrationEntryRequest, opts ...grpc.CallOption) (*CreateRegistrationEntryResponse, error)
 	CreateOrReturnRegistrationEntry(ctx context.Context, in *CreateOrReturnRegistrationEntryRequest, opts ...grpc.CallOption) (*CreateOrReturnRegistrationEntryResponse, error)
 	DeleteRegistrationEntry(ctx context.Context, in *DeleteRegistrationEntryRequest, opts ...grpc.CallOption) (*DeleteRegistrationEntryResponse, error)
-	FetchRegistrationEntry(ctx context.Context, in *FetchRegistrationEntryRequest, opts ...grpc.CallOption) (*FetchRegistrationEntryResponse, error)
 	FetchRegistrationEntries(ctx context.Context, in *FetchRegistrationEntriesRequest, opts ...grpc.CallOption) (*FetchRegistrationEntriesResponse, error)
 	ListRegistrationEntries(ctx context.Context, in *ListRegistrationEntriesRequest, opts ...grpc.CallOption) (*ListRegistrationEntriesResponse, error)
 	PruneRegistrationEntries(ctx context.Context, in *PruneRegistrationEntriesRequest, opts ...grpc.CallOption) (*PruneRegistrationEntriesResponse, error)
@@ -311,16 +309,6 @@ func (c *dataStoreClient) DeleteRegistrationEntry(ctx context.Context, in *Delet
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteRegistrationEntryResponse)
 	err := c.cc.Invoke(ctx, DataStore_DeleteRegistrationEntry_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataStoreClient) FetchRegistrationEntry(ctx context.Context, in *FetchRegistrationEntryRequest, opts ...grpc.CallOption) (*FetchRegistrationEntryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FetchRegistrationEntryResponse)
-	err := c.cc.Invoke(ctx, DataStore_FetchRegistrationEntry_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -720,7 +708,6 @@ type DataStoreServer interface {
 	CreateRegistrationEntry(context.Context, *CreateRegistrationEntryRequest) (*CreateRegistrationEntryResponse, error)
 	CreateOrReturnRegistrationEntry(context.Context, *CreateOrReturnRegistrationEntryRequest) (*CreateOrReturnRegistrationEntryResponse, error)
 	DeleteRegistrationEntry(context.Context, *DeleteRegistrationEntryRequest) (*DeleteRegistrationEntryResponse, error)
-	FetchRegistrationEntry(context.Context, *FetchRegistrationEntryRequest) (*FetchRegistrationEntryResponse, error)
 	FetchRegistrationEntries(context.Context, *FetchRegistrationEntriesRequest) (*FetchRegistrationEntriesResponse, error)
 	ListRegistrationEntries(context.Context, *ListRegistrationEntriesRequest) (*ListRegistrationEntriesResponse, error)
 	PruneRegistrationEntries(context.Context, *PruneRegistrationEntriesRequest) (*PruneRegistrationEntriesResponse, error)
@@ -818,9 +805,6 @@ func (UnimplementedDataStoreServer) CreateOrReturnRegistrationEntry(context.Cont
 }
 func (UnimplementedDataStoreServer) DeleteRegistrationEntry(context.Context, *DeleteRegistrationEntryRequest) (*DeleteRegistrationEntryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegistrationEntry not implemented")
-}
-func (UnimplementedDataStoreServer) FetchRegistrationEntry(context.Context, *FetchRegistrationEntryRequest) (*FetchRegistrationEntryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FetchRegistrationEntry not implemented")
 }
 func (UnimplementedDataStoreServer) FetchRegistrationEntries(context.Context, *FetchRegistrationEntriesRequest) (*FetchRegistrationEntriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchRegistrationEntries not implemented")
@@ -1256,24 +1240,6 @@ func _DataStore_DeleteRegistrationEntry_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataStoreServer).DeleteRegistrationEntry(ctx, req.(*DeleteRegistrationEntryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataStore_FetchRegistrationEntry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FetchRegistrationEntryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataStoreServer).FetchRegistrationEntry(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DataStore_FetchRegistrationEntry_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataStoreServer).FetchRegistrationEntry(ctx, req.(*FetchRegistrationEntryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2018,10 +1984,6 @@ var DataStore_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRegistrationEntry",
 			Handler:    _DataStore_DeleteRegistrationEntry_Handler,
-		},
-		{
-			MethodName: "FetchRegistrationEntry",
-			Handler:    _DataStore_FetchRegistrationEntry_Handler,
 		},
 		{
 			MethodName: "FetchRegistrationEntries",
